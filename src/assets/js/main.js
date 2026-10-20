@@ -68,11 +68,51 @@
       prev.disabled = pos <= 1;
       next.disabled = pos >= max - 1;
     }
-    prev.addEventListener("click", function () { track.scrollBy({ left: -step() * sign }); });
-    next.addEventListener("click", function () { track.scrollBy({ left: step() * sign }); });
+    prev.addEventListener("click", function () { stopAutoplay(); track.scrollBy({ left: -step() * sign }); });
+    next.addEventListener("click", function () { stopAutoplay(); track.scrollBy({ left: step() * sign }); });
     track.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     update();
+
+    /*
+      Autoplay: moves one card every few seconds and loops back to the start.
+      It pauses while the pointer is over the row, while anything in it has focus,
+      while the row is off screen or the tab is hidden. It stops for good once the
+      visitor takes over (buttons, touch, keys) and never runs with reduced motion.
+    */
+    var delay = parseInt(track.getAttribute("data-autoplay"), 10);
+    var timer = null;
+    var stopped = !delay || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var hovered = false, focused = false, visible = true;
+
+    function advance() {
+      var max = track.scrollWidth - track.clientWidth;
+      if (max <= 1) return;
+      var atEnd = Math.abs(track.scrollLeft) >= max - 1;
+      if (atEnd) track.scrollTo({ left: 0 });
+      else track.scrollBy({ left: step() * sign });
+    }
+    function sync() {
+      var run = !stopped && !hovered && !focused && visible && !document.hidden;
+      if (run && !timer) timer = setInterval(advance, delay);
+      if (!run && timer) { clearInterval(timer); timer = null; }
+    }
+    function stopAutoplay() { stopped = true; sync(); }
+
+    track.addEventListener("mouseenter", function () { hovered = true; sync(); });
+    track.addEventListener("mouseleave", function () { hovered = false; sync(); });
+    track.addEventListener("focusin", function () { focused = true; sync(); });
+    track.addEventListener("focusout", function () { focused = false; sync(); });
+    ["touchstart", "keydown"].forEach(function (type) {
+      track.addEventListener(type, stopAutoplay, { passive: true });
+    });
+    document.addEventListener("visibilitychange", sync);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting; sync();
+      }, { threshold: 0.5 }).observe(track);
+    }
+    sync();
   });
 
   /* Footer year */
