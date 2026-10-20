@@ -2,15 +2,23 @@
 layout: layouts/about.njk
 key: about
 title: About me
-eyebrow: About me
-heading: Hello, I'm Mo.Amine Testouri.
-lead: A product designer based in Tunisia, working with clients around the world.
+hero:
+  eyebrow: About me
+  heading: Hello, I'm Mo.Amine Testouri.
+  lead: A product designer based in Tunisia, working with clients around the world.
+sections:
+  about:
+    title: My path
+    sub: How I came to product design, and how I work today.
+  experience:
+    title: Experience
+    sub: I work as an independent product designer, on freelance and consulting projects with teams of different sizes.
+  education:
+    title: Education and training
+    sub: Where my systems thinking and design practice come from.
 portraitAlt: Portrait of Mo.Amine Testouri
 portraitLabel: Portrait · 4:5
-cta: Get in touch
 experience:
-  heading: Experience
-  lead: I work as an independent product designer, on freelance and consulting projects with teams of different sizes.
   sectorsHeading: Sectors
   sectors:
     - Fintech
@@ -25,7 +33,6 @@ experience:
     - Mobile apps
   notes:
     - I've worked with founders leading small teams and with individuals inside larger companies. Each project gets the same attention and is led by me.
-  educationHeading: Education and training
   education:
     - name: ISET
       detail: Automation and Industrial Computing (AII)

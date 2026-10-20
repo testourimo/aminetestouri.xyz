@@ -12,9 +12,12 @@
 }
 
 /*
-  Frame: two hairlines on the container's content edges, running the full height
-  of the header, every section and the footer, so the column stays visible.
-  Heroes (.hero, .page-intro) are left open on purpose. Purely decorative.
+  Page structure
+  1. The hero is the only block that breaks the frame (see pages.css).
+  2. Every section is a closed box inside the frame: vertical hairlines on the
+     container-max edges and a horizontal hairline on top, line to line.
+     The footer's top line closes the last section. The header keeps the verticals.
+  3. Every section opens with a section head: title, subheading, controls.
 */
 .site-header,
 .section,
@@ -34,6 +37,8 @@
   pointer-events: none;
   z-index: 1;
 }
+.section::before,
+.site-footer::before { border-top: 1px solid var(--line); }
 
 .grid {
   display: grid;
@@ -65,23 +70,26 @@
   .d-start-7 { grid-column-start: 7; }
 }
 
-/* Sections: compact gaps, hairline between them. */
+/* Sections: compact vertical rhythm. */
 .section { padding-block: var(--space-7); }
-.section + .section { border-top: 1px solid var(--line); }
 @media (min-width: 1024px) { .section { padding-block: var(--space-8); } }
 
-.section__head {
+/* Section head: title + subheading on the start side, controls on the end side. */
+.section-head {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: var(--space-4) var(--space-6);
   margin-bottom: var(--space-6);
 }
-
-.page-intro { padding-block: var(--space-8) var(--space-7); }
-.page-intro .label { display: block; margin-bottom: var(--space-4); color: var(--ink-muted); }
-.page-intro .lead { margin-top: var(--space-4); max-width: 60ch; color: var(--ink-muted); }
+.section-head:only-child { margin-bottom: 0; }
+.section-head__text { flex: 1 1 32ch; max-width: 60ch; }
+.section-head__title { font: 700 clamp(25px, 3.5vw, 31px) / 1.16 var(--font-sans); letter-spacing: -0.02em; }
+.section-head__sub { margin-top: var(--space-2); color: var(--ink-muted); font: 400 16px/24px var(--font-sans); }
+.section-head__controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3); }
+[dir="rtl"] .section-head__title { font: 700 25px/40px var(--font-arabic); letter-spacing: 0; }
+[dir="rtl"] .section-head__sub { font: 400 20px/34px var(--font-arabic); }
 
 .stack > * + * { margin-top: var(--space-4); }
 .stack-lg > * + * { margin-top: var(--space-6); }
@@ -122,6 +130,65 @@
 .site-nav__link[aria-current="page"],
 .site-nav__link[data-active] { color: var(--ink); border-bottom-color: var(--ink); }
 [dir="rtl"] .site-nav__link { font: 500 18px/1 var(--font-arabic); }
+
+/*
+  Services dropdown. Desktop: opens on hover, keyboard focus or a tap on the chevron.
+  Phone menu: the services sit under Services as indented links.
+*/
+.site-nav__item--menu { position: relative; }
+.site-nav__toggle { display: none; }
+.site-nav__menu { display: none; }
+.dropdown { list-style: none; margin: 0; padding: 0; }
+.dropdown__link {
+  display: grid; grid-template-columns: 32px 1fr; align-items: baseline; gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  color: var(--ink); text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease-out);
+}
+.dropdown__link:hover, .dropdown__link:focus-visible { background: var(--surface-sunken); color: var(--ink); }
+.dropdown__num { color: var(--ink-muted); font: 500 13px/20px var(--font-sans); font-variant-numeric: tabular-nums; }
+.dropdown__title { font: 500 16px/24px var(--font-sans); }
+[dir="rtl"] .dropdown__title { font: 500 18px/28px var(--font-arabic); }
+.dropdown__all {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-2);
+  margin-top: var(--space-2); padding: var(--space-3);
+  border-top: 1px solid var(--line);
+  font: 500 15px/1 var(--font-sans); color: var(--ink); text-decoration: none;
+}
+.dropdown__all:hover { color: var(--accent-text); }
+[dir="rtl"] .dropdown__all { font: 500 18px/1 var(--font-arabic); }
+
+@media (max-width: 1023px) {
+  .site-nav[data-open] .site-nav__menu { display: block; padding: var(--space-2) 0 var(--space-3); border-bottom: 1px solid var(--line); }
+  .site-nav[data-open] .site-nav__item--menu > .site-nav__link { border-bottom: 0; }
+  .site-nav[data-open] .dropdown__link { padding-inline: var(--space-4); }
+  .site-nav[data-open] .dropdown__all { margin-top: 0; border-top: 0; padding-inline: var(--space-4); justify-content: flex-start; }
+}
+
+@media (min-width: 1024px) {
+  .site-nav__item--menu { display: flex; align-items: center; }
+  .site-nav__toggle {
+    display: inline-grid; place-items: center;
+    width: 24px; height: var(--touch-target);
+    padding: 0; border: 0; background: none; color: var(--ink-muted); cursor: pointer;
+  }
+  .site-nav__toggle .at-icon { transition: transform var(--dur-fast) var(--ease-out); }
+  .site-nav__menu {
+    position: absolute; z-index: 70;
+    top: calc(100% + (var(--header-h) - var(--touch-target)) / 2);
+    inset-inline-start: calc(-1 * var(--space-3));
+    min-width: 300px; padding: var(--space-2) 0 0;
+    background: var(--surface); border: 1px solid var(--line);
+  }
+  /* Invisible bridge over the gap, so the pointer can travel from the link to the panel. */
+  .site-nav__menu::before { content: ""; position: absolute; inset-inline: 0; bottom: 100%; height: calc((var(--header-h) - var(--touch-target)) / 2 + 1px); }
+  /* data-dismissed (set by Escape) keeps it shut until the pointer or focus leaves. */
+  .site-nav__item--menu:not([data-dismissed]):hover .site-nav__menu,
+  .site-nav__item--menu:not([data-dismissed]):focus-within .site-nav__menu,
+  .site-nav__item--menu[data-open] .site-nav__menu { display: block; }
+  .site-nav__item--menu:not([data-dismissed]):hover .site-nav__toggle .at-icon,
+  .site-nav__item--menu[data-open] .site-nav__toggle .at-icon { transform: rotate(180deg); }
+}
 
 /*
   Site tools: language and light/dark mode.
@@ -178,7 +245,6 @@
 /* Footer */
 .site-footer {
   padding-block: var(--space-7);
-  border-top: 1px solid var(--line);
 }
 .site-footer__sign .at-logo { display: block; margin-bottom: var(--space-3); }
 .site-footer__nav {

@@ -1,18 +1,34 @@
 /* Page-specific layout. Keep this short: most pages are built from components. */
 
-/* Home: hero with name on the left and the isometric field on the right. */
-.hero { padding-block: var(--space-7); border-bottom: 1px solid var(--line); }
-.hero__grid { align-items: end; }
-.hero__eyebrow { color: var(--ink-muted); margin-bottom: var(--space-5); }
-.hero__headline { font: 700 clamp(44px, 7.5vw, 80px) / 0.98 var(--font-sans); letter-spacing: -0.03em; max-width: 12ch; }
-.hero__lede { margin-top: var(--space-5); max-width: 45ch; color: var(--ink-muted); }
-.hero__pattern { height: 240px; overflow: hidden; }
+/*
+  Hero: the one block allowed to break the frame. No frame lines.
+  Text sits on the first 7 columns; the pattern starts on column 8 and runs
+  to the page edge. Below desktop the pattern becomes a full-bleed strip under the text.
+*/
+.hero { position: relative; overflow: hidden; padding-top: var(--space-7); }
+.hero__text { position: relative; z-index: 1; }
+.hero__eyebrow { color: var(--ink-muted); margin-bottom: var(--space-4); }
+.hero__heading { font: 700 clamp(31px, 5vw, 49px) / 1.08 var(--font-sans); letter-spacing: -0.02em; max-width: 20ch; }
+.hero--home .hero__heading { font-size: clamp(44px, 7.5vw, 80px); line-height: 0.98; letter-spacing: -0.03em; max-width: 12ch; }
+.hero__lead { margin-top: var(--space-4); max-width: 52ch; color: var(--ink-muted); }
+.hero__pattern { height: 128px; margin-top: var(--space-7); overflow: hidden; }
+.hero--home .hero__pattern { height: 192px; }
+.hero__pattern .at-iso { width: 100%; height: 100%; }
+
 @media (min-width: 1024px) {
   .hero { padding-block: var(--space-8); }
-  .hero__text { grid-column: 1 / span 7; }
-  .hero__pattern { grid-column: 8 / span 5; height: 100%; min-height: 360px; }
+  .hero__text { max-width: calc(min(var(--container-max), 100% - 2 * var(--margin)) * 7 / 12); }
+  .hero__pattern {
+    position: absolute; inset-block: 0; margin: 0; height: auto;
+    /* frame width F; column 8 starts at 50% + F / 12 */
+    inset-inline-start: calc(50% + min(var(--container-max), 100% - 2 * var(--margin)) / 12);
+    inset-inline-end: 0;
+  }
+  .hero--home .hero__pattern { height: auto; }
 }
-[dir="rtl"] .hero__headline { font: 800 clamp(40px, 6.5vw, 64px) / 1.3 var(--font-arabic); letter-spacing: 0; }
+
+[dir="rtl"] .hero__heading { font: 800 clamp(31px, 5vw, 39px) / 1.45 var(--font-arabic); letter-spacing: 0; }
+[dir="rtl"] .hero--home .hero__heading { font-size: clamp(40px, 6.5vw, 64px); line-height: 1.3; }
 
 /* Card rows: one across, two from tablet, three from desktop. Never mix card types in a row. */
 .card-grid { row-gap: var(--gutter); }
@@ -26,10 +42,8 @@
   .about__text { grid-column: 6 / span 7; }
 }
 
-.pull { padding-block: var(--space-6); border-block: 1px solid var(--line); }
-
 /* Experience: definition-style blocks. */
-.facts h2 { margin-bottom: var(--space-4); }
+.facts h3 { margin-bottom: var(--space-4); }
 .facts ul { padding-inline-start: 0; list-style: none; }
 .facts li { padding-block: var(--space-3); border-bottom: 1px solid var(--line); }
 .facts li:first-child { border-top: 1px solid var(--line); }
@@ -37,10 +51,7 @@
 /* Contact: one centred column on the grid. Text inside stays flush left. */
 @media (min-width: 600px) { .contact { grid-column: 2 / span 6; } }
 @media (min-width: 1024px) { .contact { grid-column: 3 / span 8; } }
-.contact__note { margin-bottom: var(--space-6); }
 .contact-form { display: grid; gap: var(--space-5); }
 @media (min-width: 600px) { .contact-form .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); } }
 .contact-form .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
-/* Pattern strip used as a section divider. */
-.iso-strip { height: 96px; overflow: hidden; border-block: 1px solid var(--line); }

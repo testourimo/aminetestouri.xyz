@@ -2,34 +2,23 @@
 layout: layouts/base.njk
 ---
 {% from "partials/button.njk" import button %}
+{% from "partials/section-head.njk" import sectionHead %}
 
-<section class="hero">
-  <div class="container grid hero__grid">
-    <div class="hero__text">
-      <p class="hero__eyebrow label"><span class="latin">{{ site.name }}</span> · {{ site.role | t(lang) }}</p>
-      <h1 class="hero__headline">{{ headline }}</h1>
-      <p class="hero__lede body">{{ lede }}</p>
-      <div class="actions">
-        {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
-        {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "outlined", "arrow-up-right") }}
-      </div>
-    </div>
-    <div class="hero__pattern">
-      {% iso { cols: 9, rows: 22, side: 48 } %}
-    </div>
-  </div>
-</section>
+{% set heroActions %}
+  {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
+  {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "outlined", "arrow-up-right") }}
+{% endset %}
+{% include "partials/hero.njk" %}
 
 <section class="section" aria-labelledby="work-title">
   <div class="container">
-    <div class="section__head">
-      <h2 class="h2" id="work-title">{{ ui.selectedWork | t(lang) }}</h2>
+    {% call sectionHead("work", sections.work) %}
       <div class="scroller-nav" data-scroller-nav hidden>
         <button class="icon-btn" type="button" data-scroll="prev" aria-label="{{ ui.previous | t(lang) }}">{% icon "arrow-left", 20 %}</button>
         <button class="icon-btn" type="button" data-scroll="next" aria-label="{{ ui.next | t(lang) }}">{% icon "arrow-right", 20 %}</button>
       </div>
-    </div>
-    {#- Scrolls sideways inside the container, so cards clip at the page's own edges. #}
+    {% endcall %}
+    {#- Scrolls sideways out to the frame lines, the one thing allowed to cross the safe space. #}
     <ul class="scroller" role="list" tabindex="0" aria-labelledby="work-title" data-scroller data-autoplay="40">
       {%- for project in work %}
       <li class="scroller__item">{% include "partials/card-thumb.njk" %}</li>
@@ -40,10 +29,9 @@ layout: layouts/base.njk
 
 <section class="section" aria-labelledby="services-title">
   <div class="container">
-    <div class="section__head">
-      <h2 class="display-lg" id="services-title">{{ servicesHeading }}</h2>
+    {% call sectionHead("services", sections.services) %}
       {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "text", "arrow-right") }}
-    </div>
+    {% endcall %}
     <div class="grid card-grid">
       {%- for service in services %}{% if loop.index <= 3 %}
       {%- set index = loop.index %}
@@ -54,16 +42,11 @@ layout: layouts/base.njk
   </div>
 </section>
 
-<section class="section">
+<section class="section" aria-labelledby="contact-title">
   <div class="container">
-    <div class="callout grid">
-      <div class="d-span-8">
-        <p class="display-quote">{{ closing }}</p>
-        <div class="actions">
-          {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
-          {{ button(ui.readProcess | t(lang), ("services" | urlFor(lang)) + "#process", "outlined", "arrow-up-right") }}
-        </div>
-      </div>
-    </div>
+    {% call sectionHead("contact", sections.contact) %}
+      {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
+      {{ button(ui.readProcess | t(lang), ("services" | urlFor(lang)) + "#process", "outlined", "arrow-up-right") }}
+    {% endcall %}
   </div>
 </section>

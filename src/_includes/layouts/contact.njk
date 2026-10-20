@@ -1,21 +1,14 @@
 ---
 layout: layouts/base.njk
 ---
-<section class="page-intro">
-  <div class="container grid">
-    <div class="contact">
-      <h1 class="h1">{{ heading or title }}</h1>
-      {% if lead %}<p class="lead body">{{ lead }}</p>{% endif %}
-    </div>
-  </div>
-</section>
+{% from "partials/section-head.njk" import sectionHead %}
+{% include "partials/hero.njk" %}
 
-<section class="section">
+<section class="section" aria-labelledby="message-title">
   <div class="container grid">
+    {#- The form keeps its centred column; its section head sits on the same column. #}
     <div class="contact">
-    <div class="prose body contact__note">
-      {{ content | safe }}
-    </div>
+    {% call sectionHead("message", sections.message) %}{% endcall %}
 
     {# Posts to the form service set in src/_data/site.json (formEndpoint), e.g. Formspree. #}
     <form class="contact-form" method="POST" action="{{ site.formEndpoint }}" data-contact-form novalidate>

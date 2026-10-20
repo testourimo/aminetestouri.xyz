@@ -2,11 +2,14 @@
 layout: layouts/base.njk
 ---
 {% from "partials/button.njk" import button %}
-{% include "partials/page-intro.njk" %}
+{% from "partials/section-head.njk" import sectionHead %}
+{% include "partials/hero.njk" %}
 
 <section class="section" aria-labelledby="services-title">
   <div class="container">
-    <h2 class="visually-hidden" id="services-title">{{ title }}</h2>
+    {% call sectionHead("services", sections.services) %}
+      {{ button(ui.readProcess | t(lang), "#process", "text", "arrow-right") }}
+    {% endcall %}
     <ol class="index-list" role="list">
       {%- for service in services %}
       <li class="index-list__item" id="{{ service.slug }}">
@@ -21,12 +24,9 @@ layout: layouts/base.njk
 
 <section class="section" id="process" aria-labelledby="process-title">
   <div class="container">
-    <div class="section__head">
-      <div>
-        <h2 class="h2" id="process-title">{{ processHeading }}</h2>
-        <p class="body muted" style="margin-top: var(--space-3)">{{ processLead }}</p>
-      </div>
-    </div>
+    {% call sectionHead("process", sections.process) %}
+      {{ button(sections.process.cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
+    {% endcall %}
     <ol class="index-list index-list--steps" role="list">
       {%- for step in process %}
       <li class="index-list__item">
@@ -36,8 +36,5 @@ layout: layouts/base.njk
       </li>
       {%- endfor %}
     </ol>
-    <div class="actions">
-      {{ button(cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
-    </div>
   </div>
 </section>

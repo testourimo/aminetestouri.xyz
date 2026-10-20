@@ -38,6 +38,27 @@
     });
   }
 
+  /* Services dropdown: the chevron opens it on tap or click; Escape or a click outside closes it.
+     Hover and keyboard focus open it through CSS alone. */
+  document.querySelectorAll("[data-dropdown]").forEach(function (item) {
+    var toggle = item.querySelector("[data-dropdown-toggle]");
+    function set(open) {
+      toggle.setAttribute("aria-expanded", String(open));
+      if (open) item.setAttribute("data-open", ""); else item.removeAttribute("data-open");
+    }
+    toggle.addEventListener("click", function () { set(!item.hasAttribute("data-open")); });
+    document.addEventListener("click", function (e) { if (!item.contains(e.target)) set(false); });
+    item.addEventListener("keydown", function (e) {
+      if (e.key !== "Escape") return;
+      set(false);
+      item.setAttribute("data-dismissed", "");
+      toggle.focus();
+    });
+    function undismiss() { item.removeAttribute("data-dismissed"); }
+    item.addEventListener("mouseleave", undismiss);
+    item.addEventListener("focusout", function (e) { if (!item.contains(e.relatedTarget)) undismiss(); });
+  });
+
   /* CardGlow: the glow follows the pointer. */
   document.querySelectorAll("[data-glow]").forEach(function (card) {
     card.addEventListener("pointermove", function (e) {

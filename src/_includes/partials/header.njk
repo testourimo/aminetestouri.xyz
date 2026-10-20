@@ -22,9 +22,36 @@
     <nav class="site-nav" id="site-nav" aria-label="{{ ui.mainNav | t(lang) }}">
       <ul class="site-nav__list">
         {%- for item in nav %}
-        <li>
+        {%- if item.key == "services" %}
+        {#- Services opens a dropdown on hover, keyboard focus or tap. In the phone menu it shows as sub-links. #}
+        <li class="site-nav__item site-nav__item--menu" data-dropdown>
+          <a class="site-nav__link" href="{{ item.url | t(lang) }}"{% if key == item.key %} aria-current="page"{% endif %}>{{ item.label | t(lang) }}</a>
+          <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="menu-services" data-dropdown-toggle>
+            <span class="visually-hidden">{{ ui.showServices | t(lang) }}</span>
+            {% icon "chevron-down", 16 %}
+          </button>
+          <div class="site-nav__menu" id="menu-services">
+            <ul class="dropdown" role="list">
+              {%- for service in services %}
+              <li>
+                <a class="dropdown__link" href="{{ item.url | t(lang) }}#{{ service.slug }}">
+                  <span class="dropdown__num">{{ loop.index | pad }}</span>
+                  <span class="dropdown__title">{{ service.title | t(lang) }}</span>
+                </a>
+              </li>
+              {%- endfor %}
+            </ul>
+            <a class="dropdown__all at-draw" href="{{ item.url | t(lang) }}">
+              <span>{{ ui.seeAllServices | t(lang) }}</span>
+              <span class="at-btn__icon">{% icon "arrow-right" %}</span>
+            </a>
+          </div>
+        </li>
+        {%- else %}
+        <li class="site-nav__item">
           <a class="site-nav__link" href="{{ item.url | t(lang) }}"{% if key == item.key %} aria-current="page"{% endif %}>{{ item.label | t(lang) }}</a>
         </li>
+        {%- endif %}
         {%- endfor %}
       </ul>
     </nav>

@@ -1,0 +1,20 @@
+{#
+  Hero: the only block that breaks the frame.
+  Text sits on the column; the pattern field runs out to the page edge
+  (beside the text on desktop, a full-width strip below it on smaller screens).
+  Uses from the page: hero.eyebrow, hero.heading, hero.lead, and on Home hero.home = true.
+  Optional `heroActions` (set in the layout) renders buttons under the lead.
+#}
+<section class="hero{% if hero.home %} hero--home{% endif %}">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      {% if hero.eyebrow %}<p class="hero__eyebrow label">{{ hero.eyebrow }}</p>{% endif %}
+      <h1 class="hero__heading">{{ hero.heading }}</h1>
+      {% if hero.lead %}<p class="hero__lead body">{{ hero.lead }}</p>{% endif %}
+      {% if heroActions %}<div class="actions">{{ heroActions | safe }}</div>{% endif %}
+    </div>
+  </div>
+  <div class="hero__pattern" aria-hidden="true">
+    {% iso { cols: 16, rows: 24, side: 48 } %}
+  </div>
+</section>

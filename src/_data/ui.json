@@ -66,5 +66,13 @@
   "next": {
     "en": "Next projects",
     "ar": "المشاريع التالية"
+  },
+  "showServices": {
+    "en": "Show services",
+    "ar": "عرض الخدمات"
+  },
+  "seeAllServices": {
+    "en": "See all services",
+    "ar": "اطّلعوا على كل الخدمات"
   }
 }

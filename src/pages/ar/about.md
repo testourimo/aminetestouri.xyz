@@ -2,15 +2,23 @@
 layout: layouts/about.njk
 key: about
 title: نبذة عني
-eyebrow: نبذة عني
-heading: أهلًا بكم، أنا Mo.Amine Testouri.
-lead: مصمّم منتجات رقمية مقيم في تونس، وأعمل مع عملاء من مختلف أنحاء العالم.
+hero:
+  eyebrow: نبذة عني
+  heading: أهلًا بكم، أنا Mo.Amine Testouri.
+  lead: مصمّم منتجات رقمية مقيم في تونس، وأعمل مع عملاء من مختلف أنحاء العالم.
+sections:
+  about:
+    title: مسيرتي
+    sub: كيف وصلت إلى تصميم المنتجات، وكيف أعمل اليوم.
+  experience:
+    title: الخبرة
+    sub: أعمل مصمّم منتجات مستقلًا، ضمن مشاريع حرة واستشارية مع فرق بأحجام مختلفة.
+  education:
+    title: التعليم والتدريب
+    sub: من أين جاء تفكيري المنظومي وممارستي للتصميم.
 portraitAlt: صورة شخصية لـ Mo.Amine Testouri
 portraitLabel: صورة شخصية · 4:5
-cta: تواصلوا معي
 experience:
-  heading: الخبرة
-  lead: أعمل مصمّم منتجات مستقلًا، ضمن مشاريع حرة واستشارية مع فرق بأحجام مختلفة.
   sectorsHeading: القطاعات
   sectors:
     - التقنية المالية
@@ -25,7 +33,6 @@ experience:
     - تطبيقات الجوال
   notes:
     - عملت مع مؤسسين يقودون فرقًا صغيرة، ومع أفراد داخل شركات أكبر. ويحظى كل مشروع بالاهتمام نفسه، وأتولّى قيادته بنفسي.
-  educationHeading: التعليم والتدريب
   education:
     - name: ISET
       detail: الأتمتة والمعلوماتية الصناعية (AII)
