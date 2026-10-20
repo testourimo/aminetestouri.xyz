@@ -30,7 +30,7 @@ layout: layouts/base.njk
       </div>
     </div>
     {#- Scrolls sideways inside the container, so cards clip at the page's own edges. #}
-    <ul class="scroller" role="list" tabindex="0" aria-labelledby="work-title" data-scroller data-autoplay="4000">
+    <ul class="scroller" role="list" tabindex="0" aria-labelledby="work-title" data-scroller data-autoplay="40">
       {%- for project in work %}
       <li class="scroller__item">{% include "partials/card-thumb.njk" %}</li>
       {%- endfor %}

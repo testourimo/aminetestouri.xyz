@@ -215,6 +215,8 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
   scrollbar-width: none;
 }
 .scroller::-webkit-scrollbar { display: none; }
+/* While drifting, snapping and smooth scrolling would fight the motion. */
+.scroller.is-autoplay { scroll-snap-type: none; scroll-behavior: auto; }
 .scroller:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
 .scroller__item {
   display: flex;

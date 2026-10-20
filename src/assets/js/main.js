@@ -68,6 +68,7 @@
       prev.disabled = pos <= 1;
       next.disabled = pos >= max - 1;
     }
+    var stopAutoplay = function () {};   // replaced below when autoplay runs
     prev.addEventListener("click", function () { stopAutoplay(); track.scrollBy({ left: -step() * sign }); });
     next.addEventListener("click", function () { stopAutoplay(); track.scrollBy({ left: step() * sign }); });
     track.addEventListener("scroll", update, { passive: true });
@@ -75,32 +76,61 @@
     update();
 
     /*
-      Autoplay: moves one card every few seconds and loops back to the start.
-      It pauses while the pointer is over the row, while anything in it has focus,
-      while the row is off screen or the tab is hidden. It stops for good once the
-      visitor takes over (buttons, touch, keys) and never runs with reduced motion.
+      Autoplay: the row drifts continuously (data-autoplay = pixels per second).
+      The cards are repeated once after the last one, so it loops without a jump;
+      the copies are hidden from screen readers and the keyboard.
+      It pauses while the pointer is on a card or a card has focus, and while the
+      row is off screen or the tab is hidden. It stops for good once the visitor
+      takes over (buttons, touch, keys) and never runs with reduced motion.
     */
-    var delay = parseInt(track.getAttribute("data-autoplay"), 10);
-    var timer = null;
-    var stopped = !delay || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var hovered = false, focused = false, visible = true;
+    var speed = parseFloat(track.getAttribute("data-autoplay"));
+    var stopped = !speed || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (stopped) return;
 
-    function advance() {
-      var max = track.scrollWidth - track.clientWidth;
-      if (max <= 1) return;
-      var atEnd = Math.abs(track.scrollLeft) >= max - 1;
-      if (atEnd) track.scrollTo({ left: 0 });
-      else track.scrollBy({ left: step() * sign });
+    var originals = Array.prototype.slice.call(track.children);
+    originals.forEach(function (item) {
+      var copy = item.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      copy.setAttribute("inert", "");
+      copy.setAttribute("data-clone", "");
+      track.appendChild(copy);
+    });
+    var firstClone = track.querySelector("[data-clone]");
+
+    var hovered = false, focused = false, visible = true;
+    var frame = null, last = 0, pos = 0;
+
+    // Width of one full set of cards: where the copies start.
+    function loopWidth() {
+      return Math.abs(firstClone.getBoundingClientRect().left - originals[0].getBoundingClientRect().left);
+    }
+    function tick(now) {
+      var dt = last ? Math.min(now - last, 64) : 0;
+      last = now;
+      pos += speed * dt / 1000;
+      var width = loopWidth();
+      if (width && pos >= width) pos -= width;
+      track.scrollLeft = pos * sign;
+      frame = requestAnimationFrame(tick);
     }
     function sync() {
       var run = !stopped && !hovered && !focused && visible && !document.hidden;
-      if (run && !timer) timer = setInterval(advance, delay);
-      if (!run && timer) { clearInterval(timer); timer = null; }
+      if (run && !frame) {
+        pos = Math.abs(track.scrollLeft);   // carry on from wherever the row is now
+        last = 0;
+        track.classList.add("is-autoplay");
+        frame = requestAnimationFrame(tick);
+      }
+      if (!run && frame) { cancelAnimationFrame(frame); frame = null; }
+      if (stopped) track.classList.remove("is-autoplay");
     }
-    function stopAutoplay() { stopped = true; sync(); }
+    stopAutoplay = function () { stopped = true; sync(); };
 
-    track.addEventListener("mouseenter", function () { hovered = true; sync(); });
-    track.addEventListener("mouseleave", function () { hovered = false; sync(); });
+    // Only a card pauses it; the gaps between cards keep it moving.
+    originals.concat(Array.prototype.slice.call(track.querySelectorAll("[data-clone]"))).forEach(function (item) {
+      item.addEventListener("mouseenter", function () { hovered = true; sync(); });
+      item.addEventListener("mouseleave", function () { hovered = false; sync(); });
+    });
     track.addEventListener("focusin", function () { focused = true; sync(); });
     track.addEventListener("focusout", function () { focused = false; sync(); });
     ["touchstart", "keydown"].forEach(function (type) {
@@ -110,7 +140,7 @@
     if ("IntersectionObserver" in window) {
       new IntersectionObserver(function (entries) {
         visible = entries[0].isIntersecting; sync();
-      }, { threshold: 0.5 }).observe(track);
+      }, { threshold: 0.25 }).observe(track);
     }
     sync();
   });
