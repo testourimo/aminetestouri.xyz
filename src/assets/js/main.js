@@ -43,7 +43,7 @@
     el.textContent = String(new Date().getFullYear());
   });
 
-  /* Contact form: Netlify Forms, sent without leaving the page. */
+  /* Contact form: posted to the form service in site.json, without leaving the page. */
   var form = document.querySelector("[data-contact-form]");
   if (form) {
     var ok = form.querySelector("[data-status-ok]");
@@ -68,11 +68,14 @@
       });
       if (firstInvalid) { firstInvalid.focus(); return; }
 
+      // No endpoint configured yet: say so rather than pretend it was sent.
+      if (!form.getAttribute("action")) { err.hidden = false; err.focus(); return; }
+
       submit.disabled = true;
-      fetch("/", {
+      fetch(form.action, {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(new FormData(form)).toString(),
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
       })
         .then(function (res) {
           if (!res.ok) throw new Error(res.status);

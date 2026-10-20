@@ -16,7 +16,7 @@ npm run build   # static site in _site/
 ```
 .
 ├── eleventy.config.js        Build config: passthrough, shortcodes, filters
-├── netlify.toml              Hosting: build command and publish folder
+├── vercel.json               Hosting: build command, output folder, cache headers
 ├── lib/
 │   ├── permalink.js          File path → URL (English at root, /ar/ for Arabic)
 │   └── shortcodes.js         {% icon %}, {% iso %} pattern, {% figure %} image slots
@@ -50,9 +50,20 @@ npm run build   # static site in _site/
 - **New project:** add an entry to `src/_data/work.json` and a folder `src/assets/images/work/<slug>/`.
 - **Styles:** colours, type, spacing and motion are tokens in `src/assets/css/tokens.css`. Components use semantic tokens only.
 
+## Deploy (Vercel)
+
+1. In Vercel, import the GitHub repo `testourimo/aminetestouri.xyz`. Settings come from `vercel.json`, so keep the defaults.
+2. Every push to `main` deploys automatically.
+3. Add the domain `aminetestouri.xyz` in the project's Domains settings, then set the records Vercel shows in the OVH DNS zone and remove OVH's default A/AAAA records on `@` and `www`.
+
+## Contact form
+
+The form posts to any service that accepts a normal form POST, for example Formspree.
+Create a form there and put its URL in `src/_data/site.json` as `formEndpoint`
+(e.g. `https://formspree.io/f/abcdwxyz`). Until then the form shows its error message instead of sending.
+
 ## Before going live
 
 - Arabic copy is a draft until a native speaker has reviewed it.
-- Add the Satoshi and Gambarino font files (Figtree and Newsreader stand in until then).
-- Replace the image placeholders and add `og/og-default.png`.
-- The contact form uses Netlify Forms; it works once the site is deployed on Netlify.
+- Set `formEndpoint` so the contact form can send.
+- Replace the project thumbnail placeholders and add `og/og-default.png`.

@@ -17,10 +17,11 @@ layout: layouts/base.njk
       {{ content | safe }}
     </div>
 
-    <form class="contact-form" name="contact-{{ lang }}" method="POST" action="{{ page.url }}"
-          data-netlify="true" netlify-honeypot="company-url" data-contact-form novalidate>
-      <input type="hidden" name="form-name" value="contact-{{ lang }}">
-      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="company-url" tabindex="-1" autocomplete="off"></label></p>
+    {# Posts to the form service set in src/_data/site.json (formEndpoint), e.g. Formspree. #}
+    <form class="contact-form" method="POST" action="{{ site.formEndpoint }}" data-contact-form novalidate>
+      <input type="hidden" name="language" value="{{ lang }}">
+      <input type="hidden" name="_subject" value="New message from aminetestouri.xyz">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>
 
       <div class="row-2">
         <div class="at-field">
