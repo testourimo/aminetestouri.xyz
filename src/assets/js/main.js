@@ -47,6 +47,34 @@
     });
   });
 
+  /* Scroller: previous / next buttons move one card; disabled at either end. */
+  document.querySelectorAll("[data-scroller]").forEach(function (track) {
+    var nav = track.parentElement.querySelector("[data-scroller-nav]");
+    if (!nav) return;
+    var prev = nav.querySelector('[data-scroll="prev"]');
+    var next = nav.querySelector('[data-scroll="next"]');
+    // In right-to-left pages scrollLeft runs from 0 to negative values.
+    var sign = getComputedStyle(track).direction === "rtl" ? -1 : 1;
+
+    function step() {
+      var item = track.firstElementChild;
+      var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      return item ? item.getBoundingClientRect().width + gap : track.clientWidth;
+    }
+    function update() {
+      var max = track.scrollWidth - track.clientWidth;
+      var pos = Math.abs(track.scrollLeft);
+      nav.hidden = max <= 1;
+      prev.disabled = pos <= 1;
+      next.disabled = pos >= max - 1;
+    }
+    prev.addEventListener("click", function () { track.scrollBy({ left: -step() * sign }); });
+    next.addEventListener("click", function () { track.scrollBy({ left: step() * sign }); });
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

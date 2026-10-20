@@ -24,13 +24,17 @@ layout: layouts/base.njk
   <div class="container">
     <div class="section__head">
       <h2 class="h2" id="work-title">{{ ui.selectedWork | t(lang) }}</h2>
+      <div class="scroller-nav" data-scroller-nav hidden>
+        <button class="icon-btn" type="button" data-scroll="prev" aria-label="{{ ui.previous | t(lang) }}">{% icon "arrow-left", 20 %}</button>
+        <button class="icon-btn" type="button" data-scroll="next" aria-label="{{ ui.next | t(lang) }}">{% icon "arrow-right", 20 %}</button>
+      </div>
     </div>
-    <div class="grid card-grid">
-      {#- Three across, as the design system asks. Further projects stay in work.json for later pages. #}
-      {%- for project in work %}{% if loop.index <= 3 %}
-      {% include "partials/card-thumb.njk" %}
-      {%- endif %}{% endfor %}
-    </div>
+    {#- Scrolls sideways inside the container, so cards clip at the page's own edges. #}
+    <ul class="scroller" role="list" tabindex="0" aria-labelledby="work-title" data-scroller>
+      {%- for project in work %}
+      <li class="scroller__item">{% include "partials/card-thumb.njk" %}</li>
+      {%- endfor %}
+    </ul>
   </div>
 </section>
 

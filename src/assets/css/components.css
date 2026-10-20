@@ -201,6 +201,37 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
 [dir="rtl"] .at-cglow__tag, [dir="rtl"] .at-cthumb__tag { padding: 0 var(--space-2); font: 400 16px/28px var(--font-arabic); letter-spacing: 0; }
 [dir="rtl"] .at-cglow__cta, [dir="rtl"] .at-cthumb__cta { font: 700 20px/34px var(--font-arabic); }
 
+/*
+  Scroller: a sideways row that clips at the container edges.
+  Each item spans grid columns, so the next card is cut on a column line:
+  3 of 4 on mobile, 5 of 8 on tablet, 5 of 12 on desktop.
+*/
+.scroller {
+  --cols: 4; --span: 3;
+  display: flex; gap: var(--gutter);
+  margin: 0; padding: 4px 0; list-style: none;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.scroller::-webkit-scrollbar { display: none; }
+.scroller:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.scroller__item {
+  display: flex;
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gutter)) / var(--cols) * var(--span) + (var(--span) - 1) * var(--gutter));
+  scroll-snap-align: start;
+}
+.scroller__item > * { flex: 1; }
+@media (min-width: 600px) { .scroller { --cols: 8; --span: 5; } }
+@media (min-width: 1024px) { .scroller { --cols: 12; --span: 5; } }
+@media (prefers-reduced-motion: reduce) { .scroller { scroll-behavior: auto; } }
+
+.scroller-nav { display: flex; gap: var(--space-2); }
+.scroller-nav[hidden] { display: none; }
+.scroller-nav .icon-btn { border-color: var(--line-strong); }
+.scroller-nav .icon-btn:hover:not([disabled]) { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.scroller-nav .icon-btn[disabled] { opacity: 0.4; cursor: default; }
+
 /* Indexed list: numbered rows with hairlines, used for services and steps. */
 .index-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .index-list__item {

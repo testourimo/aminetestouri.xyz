@@ -58,5 +58,13 @@
   "seeDetails": {
     "en": "See the details",
     "ar": "اطّلعوا على التفاصيل"
+  },
+  "previous": {
+    "en": "Previous projects",
+    "ar": "المشاريع السابقة"
+  },
+  "next": {
+    "en": "Next projects",
+    "ar": "المشاريع التالية"
   }
 }
