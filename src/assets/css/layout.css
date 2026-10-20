@@ -14,8 +14,8 @@
 /*
   Page structure
   1. The hero is the only block that breaks the frame (see pages.css).
-  2. Every section is a closed box inside the frame: vertical hairlines on the
-     container-max edges and a horizontal hairline on top, line to line.
+  2. Every section has vertical hairlines on the container-max edges and a
+     horizontal hairline on top that runs the full page width, past the frame.
      The footer's top line closes the last section. The header keeps the verticals.
   3. Every section opens with a section head: title, subheading, controls.
 */
@@ -37,8 +37,8 @@
   pointer-events: none;
   z-index: 1;
 }
-.section::before,
-.site-footer::before { border-top: 1px solid var(--line); }
+.section,
+.site-footer { border-top: 1px solid var(--line); }
 
 .grid {
   display: grid;
