@@ -1,7 +1,7 @@
 ---
 layout: layouts/contact.njk
 key: contact
-title: Contact me
+title: Contact
 heading: Get in touch
 lead: Thank you for your interest in my work. I'd be glad to hear what you're working on, whether it's a new product, a redesign or a design system.
 form:

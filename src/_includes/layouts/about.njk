@@ -13,9 +13,56 @@ layout: layouts/base.njk
       <div class="prose body">
         {{ content | safe }}
       </div>
-      <div class="actions">
-        {{ button(cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
+    </div>
+  </div>
+</section>
+
+{# Experience lives on this page; /experience/ redirects to #experience. #}
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="container">
+    <div class="section__head">
+      <div>
+        <h2 class="h2" id="experience-title">{{ experience.heading }}</h2>
+        <p class="body muted prose" style="margin-top: var(--space-3)">{{ experience.lead }}</p>
       </div>
+    </div>
+
+    <div class="grid">
+      <div class="facts d-span-4 t-span-4">
+        <h3 class="h4">{{ experience.sectorsHeading }}</h3>
+        <ul role="list">
+          {%- for item in experience.sectors %}<li class="body">{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+      <div class="facts d-span-4 t-span-4">
+        <h3 class="h4">{{ experience.productsHeading }}</h3>
+        <ul role="list">
+          {%- for item in experience.products %}<li class="body">{{ item }}</li>{% endfor %}
+        </ul>
+      </div>
+      <div class="prose body d-span-8">
+        {%- for paragraph in experience.notes %}
+        <p>{{ paragraph }}</p>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="edu-title">
+  <div class="container">
+    <h2 class="h2" id="edu-title">{{ experience.educationHeading }}</h2>
+    <ul class="index-list" role="list" style="margin-top: var(--space-6)">
+      {%- for item in experience.education %}
+      <li class="index-list__item">
+        <span class="index-list__num">{{ loop.index | pad }}</span>
+        <h3 class="index-list__title h4 latin">{{ item.name }}</h3>
+        <p class="index-list__body body">{{ item.detail }}</p>
+      </li>
+      {%- endfor %}
+    </ul>
+    <div class="actions">
+      {{ button(cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
     </div>
   </div>
 </section>

@@ -11,6 +11,17 @@ npm run dev     # local server with live reload at http://localhost:8080
 npm run build   # static site in _site/
 ```
 
+## Sitemap
+
+| Page | English | Arabic | Holds |
+|---|---|---|---|
+| Home | `/` | `/ar/` | Hero, selected work (scroller), services teaser |
+| Services | `/services/` | `/ar/services/` | Services, then How I work (`#process`) |
+| About me | `/about/` | `/ar/about/` | Intro and portrait, then Experience (`#experience`) |
+| Contact | `/contact/` | `/ar/contact/` | Contact form |
+
+Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in `vercel.json`.
+
 ## Folder structure
 
 ```
@@ -25,8 +36,8 @@ npm run build   # static site in _site/
     │   ├── site.json         Name, role, description, signature
     │   ├── nav.json          Sitemap and menu labels
     │   ├── ui.json           Small interface strings
-    │   ├── services.json     What I do
-    │   ├── process.json      How I work, five steps
+    │   ├── services.json     Services (tags, anchors, copy)
+    │   ├── process.json      How I work, five steps (on the Services page)
     │   └── work.json         Selected work (thumbnails)
     ├── _includes/
     │   ├── layouts/          One layout per page type (base wraps them all)

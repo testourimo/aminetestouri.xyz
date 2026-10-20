@@ -20,8 +20,8 @@
     "ar": "التبديل بين الوضع الفاتح والداكن"
   },
   "langSwitch": {
-    "en": "العربية",
-    "ar": "English"
+    "en": "ع",
+    "ar": "EN"
   },
   "langSwitchLabel": {
     "en": "Read this page in Arabic",
@@ -40,8 +40,8 @@
     "ar": "اطّلعوا على دراسة الحالة"
   },
   "allServices": {
-    "en": "See what I do",
-    "ar": "اطّلعوا على ما أقدّمه"
+    "en": "See my services",
+    "ar": "اطّلعوا على خدماتي"
   },
   "readProcess": {
     "en": "Read how I work",

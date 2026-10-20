@@ -11,7 +11,7 @@ layout: layouts/base.njk
       <p class="hero__lede body">{{ lede }}</p>
       <div class="actions">
         {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
-        {{ button(ui.allServices | t(lang), "what-i-do" | urlFor(lang), "outlined", "arrow-up-right") }}
+        {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "outlined", "arrow-up-right") }}
       </div>
     </div>
     <div class="hero__pattern">
@@ -42,12 +42,12 @@ layout: layouts/base.njk
   <div class="container">
     <div class="section__head">
       <h2 class="display-lg" id="services-title">{{ servicesHeading }}</h2>
-      {{ button(ui.allServices | t(lang), "what-i-do" | urlFor(lang), "text", "arrow-right") }}
+      {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "text", "arrow-right") }}
     </div>
     <div class="grid card-grid">
       {%- for service in services %}{% if loop.index <= 3 %}
       {%- set index = loop.index %}
-      {%- set href = ("what-i-do" | urlFor(lang)) + "#" + service.slug %}
+      {%- set href = ("services" | urlFor(lang)) + "#" + service.slug %}
       {% include "partials/card-glow.njk" %}
       {%- endif %}{% endfor %}
     </div>
@@ -61,7 +61,7 @@ layout: layouts/base.njk
         <p class="display-quote">{{ closing }}</p>
         <div class="actions">
           {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
-          {{ button(ui.readProcess | t(lang), "process" | urlFor(lang), "outlined", "arrow-up-right") }}
+          {{ button(ui.readProcess | t(lang), ("services" | urlFor(lang)) + "#process", "outlined", "arrow-up-right") }}
         </div>
       </div>
     </div>

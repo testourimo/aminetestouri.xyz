@@ -7,11 +7,53 @@
   "headers": [
     {
       "source": "/assets/(css|js)/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/assets/images/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/what-i-do/process/",
+      "destination": "/services/#process",
+      "permanent": true
+    },
+    {
+      "source": "/what-i-do/",
+      "destination": "/services/",
+      "permanent": true
+    },
+    {
+      "source": "/experience/",
+      "destination": "/about/#experience",
+      "permanent": true
+    },
+    {
+      "source": "/ar/what-i-do/process/",
+      "destination": "/ar/services/#process",
+      "permanent": true
+    },
+    {
+      "source": "/ar/what-i-do/",
+      "destination": "/ar/services/",
+      "permanent": true
+    },
+    {
+      "source": "/ar/experience/",
+      "destination": "/ar/about/#experience",
+      "permanent": true
     }
   ]
 }
