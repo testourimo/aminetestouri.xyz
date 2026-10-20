@@ -7,7 +7,7 @@ it replaces the placeholder automatically.
 | Slot | Path | Ratio | Suggested size |
 |---|---|---|---|
 | About portrait | `portrait/portrait.jpg` | 4:5 (cropped) | 1200 × 1500 |
-| Project thumbnail | `work/<slug>/thumbnail.webp` | 4:3 | 1600 × 1200 |
+| Project thumbnail | `work/<slug>/thumbnail.webp` | 16:9 | 1600 × 900 |
 | Project screens | `work/<slug>/screen-01.webp`, `screen-02.webp`, … | free | 2400 px wide |
 | Social share image | `og/og-default.png` | 1.91:1 | 1200 × 630 |
 

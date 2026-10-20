@@ -8,7 +8,7 @@ layout: layouts/base.njk
   <div class="container">
     <ol class="index-list" role="list">
       {%- for service in services %}
-      <li class="index-list__item">
+      <li class="index-list__item" id="{{ service.slug }}">
         <span class="index-list__num">{{ loop.index | pad }}</span>
         <h2 class="index-list__title h3">{{ service.title | t(lang) }}</h2>
         <p class="index-list__body body">{{ service.body | t(lang) }}</p>

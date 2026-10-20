@@ -1,34 +1,74 @@
 [
   {
-    "title": { "en": "Product design", "ar": "تصميم المنتجات" },
+    "slug": "product-design",
+    "tag": {
+      "en": "Product",
+      "ar": "المنتج"
+    },
+    "title": {
+      "en": "Product design",
+      "ar": "تصميم المنتجات"
+    },
     "body": {
       "en": "Dashboards, SaaS platforms and admin systems designed around the people who use them every day.",
       "ar": "لوحات معلومات ومنصات SaaS وأنظمة إدارة تُصمَّم حول الأشخاص الذين يستخدمونها كل يوم."
     }
   },
   {
-    "title": { "en": "Design systems", "ar": "أنظمة التصميم" },
+    "slug": "design-systems",
+    "tag": {
+      "en": "Systems",
+      "ar": "الأنظمة"
+    },
+    "title": {
+      "en": "Design systems",
+      "ar": "أنظمة التصميم"
+    },
     "body": {
       "en": "Tokens, components and documentation that keep a product consistent as the team and codebase grow.",
       "ar": "عناصر تصميم ومكوّنات ووثائق تحافظ على اتساق المنتج مع نمو الفريق والشيفرة البرمجية."
     }
   },
   {
-    "title": { "en": "UX research and audits", "ar": "أبحاث تجربة المستخدم والمراجعات" },
+    "slug": "research",
+    "tag": {
+      "en": "Research",
+      "ar": "البحث"
+    },
+    "title": {
+      "en": "UX research and audits",
+      "ar": "أبحاث تجربة المستخدم والمراجعات"
+    },
     "body": {
       "en": "A careful review of what exists today, with clear recommendations on what to improve first.",
       "ar": "مراجعة دقيقة للوضع الحالي، مع توصيات واضحة بما ينبغي تحسينه أولًا."
     }
   },
   {
-    "title": { "en": "Brand identity", "ar": "الهوية البصرية" },
+    "slug": "brand-identity",
+    "tag": {
+      "en": "Brand",
+      "ar": "الهوية"
+    },
+    "title": {
+      "en": "Brand identity",
+      "ar": "الهوية البصرية"
+    },
     "body": {
       "en": "A visual identity that fits the product and carries across every screen.",
       "ar": "هوية بصرية تناسب المنتج وتمتد عبر كل شاشة."
     }
   },
   {
-    "title": { "en": "Handover", "ar": "التسليم" },
+    "slug": "handover",
+    "tag": {
+      "en": "Handover",
+      "ar": "التسليم"
+    },
+    "title": {
+      "en": "Handover",
+      "ar": "التسليم"
+    },
     "body": {
       "en": "Organised files and clear specifications, so your developers can build with confidence.",
       "ar": "ملفات منظّمة ومواصفات واضحة، ليبني مطوّروكم بثقة."

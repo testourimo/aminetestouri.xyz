@@ -1,0 +1,15 @@
+{#
+  CardGlow: text-led link card for a service. Expects `service` (src/_data/services.json),
+  `index` and `href`. The glow position is set by main.js.
+#}
+<a class="at-cglow at-draw" href="{{ href }}" data-glow>
+  <span class="at-cglow__top">
+    <span class="at-cglow__num">{{ index | pad }}</span>
+    <span class="at-cglow__tag">{{ service.tag | t(lang) }}</span>
+  </span>
+  <div class="at-cglow__mid">
+    <h3 class="at-cglow__title">{{ service.title | t(lang) }}</h3>
+    <p class="at-cglow__text">{{ service.body | t(lang) }}</p>
+  </div>
+  <span class="at-cglow__cta"><span>{{ ui.seeDetails | t(lang) }}</span>{% icon "arrow-up-right", 20 %}</span>
+</a>

@@ -1,16 +1,62 @@
 {
-  "skip": { "en": "Skip to content", "ar": "انتقلوا إلى المحتوى" },
-  "menu": { "en": "Menu", "ar": "القائمة" },
-  "close": { "en": "Close", "ar": "إغلاق" },
-  "mainNav": { "en": "Main", "ar": "الرئيسية" },
-  "theme": { "en": "Switch light or dark theme", "ar": "التبديل بين الوضع الفاتح والداكن" },
-  "langSwitch": { "en": "العربية", "ar": "English" },
-  "langSwitchLabel": { "en": "Read this page in Arabic", "ar": "Read this page in English" },
-  "selectedWork": { "en": "Selected work", "ar": "أعمال مختارة" },
-  "caseStudySoon": { "en": "Case study coming soon", "ar": "دراسة الحالة قريبًا" },
-  "viewCase": { "en": "View case study", "ar": "اطّلعوا على دراسة الحالة" },
-  "allServices": { "en": "See what I do", "ar": "اطّلعوا على ما أقدّمه" },
-  "readProcess": { "en": "Read how I work", "ar": "اطّلعوا على آلية العمل" },
-  "getInTouch": { "en": "Get in touch", "ar": "تواصلوا معي" },
-  "rights": { "en": "All rights reserved.", "ar": "جميع الحقوق محفوظة." }
+  "skip": {
+    "en": "Skip to content",
+    "ar": "انتقلوا إلى المحتوى"
+  },
+  "menu": {
+    "en": "Menu",
+    "ar": "القائمة"
+  },
+  "close": {
+    "en": "Close",
+    "ar": "إغلاق"
+  },
+  "mainNav": {
+    "en": "Main",
+    "ar": "الرئيسية"
+  },
+  "theme": {
+    "en": "Switch light or dark theme",
+    "ar": "التبديل بين الوضع الفاتح والداكن"
+  },
+  "langSwitch": {
+    "en": "العربية",
+    "ar": "English"
+  },
+  "langSwitchLabel": {
+    "en": "Read this page in Arabic",
+    "ar": "Read this page in English"
+  },
+  "selectedWork": {
+    "en": "Selected work",
+    "ar": "أعمال مختارة"
+  },
+  "caseStudySoon": {
+    "en": "Case study coming soon",
+    "ar": "دراسة الحالة قريبًا"
+  },
+  "viewCase": {
+    "en": "View case study",
+    "ar": "اطّلعوا على دراسة الحالة"
+  },
+  "allServices": {
+    "en": "See what I do",
+    "ar": "اطّلعوا على ما أقدّمه"
+  },
+  "readProcess": {
+    "en": "Read how I work",
+    "ar": "اطّلعوا على آلية العمل"
+  },
+  "getInTouch": {
+    "en": "Get in touch",
+    "ar": "تواصلوا معي"
+  },
+  "rights": {
+    "en": "All rights reserved.",
+    "ar": "جميع الحقوق محفوظة."
+  },
+  "seeDetails": {
+    "en": "See the details",
+    "ar": "اطّلعوا على التفاصيل"
+  }
 }

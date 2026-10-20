@@ -1,0 +1,18 @@
+{#
+  CardThumb: image-led project card. Expects `project` from src/_data/work.json.
+  The whole card is the link once the project has an href; until then it shows "Case study coming soon".
+#}
+{% set tag = "a" if project.href else "div" %}
+<{{ tag }} class="at-cthumb at-draw"{% if project.href %} href="{{ project.href }}"{% endif %}>
+  {% figure project.thumbnail, (project.title | t(lang)), "16/9", ("Project thumbnail · 1600 × 900" if lang == "en" else "صورة مصغّرة للمشروع · 1600 × 900"), "at-cthumb__media" %}
+  <div class="at-cthumb__body">
+    <span class="at-cthumb__tag">{{ project.sector | t(lang) }}</span>
+    <h3 class="at-cthumb__title"><span class="at-cthumb__line">{{ project.title | t(lang) }}</span></h3>
+    <p class="at-cthumb__text">{{ project.summary | t(lang) }}</p>
+    {% if project.href %}
+    <span class="at-cthumb__cta"><span>{{ ui.viewCase | t(lang) }}</span>{% icon "arrow-up-right", 20 %}</span>
+    {% else %}
+    <span class="at-cthumb__cta at-cthumb__cta--soon">{{ ui.caseStudySoon | t(lang) }}</span>
+    {% endif %}
+  </div>
+</{{ tag }}>

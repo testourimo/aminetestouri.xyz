@@ -25,10 +25,11 @@ layout: layouts/base.njk
     <div class="section__head">
       <h2 class="h2" id="work-title">{{ ui.selectedWork | t(lang) }}</h2>
     </div>
-    <div class="grid work-grid">
-      {%- for project in work %}
-      <div>{% include "partials/work-card.njk" %}</div>
-      {%- endfor %}
+    <div class="grid card-grid">
+      {#- Three across, as the design system asks. Further projects stay in work.json for later pages. #}
+      {%- for project in work %}{% if loop.index <= 3 %}
+      {% include "partials/card-thumb.njk" %}
+      {%- endif %}{% endfor %}
     </div>
   </div>
 </section>
@@ -39,16 +40,12 @@ layout: layouts/base.njk
       <h2 class="display-lg" id="services-title">{{ servicesHeading }}</h2>
       {{ button(ui.allServices | t(lang), "what-i-do" | urlFor(lang), "text", "arrow-right") }}
     </div>
-    <div class="grid service-grid">
-      {%- for service in services %}
-      {%- if loop.index <= 3 %}
-      <div class="at-card">
-        <span class="at-card__eyebrow">{{ loop.index | pad }}</span>
-        <h3 class="at-card__title">{{ service.title | t(lang) }}</h3>
-        <p class="at-card__body">{{ service.body | t(lang) }}</p>
-      </div>
-      {%- endif %}
-      {%- endfor %}
+    <div class="grid card-grid">
+      {%- for service in services %}{% if loop.index <= 3 %}
+      {%- set index = loop.index %}
+      {%- set href = ("what-i-do" | urlFor(lang)) + "#" + service.slug %}
+      {% include "partials/card-glow.njk" %}
+      {%- endif %}{% endfor %}
     </div>
   </div>
 </section>

@@ -1,33 +1,85 @@
 [
   {
     "slug": "project-01",
-    "title": { "en": "Project title", "ar": "عنوان المشروع" },
-    "sector": { "en": "Fintech", "ar": "التقنية المالية" },
-    "type": { "en": "B2B dashboard", "ar": "لوحة معلومات للشركات" },
+    "title": {
+      "en": "Project title",
+      "ar": "عنوان المشروع"
+    },
+    "sector": {
+      "en": "Fintech",
+      "ar": "التقنية المالية"
+    },
+    "type": {
+      "en": "B2B dashboard",
+      "ar": "لوحة معلومات للشركات"
+    },
+    "summary": {
+      "en": "One or two lines on the problem and what changed. Replace with the project summary.",
+      "ar": "سطر أو سطران عن المشكلة وما تغيّر. استبدلوه بملخّص المشروع."
+    },
     "thumbnail": "work/project-01/thumbnail.webp",
     "href": null
   },
   {
     "slug": "project-02",
-    "title": { "en": "Project title", "ar": "عنوان المشروع" },
-    "sector": { "en": "Edtech", "ar": "التقنية التعليمية" },
-    "type": { "en": "SaaS platform", "ar": "منصة SaaS" },
+    "title": {
+      "en": "Project title",
+      "ar": "عنوان المشروع"
+    },
+    "sector": {
+      "en": "Edtech",
+      "ar": "التقنية التعليمية"
+    },
+    "type": {
+      "en": "SaaS platform",
+      "ar": "منصة SaaS"
+    },
+    "summary": {
+      "en": "One or two lines on the problem and what changed. Replace with the project summary.",
+      "ar": "سطر أو سطران عن المشكلة وما تغيّر. استبدلوه بملخّص المشروع."
+    },
     "thumbnail": "work/project-02/thumbnail.webp",
     "href": null
   },
   {
     "slug": "project-03",
-    "title": { "en": "Project title", "ar": "عنوان المشروع" },
-    "sector": { "en": "Fitness apps", "ar": "تطبيقات اللياقة البدنية" },
-    "type": { "en": "Mobile app", "ar": "تطبيق جوال" },
+    "title": {
+      "en": "Project title",
+      "ar": "عنوان المشروع"
+    },
+    "sector": {
+      "en": "Fitness apps",
+      "ar": "تطبيقات اللياقة البدنية"
+    },
+    "type": {
+      "en": "Mobile app",
+      "ar": "تطبيق جوال"
+    },
+    "summary": {
+      "en": "One or two lines on the problem and what changed. Replace with the project summary.",
+      "ar": "سطر أو سطران عن المشكلة وما تغيّر. استبدلوه بملخّص المشروع."
+    },
     "thumbnail": "work/project-03/thumbnail.webp",
     "href": null
   },
   {
     "slug": "project-04",
-    "title": { "en": "Project title", "ar": "عنوان المشروع" },
-    "sector": { "en": "Brand identity", "ar": "الهوية البصرية للعلامات" },
-    "type": { "en": "Design system", "ar": "نظام تصميم" },
+    "title": {
+      "en": "Project title",
+      "ar": "عنوان المشروع"
+    },
+    "sector": {
+      "en": "Brand identity",
+      "ar": "الهوية البصرية للعلامات"
+    },
+    "type": {
+      "en": "Design system",
+      "ar": "نظام تصميم"
+    },
+    "summary": {
+      "en": "One or two lines on the problem and what changed. Replace with the project summary.",
+      "ar": "سطر أو سطران عن المشكلة وما تغيّر. استبدلوه بملخّص المشروع."
+    },
     "thumbnail": "work/project-04/thumbnail.webp",
     "href": null
   }

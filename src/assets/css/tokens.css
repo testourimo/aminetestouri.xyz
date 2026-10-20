@@ -85,6 +85,32 @@
   --dur-draw: 480ms;
   --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
 
+  /* Cards (CardGlow, CardThumb). Built on the semantic tokens above. */
+  --card-surface: var(--surface);
+  --card-border: var(--line);
+  --card-border-hover: var(--accent-line);
+  --card-focus-ring: var(--focus-ring);
+  --card-index: var(--ink);
+  --card-title: var(--ink);
+  --card-text: var(--ink-muted);
+  --card-text-active: var(--ink);
+  --card-link: var(--ink);
+  --card-tag-surface: var(--tint);
+  --card-tag-text: var(--tint-ink);
+  --card-media-surface: var(--surface-sunken);
+  --card-media-surface-hover: var(--neutral-200);
+  --card-media-text: var(--ink);
+  --card-underline: var(--accent-line);
+  /* The glow is the system's one gradient: coral-300 fading to clear. */
+  --card-glow-core: #ff8e72;
+  --card-glow-edge: #ff8e728c;
+  --card-glow-clear: #ff8e7200;
+  --card-stagger: 90ms;
+  --card-glow-radius: 280px;
+  --card-glow-radius-pressed: 200px;
+  --card-min-height: 344px;
+  --card-media-ratio: 16 / 9;
+
   color-scheme: light;
 }
 
@@ -105,6 +131,9 @@
   --tint-ink: var(--neutral-50);
   --blue-text: var(--blue-300);
   --focus-ring: var(--neutral-50);
+  --card-media-surface-hover: var(--neutral-800);
+  --card-glow-core: #ff8e7261;
+  --card-glow-edge: #ff8e722e;
   color-scheme: dark;
 }
 
@@ -125,6 +154,9 @@
     --tint-ink: var(--neutral-50);
     --blue-text: var(--blue-300);
     --focus-ring: var(--neutral-50);
+    --card-media-surface-hover: var(--neutral-800);
+    --card-glow-core: #ff8e7261;
+    --card-glow-edge: #ff8e722e;
     color-scheme: dark;
   }
 }
