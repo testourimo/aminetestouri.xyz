@@ -25,7 +25,8 @@ main { flex: 1; outline: none; }
 [dir="rtl"] body { font-family: var(--font-arabic); }
 
 h1, h2, h3, h4, p, ul, ol, dl, figure { margin: 0; }
-ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+/* :where() keeps this reset weak, so component classes can set their own padding. */
+:where(ul, ol)[role="list"] { list-style: none; padding: 0; }
 
 img, svg { display: block; max-width: 100%; }
 

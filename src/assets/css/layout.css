@@ -1,9 +1,14 @@
-/* Container and the shared grid: 4 / 8 / 12 columns. */
+/*
+  Container and the shared grid: 4 / 8 / 12 columns.
+  The frame lines sit on the container-max edges, --margin in from the page edge.
+  Content sits a further --safe inside them; only scrollable rows (.scroller)
+  reach the lines and clip there.
+*/
 .container {
   width: 100%;
   max-width: calc(var(--container-max) + 2 * var(--margin));
   margin-inline: auto;
-  padding-inline: var(--margin);
+  padding-inline: calc(var(--margin) + var(--safe));
 }
 
 /*
@@ -137,7 +142,7 @@
     gap: var(--space-5);
     position: fixed;
     inset: var(--header-h) 0 0 0;
-    padding: var(--space-5) var(--margin);
+    padding: var(--space-5) calc(var(--margin) + var(--safe));
     background: var(--surface);
     overflow-y: auto;
   }

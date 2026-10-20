@@ -75,7 +75,8 @@
   /* Layout */
   --container-max: 1080px;
   --gutter: 16px;
-  --margin: 16px;
+  --margin: 16px;       /* page edge → frame line */
+  --safe: var(--space-4); /* frame line → content. Only scrollable rows cross it. */
   --touch-target: 44px;
   --header-h: 64px;
 
@@ -166,5 +167,5 @@
   :root { --gutter: 16px; --margin: 32px; }
 }
 @media (min-width: 1024px) {
-  :root { --gutter: 24px; --margin: 48px; --header-h: 72px; }
+  :root { --gutter: 24px; --margin: 48px; --safe: var(--space-5); --header-h: 72px; }
 }

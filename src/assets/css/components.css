@@ -202,14 +202,19 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
 [dir="rtl"] .at-cglow__cta, [dir="rtl"] .at-cthumb__cta { font: 700 20px/34px var(--font-arabic); }
 
 /*
-  Scroller: a sideways row that clips at the container edges.
+  Scroller: a sideways row, the one thing allowed to cross the safe space.
+  It reaches out to the frame lines and clips there, while its padding keeps
+  the first card (and every snap point) on the content edge.
   Each item spans grid columns, so the next card is cut on a column line:
   3 of 4 on mobile, 5 of 8 on tablet, 5 of 12 on desktop.
 */
 .scroller {
   --cols: 4; --span: 3;
   display: flex; gap: var(--gutter);
-  margin: 0; padding: 4px 0; list-style: none;
+  margin: 0 calc(-1 * var(--safe));
+  padding: 4px var(--safe);
+  scroll-padding-inline: var(--safe);
+  list-style: none;
   overflow-x: auto; overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory; scroll-behavior: smooth;
   scrollbar-width: none;
