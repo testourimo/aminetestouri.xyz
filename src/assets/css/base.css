@@ -1,0 +1,99 @@
+/* Reset and base type. */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + var(--space-4));
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  color: var(--ink);
+  font: 400 16px/24px var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+
+main { flex: 1; outline: none; }
+
+:lang(ar) body,
+[dir="rtl"] body { font-family: var(--font-arabic); }
+
+h1, h2, h3, h4, p, ul, ol, dl, figure { margin: 0; }
+ul[role="list"], ol[role="list"] { list-style: none; padding: 0; }
+
+img, svg { display: block; max-width: 100%; }
+
+a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { color: var(--accent-text); }
+
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+::selection { background: var(--tint); color: var(--tint-ink); }
+
+/* Type styles, named as in the design system. */
+.display-xl { font: 400 clamp(36px, 6vw, 49px) / 1.06 var(--font-accent); letter-spacing: -0.01em; }
+.display-lg { font: 400 clamp(31px, 5vw, 39px) / 1.13 var(--font-accent); letter-spacing: -0.01em; }
+.display-quote { font: 400 25px/32px var(--font-accent); }
+.hero-light { font: 300 clamp(36px, 6vw, 49px) / 1.06 var(--font-sans); letter-spacing: -0.03em; }
+.h1 { font: 700 clamp(31px, 4.5vw, 39px) / 1.13 var(--font-sans); letter-spacing: -0.02em; }
+.h2 { font: 700 clamp(25px, 3.5vw, 31px) / 1.16 var(--font-sans); letter-spacing: -0.02em; }
+.h3 { font: 500 25px/32px var(--font-sans); letter-spacing: -0.01em; }
+.h4 { font: 500 20px/28px var(--font-sans); }
+.body { font: 400 16px/24px var(--font-sans); }
+.body-strong { font: 500 16px/24px var(--font-sans); }
+.small { font: 400 13px/20px var(--font-sans); }
+.label { font: 500 13px/16px var(--font-sans); letter-spacing: 0.02em; }
+.numeral { font: 900 49px/52px var(--font-sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+.muted { color: var(--ink-muted); }
+
+.prose { max-width: 65ch; }
+.prose > * + * { margin-top: var(--space-4); }
+
+/* Arabic sits one scale step larger for equal visual size. */
+[dir="rtl"] .display-xl,
+[dir="rtl"] .hero-light,
+[dir="rtl"] .h1 { font: 800 clamp(31px, 5vw, 39px) / 1.45 var(--font-arabic); letter-spacing: 0; }
+[dir="rtl"] .display-lg,
+[dir="rtl"] .h2 { font: 700 25px/40px var(--font-arabic); letter-spacing: 0; }
+[dir="rtl"] .h3,
+[dir="rtl"] .h4,
+[dir="rtl"] .display-quote { font: 700 20px/34px var(--font-arabic); letter-spacing: 0; }
+[dir="rtl"] .body,
+[dir="rtl"] .body-strong,
+[dir="rtl"] .prose { font-family: var(--font-arabic); font-size: 20px; line-height: 34px; }
+[dir="rtl"] .small,
+[dir="rtl"] .label { font-family: var(--font-arabic); font-size: 16px; line-height: 28px; letter-spacing: 0; }
+
+/* Latin names inside Arabic text keep the Latin face. */
+[dir="rtl"] .latin { font-family: var(--font-sans); }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  inset-inline-start: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-2) var(--space-4);
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: var(--space-4); color: var(--on-primary); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}

@@ -1,0 +1,10 @@
+{#
+  Button macro. Primary once per view; outlined for secondary steps.
+  {{ button("Get in touch", "/contact/", "primary", "arrow-right") }}
+#}
+{% macro button(label, href, variant = "primary", iconName = "arrow-right") %}
+<a class="at-btn at-btn--{{ variant }} at-draw" href="{{ href }}">
+  <span class="at-btn__label">{{ label }}</span>
+  {% if iconName %}<span class="at-btn__icon">{% icon iconName %}</span>{% endif %}
+</a>
+{% endmacro %}

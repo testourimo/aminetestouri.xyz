@@ -1,0 +1,17 @@
+/*
+  Satoshi loads from Fontshare (link in base.njk) and is the only Latin face for now.
+  Gambarino is on hold. To bring it in:
+  1. Put Gambarino-Regular.woff2 in /src/assets/fonts/.
+  2. Uncomment the block below.
+  3. In tokens.css, set --font-accent to "Gambarino", Georgia, serif.
+*/
+
+/*
+@font-face {
+  font-family: "Gambarino";
+  src: url("../fonts/Gambarino-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/

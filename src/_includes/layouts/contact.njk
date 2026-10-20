@@ -1,0 +1,61 @@
+---
+layout: layouts/base.njk
+---
+<section class="page-intro">
+  <div class="container grid">
+    <div class="contact">
+      <h1 class="h1">{{ heading or title }}</h1>
+      {% if lead %}<p class="lead body">{{ lead }}</p>{% endif %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid">
+    <div class="contact">
+    <div class="prose body contact__note">
+      {{ content | safe }}
+    </div>
+
+    <form class="contact-form" name="contact-{{ lang }}" method="POST" action="{{ page.url }}"
+          data-netlify="true" netlify-honeypot="company-url" data-contact-form novalidate>
+      <input type="hidden" name="form-name" value="contact-{{ lang }}">
+      <p class="hp" aria-hidden="true"><label>Leave this empty <input name="company-url" tabindex="-1" autocomplete="off"></label></p>
+
+      <div class="row-2">
+        <div class="at-field">
+          <label class="at-field__label" for="f-name">{{ form.name }}</label>
+          <input class="at-field__ctl" id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="f-name-hint">
+          <span class="at-field__hint" id="f-name-hint" data-hint="" data-required="{{ form.required }}"></span>
+        </div>
+        <div class="at-field">
+          <label class="at-field__label" for="f-email">{{ form.email }}</label>
+          <input class="at-field__ctl" id="f-email" name="email" type="email" autocomplete="email" required aria-describedby="f-email-hint" dir="ltr">
+          <span class="at-field__hint" id="f-email-hint" data-hint="" data-required="{{ form.required }}"></span>
+        </div>
+      </div>
+
+      <div class="at-field">
+        <label class="at-field__label" for="f-company">{{ form.company }} <span class="at-field__opt">{{ form.optional }}</span></label>
+        <input class="at-field__ctl" id="f-company" name="company" type="text" autocomplete="organization">
+      </div>
+
+      <div class="at-field">
+        <label class="at-field__label" for="f-message">{{ form.message }}</label>
+        <textarea class="at-field__ctl" id="f-message" name="message" rows="6" required aria-describedby="f-message-hint"></textarea>
+        <span class="at-field__hint" id="f-message-hint" data-hint="" data-required="{{ form.required }}"></span>
+      </div>
+
+      <p class="form-status body" data-status-ok tabindex="-1" role="status" hidden>{{ form.confirmation }}</p>
+      <p class="form-status form-status--error body" data-status-error tabindex="-1" role="alert" hidden>{{ form.error }}</p>
+
+      <div>
+        <button class="at-btn at-btn--primary at-draw" type="submit">
+          <span class="at-btn__label">{{ form.submit }}</span>
+          <span class="at-btn__icon">{% icon "send" %}</span>
+        </button>
+      </div>
+    </form>
+    </div>
+  </div>
+</section>

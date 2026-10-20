@@ -1,0 +1,138 @@
+/*
+  Design tokens, from the Amine Testouri design system (project/tokens.json).
+  Components use the semantic tokens only, never the ramp steps directly.
+*/
+:root {
+  /* Neutral ramp */
+  --neutral-50: #f1f1f1;
+  --neutral-100: #dcdcdc;
+  --neutral-200: #c6c6c6;
+  --neutral-300: #b0b0b0;
+  --neutral-400: #9b9b9b;
+  --neutral-500: #868686;
+  --neutral-600: #707070;
+  --neutral-700: #5a5a5a;
+  --neutral-800: #454545;
+  --neutral-900: #303030;
+  --neutral-950: #1a1a1a;
+
+  /* Coral, the accent */
+  --coral-100: #ffe2db;
+  --coral-200: #ffbaa8;
+  --coral-300: #ff8e72;
+  --coral-400: #e65633;
+  --coral-500: #953118;
+
+  /* Blue, the second colour */
+  --blue-100: #e5f3ff;
+  --blue-200: #b9ddff;
+  --blue-300: #71b4f4;
+  --blue-400: #2178ca;
+  --blue-500: #154675;
+
+  /* Semantic, light theme */
+  --surface: var(--neutral-50);
+  --surface-sunken: var(--neutral-100);
+  --ink: var(--neutral-950);
+  --ink-muted: var(--neutral-700);
+  --line: var(--neutral-200);
+  --line-strong: var(--neutral-500);
+  --primary: var(--neutral-950);
+  --on-primary: var(--neutral-50);
+  --primary-hover: var(--neutral-800);
+  --accent: var(--coral-300);
+  --on-accent: var(--neutral-950);
+  --accent-line: var(--coral-400);
+  --accent-text: var(--coral-500);
+  --tint: var(--blue-200);
+  --tint-ink: var(--neutral-950);
+  --blue-text: var(--blue-500);
+  --focus-ring: var(--neutral-950);
+
+  /* Type */
+  --font-sans: "Satoshi", system-ui, -apple-system, "Segoe UI", sans-serif;
+  /* Satoshi only for now. When Gambarino comes in, point this at
+     "Gambarino", Georgia, serif and the display styles pick it up. */
+  --font-accent: var(--font-sans);
+  --font-arabic: "Zain", "Noto Naskh Arabic", "Segoe UI", sans-serif;
+
+  /* Spacing, 4px base */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* Radius */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+
+  /* Layout */
+  --container-max: 1080px;
+  --gutter: 16px;
+  --margin: 16px;
+  --touch-target: 44px;
+  --header-h: 64px;
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-draw: 480ms;
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  color-scheme: light;
+}
+
+/* Dark theme: explicit choice, or system preference when nothing is saved. */
+:root[data-theme="dark"] {
+  --surface: var(--neutral-950);
+  --surface-sunken: var(--neutral-900);
+  --ink: var(--neutral-50);
+  --ink-muted: var(--neutral-300);
+  --line: var(--neutral-800);
+  --line-strong: var(--neutral-600);
+  --primary: var(--neutral-50);
+  --on-primary: var(--neutral-950);
+  --primary-hover: var(--neutral-200);
+  --accent-line: var(--coral-300);
+  --accent-text: var(--coral-300);
+  --tint: var(--blue-500);
+  --tint-ink: var(--neutral-50);
+  --blue-text: var(--blue-300);
+  --focus-ring: var(--neutral-50);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --surface: var(--neutral-950);
+    --surface-sunken: var(--neutral-900);
+    --ink: var(--neutral-50);
+    --ink-muted: var(--neutral-300);
+    --line: var(--neutral-800);
+    --line-strong: var(--neutral-600);
+    --primary: var(--neutral-50);
+    --on-primary: var(--neutral-950);
+    --primary-hover: var(--neutral-200);
+    --accent-line: var(--coral-300);
+    --accent-text: var(--coral-300);
+    --tint: var(--blue-500);
+    --tint-ink: var(--neutral-50);
+    --blue-text: var(--blue-300);
+    --focus-ring: var(--neutral-50);
+    color-scheme: dark;
+  }
+}
+
+/* Grid steps: 4 columns, 8 from 600px, 12 from 1024px. */
+@media (min-width: 600px) {
+  :root { --gutter: 16px; --margin: 32px; }
+}
+@media (min-width: 1024px) {
+  :root { --gutter: 24px; --margin: 48px; --header-h: 72px; }
+}

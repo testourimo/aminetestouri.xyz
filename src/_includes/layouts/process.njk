@@ -1,0 +1,22 @@
+---
+layout: layouts/base.njk
+---
+{% from "partials/button.njk" import button %}
+{% include "partials/page-intro.njk" %}
+
+<section class="section">
+  <div class="container">
+    <ol class="index-list index-list--steps" role="list">
+      {%- for step in process %}
+      <li class="index-list__item">
+        <span class="index-list__num" aria-hidden="true">{{ loop.index | pad }}</span>
+        <h2 class="index-list__title h3"><span class="visually-hidden">{{ loop.index }}. </span>{{ step.title | t(lang) }}</h2>
+        <p class="index-list__body body">{{ step.body | t(lang) }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+    <div class="actions">
+      {{ button(cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
+    </div>
+  </div>
+</section>

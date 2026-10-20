@@ -1,0 +1,25 @@
+---
+layout: layouts/base.njk
+---
+{% from "partials/button.njk" import button %}
+{% include "partials/page-intro.njk" %}
+
+<section class="section">
+  <div class="container grid">
+    <div class="about__portrait">
+      {% figure "portrait/portrait.jpg", portraitAlt, "4/5", portraitLabel %}
+    </div>
+    <div class="about__text">
+      <div class="prose body">
+        {{ content | safe }}
+      </div>
+      <div class="actions">
+        {{ button(cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <div class="iso-strip">{% iso { cols: 24, rows: 6, side: 32 } %}</div>
+</div>

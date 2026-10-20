@@ -1,0 +1,14 @@
+[
+  { "key": "home", "label": { "en": "Home", "ar": "الرئيسية" }, "url": { "en": "/", "ar": "/ar/" } },
+  { "key": "about", "label": { "en": "About me", "ar": "نبذة عني" }, "url": { "en": "/about/", "ar": "/ar/about/" } },
+  { "key": "experience", "label": { "en": "Experience", "ar": "الخبرة" }, "url": { "en": "/experience/", "ar": "/ar/experience/" } },
+  {
+    "key": "what-i-do",
+    "label": { "en": "What I do", "ar": "ما أقدّمه" },
+    "url": { "en": "/what-i-do/", "ar": "/ar/what-i-do/" },
+    "children": [
+      { "key": "process", "label": { "en": "Process", "ar": "آلية العمل" }, "url": { "en": "/what-i-do/process/", "ar": "/ar/what-i-do/process/" } }
+    ]
+  },
+  { "key": "contact", "label": { "en": "Contact me", "ar": "تواصل معي" }, "url": { "en": "/contact/", "ar": "/ar/contact/" } }
+]

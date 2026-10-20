@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "project-01",
+    "title": { "en": "Project title", "ar": "عنوان المشروع" },
+    "sector": { "en": "Fintech", "ar": "التقنية المالية" },
+    "type": { "en": "B2B dashboard", "ar": "لوحة معلومات للشركات" },
+    "thumbnail": "work/project-01/thumbnail.webp",
+    "href": null
+  },
+  {
+    "slug": "project-02",
+    "title": { "en": "Project title", "ar": "عنوان المشروع" },
+    "sector": { "en": "Edtech", "ar": "التقنية التعليمية" },
+    "type": { "en": "SaaS platform", "ar": "منصة SaaS" },
+    "thumbnail": "work/project-02/thumbnail.webp",
+    "href": null
+  },
+  {
+    "slug": "project-03",
+    "title": { "en": "Project title", "ar": "عنوان المشروع" },
+    "sector": { "en": "Fitness apps", "ar": "تطبيقات اللياقة البدنية" },
+    "type": { "en": "Mobile app", "ar": "تطبيق جوال" },
+    "thumbnail": "work/project-03/thumbnail.webp",
+    "href": null
+  },
+  {
+    "slug": "project-04",
+    "title": { "en": "Project title", "ar": "عنوان المشروع" },
+    "sector": { "en": "Brand identity", "ar": "الهوية البصرية للعلامات" },
+    "type": { "en": "Design system", "ar": "نظام تصميم" },
+    "thumbnail": "work/project-04/thumbnail.webp",
+    "href": null
+  }
+]

@@ -1,0 +1,46 @@
+{%- set otherLang = "ar" if lang == "en" else "en" -%}
+{%- set pageTitle = (title + " · " + site.name) if key != "home" else (site.name + " · " + (site.role | t(lang))) -%}
+{%- set pageDescription = description or (site.description | t(lang)) -%}
+<!doctype html>
+<html lang="{{ lang }}" dir="{{ dir }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ pageTitle }}</title>
+  <meta name="description" content="{{ pageDescription }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <link rel="alternate" hreflang="en" href="{{ site.url }}{{ key | urlFor('en') }}">
+  <link rel="alternate" hreflang="ar" href="{{ site.url }}{{ key | urlFor('ar') }}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ pageTitle }}">
+  <meta property="og:description" content="{{ pageDescription }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/assets/images/{{ site.ogImage }}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  {# Set the saved theme before paint, so there is no flash. #}
+  <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+
+  {# Satoshi from Fontshare; Zain (Arabic) from Google Fonts. #}
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="/assets/css/main.css">
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body class="page page--{{ key }}">
+  <a class="skip-link" href="#main">{{ ui.skip | t(lang) }}</a>
+
+  {% include "partials/header.njk" %}
+
+  <main id="main" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  {% include "partials/footer.njk" %}
+</body>
+</html>

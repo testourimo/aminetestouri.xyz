@@ -1,0 +1,18 @@
+{
+  "url": "https://aminetestouri.xyz",
+  "name": "Mo.Amine Testouri",
+  "wordmark": "Amine Testouri",
+  "role": {
+    "en": "Product Designer & Creative Strategist",
+    "ar": "مصمّم منتجات ومستشار إبداعي استراتيجي"
+  },
+  "description": {
+    "en": "Mo.Amine Testouri, a product designer based in Tunisia. B2B dashboards, SaaS platforms, admin systems and design systems.",
+    "ar": "Mo.Amine Testouri، مصمّم منتجات رقمية مقيم في تونس. لوحات المعلومات للشركات، ومنصات SaaS، وأنظمة الإدارة، وأنظمة التصميم."
+  },
+  "signature": {
+    "en": "Based in Tunisia, working with clients around the world.",
+    "ar": "مقيم في تونس ويعمل مع عملاء حول العالم."
+  },
+  "ogImage": "og/og-default.png"
+}

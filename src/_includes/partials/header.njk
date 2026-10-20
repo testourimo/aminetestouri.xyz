@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="at-logo site-header__logo" href="{{ 'home' | urlFor(lang) }}" aria-label="{{ site.wordmark }}, {{ (nav[0].label | t(lang)) }}">{{ site.wordmark }}</a>
+
+    <button class="icon-btn site-header__menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+      <span class="visually-hidden">{{ ui.menu | t(lang) }}</span>
+      {% icon "menu", 20 %}
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="{{ ui.mainNav | t(lang) }}">
+      <ul class="site-nav__list">
+        {%- for item in nav %}
+        <li>
+          {#- section marks the parent of a sub-page, e.g. Process sits under What I do. #}
+          <a class="site-nav__link" href="{{ item.url | t(lang) }}"{% if key == item.key %} aria-current="page"{% elif section == item.key %} data-active{% endif %}>{{ item.label | t(lang) }}</a>
+        </li>
+        {%- endfor %}
+      </ul>
+
+      <div class="site-nav__tools">
+        <a class="site-nav__lang" href="{{ key | urlFor(otherLang) }}" hreflang="{{ otherLang }}" lang="{{ otherLang }}" aria-label="{{ ui.langSwitchLabel | t(lang) }}">{{ ui.langSwitch | t(lang) }}</a>
+        <button class="icon-btn" type="button" data-theme-toggle aria-label="{{ ui.theme | t(lang) }}">
+          <span class="theme-icon theme-icon--sun">{% icon "sun", 18 %}</span>
+          <span class="theme-icon theme-icon--moon">{% icon "moon", 18 %}</span>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>

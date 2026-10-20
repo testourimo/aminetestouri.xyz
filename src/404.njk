@@ -1,0 +1,18 @@
+---
+layout: layouts/base.njk
+permalink: /404.html
+lang: en
+dir: ltr
+key: not-found
+title: Page not found
+eleventyExcludeFromCollections: true
+---
+{% from "partials/button.njk" import button %}
+<section class="page-intro">
+  <div class="container">
+    <span class="label">404</span>
+    <h1 class="h1">This page doesn't exist.</h1>
+    <p class="lead body">The link may be out of date. The home page has everything else.</p>
+    <div class="actions">{{ button("Go to the home page", "/", "primary", "arrow-right") }}</div>
+  </div>
+</section>

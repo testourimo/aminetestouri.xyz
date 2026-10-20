@@ -1,0 +1,19 @@
+<footer class="site-footer">
+  <div class="container grid">
+    <div class="site-footer__sign">
+      <span class="at-logo at-logo--md">{{ site.wordmark }}</span>
+      <p class="small muted">{{ site.name }} · {{ site.role | t(lang) }}<br>{{ site.signature | t(lang) }}</p>
+    </div>
+
+    <ul class="site-footer__nav" role="list">
+      {%- for item in nav %}
+      <li><a href="{{ item.url | t(lang) }}">{{ item.label | t(lang) }}</a></li>
+      {%- for child in item.children %}
+      <li><a href="{{ child.url | t(lang) }}">{{ child.label | t(lang) }}</a></li>
+      {%- endfor %}
+      {%- endfor %}
+    </ul>
+
+    <p class="site-footer__legal small muted">© <span data-year>2026</span> {{ site.name }}. {{ ui.rights | t(lang) }}</p>
+  </div>
+</footer>

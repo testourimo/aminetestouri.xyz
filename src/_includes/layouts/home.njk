@@ -1,0 +1,68 @@
+---
+layout: layouts/base.njk
+---
+{% from "partials/button.njk" import button %}
+
+<section class="hero">
+  <div class="container grid hero__grid">
+    <div class="hero__text">
+      <p class="hero__eyebrow label"><span class="latin">{{ site.name }}</span> · {{ site.role | t(lang) }}</p>
+      <h1 class="hero__headline">{{ headline }}</h1>
+      <p class="hero__lede body">{{ lede }}</p>
+      <div class="actions">
+        {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
+        {{ button(ui.allServices | t(lang), "what-i-do" | urlFor(lang), "outlined", "arrow-up-right") }}
+      </div>
+    </div>
+    <div class="hero__pattern">
+      {% iso { cols: 9, rows: 22, side: 48 } %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="work-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="h2" id="work-title">{{ ui.selectedWork | t(lang) }}</h2>
+    </div>
+    <div class="grid work-grid">
+      {%- for project in work %}
+      <div>{% include "partials/work-card.njk" %}</div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="services-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 class="display-lg" id="services-title">{{ servicesHeading }}</h2>
+      {{ button(ui.allServices | t(lang), "what-i-do" | urlFor(lang), "text", "arrow-right") }}
+    </div>
+    <div class="grid service-grid">
+      {%- for service in services %}
+      {%- if loop.index <= 3 %}
+      <div class="at-card">
+        <span class="at-card__eyebrow">{{ loop.index | pad }}</span>
+        <h3 class="at-card__title">{{ service.title | t(lang) }}</h3>
+        <p class="at-card__body">{{ service.body | t(lang) }}</p>
+      </div>
+      {%- endif %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="callout grid">
+      <div class="d-span-8">
+        <p class="display-quote">{{ closing }}</p>
+        <div class="actions">
+          {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
+          {{ button(ui.readProcess | t(lang), "process" | urlFor(lang), "outlined", "arrow-up-right") }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

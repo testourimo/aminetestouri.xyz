@@ -1,0 +1,37 @@
+[
+  {
+    "title": { "en": "Conversation", "ar": "الحديث الأول" },
+    "body": {
+      "en": "We talk through your product, your users and what you'd like to achieve. There is no obligation.",
+      "ar": "نتحدث عن منتجكم ومستخدميكم وما تودّون تحقيقه، دون أي التزام."
+    }
+  },
+  {
+    "title": { "en": "Understanding", "ar": "الفهم" },
+    "body": {
+      "en": "I review what exists and the context around it, then agree the scope with you in writing.",
+      "ar": "أراجع ما هو قائم وسياقه، ثم نتفق كتابةً على نطاق العمل."
+    }
+  },
+  {
+    "title": { "en": "Design", "ar": "التصميم" },
+    "body": {
+      "en": "I work in clear stages and share progress along the way, so you can respond early and nothing comes as a surprise.",
+      "ar": "أعمل على مراحل واضحة وأشارككم التقدّم أولًا بأول، لتتمكنوا من التعقيب مبكرًا دون مفاجآت."
+    }
+  },
+  {
+    "title": { "en": "Refinement", "ar": "التحسين" },
+    "body": {
+      "en": "We review together and I refine the work until it's right.",
+      "ar": "نراجع العمل معًا وأواصل تحسينه حتى يستقر على الصورة الصحيحة."
+    }
+  },
+  {
+    "title": { "en": "Handover", "ar": "التسليم" },
+    "body": {
+      "en": "You receive organised files and the guidance your team needs to build and maintain the design.",
+      "ar": "تتسلّمون ملفات منظّمة والإرشادات التي يحتاجها فريقكم لبناء التصميم وصيانته."
+    }
+  }
+]
