@@ -6,6 +6,30 @@
   padding-inline: var(--margin);
 }
 
+/*
+  Frame: two hairlines on the container's content edges, running the full height
+  of the header, every section and the footer, so the column stays visible.
+  Heroes (.hero, .page-intro) are left open on purpose. Purely decorative.
+*/
+.site-header,
+.section,
+.site-footer,
+.framed {
+  position: relative;
+}
+.site-header::before,
+.section::before,
+.site-footer::before,
+.framed::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline: max(var(--margin), (100% - var(--container-max)) / 2);
+  border-inline: 1px solid var(--line);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -133,7 +157,6 @@
 
 /* Footer */
 .site-footer {
-  margin-top: var(--space-8);
   padding-block: var(--space-7);
   border-top: 1px solid var(--line);
 }
