@@ -45,20 +45,29 @@ layout: layouts/base.njk
     {% call sectionHead("process", sections.process) %}
       {{ button(sections.process.cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
     {% endcall %}
-    <div class="grid">
-      <div class="process-detail__art" data-process-art aria-hidden="true">
-        {% isoScene 1 %}{% isoScene 2 %}{% isoScene 3 %}{% isoScene 4 %}{% isoScene 5 %}
-        <span class="process-detail__bar"><span data-process-bar></span></span>
-      </div>
-      <ol class="stage-list process-detail__list" role="list">
+    <div class="process-flow">
+      {#- Left rail: one bar per stage, filling as that stage's card scrolls in. #}
+      <ol class="process-rail" role="list" aria-hidden="true">
         {%- for step in process %}
-        <li class="stage" data-stage>
-          {% isoCols { n: 5, current: loop.index, s: 12 } %}
-          <div>
+        <li class="process-rail__item" data-rail>
+          <span class="process-rail__num">{{ loop.index | pad }}</span>
+          <span class="process-rail__name">{{ step.title | t(lang) }}</span>
+          <span class="process-rail__bar"><i data-rail-bar></i></span>
+        </li>
+        {%- endfor %}
+      </ol>
+      {#- Cards fill the rest of the width and stack: each one slides over the previous. #}
+      <ol class="process-cards" role="list">
+        {%- for step in process %}
+        <li class="stage-card" data-stage style="--i: {{ loop.index0 }}">
+          <div class="stage-card__text">
             <span class="stage__num" aria-hidden="true">{{ loop.index | pad }}</span>
             <h3 class="stage__title h3"><span class="visually-hidden">{{ loop.index }}. </span>{{ step.title | t(lang) }}</h3>
             <p class="stage__body body">{{ step.body | t(lang) }}</p>
             <dl class="stage__out"><dt>{{ ui.youGet | t(lang) }}</dt><dd>{{ step.out | t(lang) }}</dd></dl>
+          </div>
+          <div class="stage-card__art" aria-hidden="true">
+            {% isoScene loop.index %}
           </div>
         </li>
         {%- endfor %}

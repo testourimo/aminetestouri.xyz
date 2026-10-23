@@ -219,16 +219,14 @@
     });
   }
 
-  /* Process of work (About): the sticky illustration fills in as the reader scrolls through each stage. */
-  var art = document.querySelector("[data-process-art]");
-  if (art) {
-    var scenes = Array.prototype.slice.call(art.querySelectorAll("[data-scene]"));
-    var rows = Array.prototype.slice.call(document.querySelectorAll("[data-stage]"));
-    var bar = art.querySelector("[data-process-bar]");
+  /* Process of work (About): each card's illustration fills in as it scrolls in; the left rail bars follow. */
+  var cards = Array.prototype.slice.call(document.querySelectorAll("[data-stage]"));
+  if (cards.length) {
+    var rail = Array.prototype.slice.call(document.querySelectorAll("[data-rail]"));
     var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
-    var parts = scenes.map(function (sc) {
-      return Array.prototype.slice.call(sc.querySelectorAll(".piece")).map(function (el) {
+    var parts = cards.map(function (card) {
+      return Array.prototype.slice.call(card.querySelectorAll(".piece")).map(function (el) {
         var f = (el.getAttribute("data-from") || "0,24").split(",");
         return { el: el, x: parseFloat(f[0]), y: parseFloat(f[1]) };
       });
@@ -244,18 +242,19 @@
     var queued = false;
     var update = function () {
       queued = false;
-      var ref = window.innerHeight * 0.6, active = 0;
-      var prog = rows.map(function (r) {
-        var b = r.getBoundingClientRect();
-        return Math.min(1, Math.max(0, (ref - b.top) / b.height));
+      var vh = window.innerHeight, active = 0;
+      var prog = cards.map(function (card) {
+        var cs = window.getComputedStyle(card);
+        var end = cs.position === "sticky" ? parseFloat(cs.top) || 0 : vh * 0.3;
+        var top = card.getBoundingClientRect().top;
+        return Math.min(1, Math.max(0, (vh * 0.9 - top) / Math.max(1, vh * 0.9 - end)));
       });
-      prog.forEach(function (p, i) { if (p > 0) active = i; });
-      scenes.forEach(function (sc, i) {
-        paint(i, i < active ? 1 : i > active ? 0 : prog[i]);
-        sc.classList.toggle("is-on", i === active);
+      prog.forEach(function (p, i) { if (p > 0) active = i; paint(i, p); });
+      rail.forEach(function (item, i) {
+        var bar = item.querySelector("[data-rail-bar]");
+        if (bar) bar.style.width = (prog[i] * 100).toFixed(1) + "%";
+        item.classList.toggle("is-active", i === active);
       });
-      rows.forEach(function (r, i) { r.classList.toggle("is-active", i === active); });
-      if (bar) bar.style.width = (((active + prog[active]) / rows.length) * 100).toFixed(1) + "%";
     };
     var queue = function () { if (!queued) { queued = true; window.requestAnimationFrame(update); } };
     window.addEventListener("scroll", queue, { passive: true });
