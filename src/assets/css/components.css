@@ -84,6 +84,25 @@ a.at-card:hover { border-color: var(--accent-line); color: var(--ink); }
 .at-logo--md { font-size: 25px; }
 .at-logo--lg { font-size: 49px; }
 
+/* Logo lockup, horizontal: Keystone mark (3x the wordmark), 0.64em gap, wordmark, XYZ tag.
+   font-size on the element sets the wordmark size. Tag drops at 16px and below. */
+.at-lockup { display: inline-flex; align-items: center; gap: 0.64em; }
+.at-lockup__mark { display: block; flex: none; width: 3em; height: auto; }
+.at-lockup__mark--dark { display: none; }
+:root[data-theme="dark"] .at-lockup__mark--light { display: none; }
+:root[data-theme="dark"] .at-lockup__mark--dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .at-lockup__mark--light { display: none; }
+  :root:not([data-theme="light"]) .at-lockup__mark--dark { display: block; }
+}
+.at-lockup__label { display: inline-flex; align-items: center; gap: 0.27em; }
+.at-lockup__tag {
+  display: inline-flex; padding: 4px 8px; border-radius: var(--radius-sm);
+  background: var(--blue-200); color: var(--neutral-950);
+  font: 700 13px/1 var(--font-sans); letter-spacing: 0.12em;
+}
+.at-lockup--sm .at-lockup__tag { display: none; }
+
 /* Isometric pattern: the only decorative device. */
 .at-iso { display: block; width: 100%; height: 100%; }
 .at-iso__t { fill: none; stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }

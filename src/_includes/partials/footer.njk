@@ -1,7 +1,8 @@
+{% from "partials/logo.njk" import lockup %}
 <footer class="site-footer">
   <div class="container grid">
     <div class="site-footer__sign">
-      <span class="at-logo at-logo--md">{{ site.wordmark }}</span>
+      <span class="at-logo at-lockup at-logo--md" role="img" aria-label="{{ site.wordmark }}">{{ lockup(site.wordmark) }}</span>
       <p class="small muted">{{ site.name }} · {{ site.role | t(lang) }}<br>{{ site.signature | t(lang) }}</p>
     </div>
 

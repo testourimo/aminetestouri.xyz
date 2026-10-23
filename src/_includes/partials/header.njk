@@ -1,6 +1,7 @@
+{% from "partials/logo.njk" import lockup %}
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="at-logo site-header__logo" href="{{ 'home' | urlFor(lang) }}" aria-label="{{ site.wordmark }}, {{ (nav[0].label | t(lang)) }}">{{ site.wordmark }}</a>
+    <a class="at-logo at-lockup site-header__logo" href="{{ 'home' | urlFor(lang) }}" aria-label="{{ site.wordmark }}, {{ (nav[0].label | t(lang)) }}">{{ lockup(site.wordmark) }}</a>
 
     {#
       Site tools sit outside the frame on desktop: language in the start margin,

@@ -1,0 +1,6 @@
+{#- Keystone lockup: mark + wordmark + XYZ tag. The wordmark font-size sets the scale (see .at-lockup). Two mark files, swapped by theme. -#}
+{% macro lockup(wordmark) -%}
+<img class="at-lockup__mark at-lockup__mark--light" src="/assets/logo/mark-primary.svg" width="216" height="188" alt="" aria-hidden="true">
+<img class="at-lockup__mark at-lockup__mark--dark" src="/assets/logo/mark-coral-black.svg" width="216" height="188" alt="" aria-hidden="true">
+<span class="at-lockup__label"><span class="at-lockup__name">{{ wordmark }}</span><span class="at-lockup__tag" aria-hidden="true">XYZ</span></span>
+{%- endmacro %}

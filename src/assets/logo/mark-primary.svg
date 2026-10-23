@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="212 66 216 188" width="216" height="188" role="img" aria-label="Amine Testouri logo mark">
+<defs><mask id="cut" maskUnits="userSpaceOnUse" x="200" y="56" width="240" height="210"><rect x="200" y="56" width="240" height="210" fill="#fff"></rect><polygon points="320,130 371.96,160 320,190 268.04,160" fill="#000"></polygon></mask></defs>
+<g mask="url(#cut)">
+<polygon points="216.08,130 320,70 320,190 216.08,250" fill="#FF8E72" stroke="#1A1A1A" stroke-width="4"></polygon>
+<polygon points="320,70 423.92,130 423.92,250 320,190" fill="#FF8E72" stroke="#1A1A1A" stroke-width="4"></polygon>
+<polygon points="268.04,160 320,190 320,250 268.04,220" fill="#FF8E72"></polygon>
+<polygon points="371.96,160 320,190 320,250 371.96,220" fill="#FF8E72"></polygon>
+</g>
+<polyline points="268.04,160 320,130 371.96,160 371.96,220 320,250 268.04,220 268.04,160" fill="none" stroke="#1A1A1A" stroke-width="3"></polyline>
+<path d="M268.04 160L320 190L371.96 160M320 190L320 250" fill="none" stroke="#1A1A1A" stroke-width="3"></path>
+</svg>
