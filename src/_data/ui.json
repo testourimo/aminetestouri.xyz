@@ -74,5 +74,13 @@
   "seeAllServices": {
     "en": "See all services",
     "ar": "اطّلعوا على كل الخدمات"
+  },
+  "youGet": {
+    "en": "You get",
+    "ar": "ما تحصلون عليه"
+  },
+  "fullProcess": {
+    "en": "Read the full process",
+    "ar": "اطّلعوا على الآلية كاملة"
   }
 }

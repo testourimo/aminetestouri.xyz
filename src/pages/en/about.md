@@ -8,14 +8,15 @@ hero:
   lead: A product designer based in Tunisia, working with clients around the world.
 sections:
   about:
-    title: My path
-    sub: How I came to product design, and how I work today.
+    title: Who I am
+    sub: A designer who works inside the team, not beside it.
   experience:
     title: Experience
     sub: I work as an independent product designer, on freelance and consulting projects with teams of different sizes.
-  education:
-    title: Education and training
-    sub: Where my systems thinking and design practice come from.
+  process:
+    title: Process of work
+    sub: "In-house logic: I work inside your team, against a written scope, as the piece that holds the system together."
+    cta: Arrange a short call
 portraitAlt: Portrait of Mo.Amine Testouri
 portraitLabel: Portrait · 4:5
 experience:
@@ -33,20 +34,11 @@ experience:
     - Mobile apps
   notes:
     - I've worked with founders leading small teams and with individuals inside larger companies. Each project gets the same attention and is led by me.
-  education:
-    - name: ISET
-      detail: Automation and Industrial Computing (AII)
-    - name: GoMyCode
-      detail: UX/UI design training
-    - name: LinkedIn Learning
-      detail: Accessibility-First Design, February 2026. Covers accessible content, visual design and testing, so products work for everyone.
 ---
 
 I design B2B dashboards, SaaS platforms, admin systems and design systems. I take each project personally, from the first conversation to the final handover.
 
-My path into design began at ISET, where I studied Automation and Industrial Computing. That training taught me to think in systems: how parts connect, how data flows, and why structure matters. I then moved into UX/UI through training at GoMyCode, and in 2026 I completed LinkedIn Learning's Accessibility-First Design course. It shapes how I work: I keep interfaces practical to build, and I design so that products work for as many people as possible.
-
-My visual approach is inspired by Swiss design, with its clear grids, strong typography and belief that clarity comes first.
+I work as an in-house designer for hire: embedded in your team, accountable to a written scope, and responsible for keeping the system coherent as it grows. My visual approach comes from Swiss design, with its clear grids, strong typography and belief that clarity comes first.
 
 I use AI where it helps, and every decision stays with me.
 

@@ -15,12 +15,12 @@ npm run build   # static site in _site/
 
 | Page | English | Arabic | Holds |
 |---|---|---|---|
-| Home | `/` | `/ar/` | Hero, selected work (scroller), services teaser |
-| Services | `/services/` | `/ar/services/` | Services, then How I work (`#process`) |
-| About me | `/about/` | `/ar/about/` | Intro and portrait, then Experience (`#experience`) |
+| Home | `/` | `/ar/` | Hero, selected work (scroller), services teaser, Process of work snippet (`#process`) |
+| Services | `/services/` | `/ar/services/` | Services |
+| About me | `/about/` | `/ar/about/` | Intro and portrait, Experience (`#experience`), then Process of work in detail (`#process`) |
 | Contact | `/contact/` | `/ar/contact/` | Contact form |
 
-Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in `vercel.json`.
+Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in `vercel.json`. Process of work lives in `src/_data/process.json` (five stages, shared by Home and About); stage graphics come from the `{% isoCols %}` shortcode.
 
 ## Folder structure
 

@@ -8,7 +8,7 @@ layout: layouts/base.njk
 <section class="section" aria-labelledby="services-title">
   <div class="container">
     {% call sectionHead("services", sections.services) %}
-      {{ button(ui.readProcess | t(lang), "#process", "text", "arrow-right") }}
+      {{ button(ui.readProcess | t(lang), ("about" | urlFor(lang)) + "#process", "text", "arrow-right") }}
     {% endcall %}
     <ol class="index-list" role="list">
       {%- for service in services %}
@@ -22,19 +22,3 @@ layout: layouts/base.njk
   </div>
 </section>
 
-<section class="section" id="process" aria-labelledby="process-title">
-  <div class="container">
-    {% call sectionHead("process", sections.process) %}
-      {{ button(sections.process.cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
-    {% endcall %}
-    <ol class="index-list index-list--steps" role="list">
-      {%- for step in process %}
-      <li class="index-list__item">
-        <span class="index-list__num" aria-hidden="true">{{ loop.index | pad }}</span>
-        <h3 class="index-list__title h3"><span class="visually-hidden">{{ loop.index }}. </span>{{ step.title | t(lang) }}</h3>
-        <p class="index-list__body body">{{ step.body | t(lang) }}</p>
-      </li>
-      {%- endfor %}
-    </ol>
-  </div>
-</section>

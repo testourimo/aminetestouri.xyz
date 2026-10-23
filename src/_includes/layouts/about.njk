@@ -47,19 +47,29 @@ layout: layouts/base.njk
   </div>
 </section>
 
-<section class="section" aria-labelledby="education-title">
+<section class="section" id="process" aria-labelledby="process-title">
   <div class="container">
-    {% call sectionHead("education", sections.education) %}
-      {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
+    {% call sectionHead("process", sections.process) %}
+      {{ button(sections.process.cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
     {% endcall %}
-    <ul class="index-list" role="list">
-      {%- for item in experience.education %}
-      <li class="index-list__item">
-        <span class="index-list__num">{{ loop.index | pad }}</span>
-        <h3 class="index-list__title h4 latin">{{ item.name }}</h3>
-        <p class="index-list__body body">{{ item.detail }}</p>
-      </li>
-      {%- endfor %}
-    </ul>
+    <div class="grid">
+      <div class="process-detail__art" aria-hidden="true">
+        {% iso { cols: 8, rows: 16, side: 40 } %}
+        <div class="process-detail__stairs">{% isoCols { n: 5, current: 5, s: 26, accent: true } %}</div>
+      </div>
+      <ol class="stage-list process-detail__list" role="list">
+        {%- for step in process %}
+        <li class="stage">
+          {% isoCols { n: 5, current: loop.index, s: 12 } %}
+          <div>
+            <span class="stage__num" aria-hidden="true">{{ loop.index | pad }}</span>
+            <h3 class="stage__title h3"><span class="visually-hidden">{{ loop.index }}. </span>{{ step.title | t(lang) }}</h3>
+            <p class="stage__body body">{{ step.body | t(lang) }}</p>
+            <dl class="stage__out"><dt>{{ ui.youGet | t(lang) }}</dt><dd>{{ step.out | t(lang) }}</dd></dl>
+          </div>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
   </div>
 </section>

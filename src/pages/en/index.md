@@ -14,6 +14,9 @@ sections:
   services:
     title: Services
     sub: Thoughtful product design for growing software.
+  process:
+    title: Process of work
+    sub: "In-house logic: I work inside your team, against a written scope, as the piece that holds the system together."
   contact:
     title: Work with me
     sub: I'd be glad to hear what you're working on, whether it's a new product, a redesign or a design system.

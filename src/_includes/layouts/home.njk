@@ -42,11 +42,29 @@ layout: layouts/base.njk
   </div>
 </section>
 
+<section class="section" id="process" aria-labelledby="process-title">
+  <div class="container">
+    {% call sectionHead("process", sections.process) %}
+      {{ button(ui.fullProcess | t(lang), ("about" | urlFor(lang)) + "#process", "text", "arrow-right") }}
+    {% endcall %}
+    <ol class="stage-grid" role="list">
+      {%- for step in process %}
+      <li class="stage-tile">
+        {% isoCols { n: 5, current: loop.index, s: 12 } %}
+        <span class="stage-tile__num" aria-hidden="true">{{ loop.index | pad }}</span>
+        <h3 class="stage-tile__title"><span class="visually-hidden">{{ loop.index }}. </span>{{ step.title | t(lang) }}</h3>
+        <p class="stage-tile__body">{{ step.body | t(lang) }}</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
 <section class="section" aria-labelledby="contact-title">
   <div class="container">
     {% call sectionHead("contact", sections.contact) %}
       {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
-      {{ button(ui.readProcess | t(lang), ("services" | urlFor(lang)) + "#process", "outlined", "arrow-up-right") }}
+      {{ button(ui.readProcess | t(lang), ("about" | urlFor(lang)) + "#process", "outlined", "arrow-up-right") }}
     {% endcall %}
   </div>
 </section>

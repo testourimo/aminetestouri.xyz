@@ -10,8 +10,4 @@ sections:
   services:
     title: What I offer
     sub: Depending on what you need, my work can cover any of these.
-  process:
-    title: How I work
-    sub: A simple process, handled personally from start to finish.
-    cta: Arrange a short call
 ---

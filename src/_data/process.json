@@ -1,37 +1,72 @@
 [
   {
-    "title": { "en": "Conversation", "ar": "الحديث الأول" },
+    "title": {
+      "en": "Embed",
+      "ar": "الانضمام"
+    },
     "body": {
-      "en": "We talk through your product, your users and what you'd like to achieve. There is no obligation.",
-      "ar": "نتحدث عن منتجكم ومستخدميكم وما تودّون تحقيقه، دون أي التزام."
+      "en": "I join your team as one of its members: your product, your people, your way of deciding.",
+      "ar": "أنضم إلى فريقكم كأحد أعضائه: منتجكم، وناسكم، وطريقتكم في اتخاذ القرار."
+    },
+    "out": {
+      "en": "A working agreement and a shared brief.",
+      "ar": "اتفاق عمل وملخص مشترك."
     }
   },
   {
-    "title": { "en": "Understanding", "ar": "الفهم" },
+    "title": {
+      "en": "Map",
+      "ar": "الرسم"
+    },
     "body": {
-      "en": "I review what exists and the context around it, then agree the scope with you in writing.",
-      "ar": "أراجع ما هو قائم وسياقه، ثم نتفق كتابةً على نطاق العمل."
+      "en": "I map the system as it stands: flows, screens, components and the gaps between them.",
+      "ar": "أرسم خريطة المنظومة كما هي: المسارات والشاشات والمكوّنات والفجوات بينها."
+    },
+    "out": {
+      "en": "A map of flows, components and gaps.",
+      "ar": "خريطة للمسارات والمكوّنات والفجوات."
     }
   },
   {
-    "title": { "en": "Design", "ar": "التصميم" },
+    "title": {
+      "en": "Build",
+      "ar": "البناء"
+    },
     "body": {
-      "en": "I work in clear stages and share progress along the way, so you can respond early and nothing comes as a surprise.",
-      "ar": "أعمل على مراحل واضحة وأشارككم التقدّم أولًا بأول، لتتمكنوا من التعقيب مبكرًا دون مفاجآت."
+      "en": "I design in clear stages, inside a written scope, using your tools and your rhythm.",
+      "ar": "أصمّم على مراحل واضحة، ضمن نطاق مكتوب، وبأدواتكم وإيقاعكم."
+    },
+    "out": {
+      "en": "Designs reviewed stage by stage against the scope.",
+      "ar": "تصاميم تُراجَع مرحلة بمرحلة مقابل النطاق."
     }
   },
   {
-    "title": { "en": "Refinement", "ar": "التحسين" },
+    "title": {
+      "en": "Align",
+      "ar": "المواءمة"
+    },
     "body": {
-      "en": "We review together and I refine the work until it's right.",
-      "ar": "نراجع العمل معًا وأواصل تحسينه حتى يستقر على الصورة الصحيحة."
+      "en": "I test each decision with product and engineering, so it survives the build.",
+      "ar": "أختبر كل قرار مع فريق المنتج والهندسة، ليصمد أمام التنفيذ."
+    },
+    "out": {
+      "en": "Decisions checked against real constraints.",
+      "ar": "قرارات مفحوصة أمام القيود الفعلية."
     }
   },
   {
-    "title": { "en": "Handover", "ar": "التسليم" },
+    "title": {
+      "en": "Hold",
+      "ar": "الترسيخ"
+    },
     "body": {
-      "en": "You receive organised files and the guidance your team needs to build and maintain the design.",
-      "ar": "تتسلّمون ملفات منظّمة والإرشادات التي يحتاجها فريقكم لبناء التصميم وصيانته."
+      "en": "I hand over documented components and rules, so the system keeps holding without me.",
+      "ar": "أسلّم مكوّنات وقواعد موثّقة، لتبقى المنظومة متماسكة من دوني."
+    },
+    "out": {
+      "en": "Documented components and a handover guide.",
+      "ar": "مكوّنات موثّقة ودليل تسليم."
     }
   }
 ]

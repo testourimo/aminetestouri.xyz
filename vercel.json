@@ -27,7 +27,7 @@
   "redirects": [
     {
       "source": "/what-i-do/process/",
-      "destination": "/services/#process",
+      "destination": "/about/#process",
       "permanent": true
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "source": "/ar/what-i-do/process/",
-      "destination": "/ar/services/#process",
+      "destination": "/ar/about/#process",
       "permanent": true
     },
     {

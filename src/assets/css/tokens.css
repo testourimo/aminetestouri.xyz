@@ -112,6 +112,16 @@
   --card-min-height: 344px;
   --card-media-ratio: 16 / 9;
 
+  /* Cube columns (illustration). Neutral by default; coral is the keystone and the hover state. */
+  --iso-top: var(--neutral-200);
+  --iso-left: var(--neutral-400);
+  --iso-right: var(--neutral-600);
+  --iso-line: #1a1a1a99;
+  --iso-coral-top: #ff8e72;
+  --iso-coral-left: #e5745a;
+  --iso-coral-right: #b65a44;
+  --iso-coral-line: #1a1a1a8c;
+
   color-scheme: light;
 }
 
@@ -135,6 +145,10 @@
   --card-media-surface-hover: var(--neutral-800);
   --card-glow-core: #ff8e7261;
   --card-glow-edge: #ff8e722e;
+  --iso-top: var(--neutral-50);
+  --iso-left: #3a3a3a;
+  --iso-right: #2a2a2a;
+  --iso-line: #1a1a1ae6;
   color-scheme: dark;
 }
 
@@ -158,6 +172,10 @@
     --card-media-surface-hover: var(--neutral-800);
     --card-glow-core: #ff8e7261;
     --card-glow-edge: #ff8e722e;
+    --iso-top: var(--neutral-50);
+    --iso-left: #3a3a3a;
+    --iso-right: #2a2a2a;
+    --iso-line: #1a1a1ae6;
     color-scheme: dark;
   }
 }
