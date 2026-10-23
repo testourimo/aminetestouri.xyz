@@ -4,14 +4,14 @@ layout: layouts/base.njk
 {% from "partials/section-head.njk" import sectionHead %}
 {% include "partials/hero.njk" %}
 
-<section class="section" aria-labelledby="message-title">
+<section class="section" data-iso="draw" aria-labelledby="message-title">
   <div class="container grid">
     {#- The form keeps its centred column; its section head sits on the same column. #}
     <div class="contact">
     {% call sectionHead("message", sections.message) %}{% endcall %}
 
     {# Posts to the form service set in src/_data/site.json (formEndpoint), e.g. Formspree. #}
-    <form class="contact-form" method="POST" action="{{ site.formEndpoint }}" data-contact-form novalidate>
+    <form class="contact-form" data-iso="slide" method="POST" action="{{ site.formEndpoint }}" data-contact-form novalidate>
       <input type="hidden" name="language" value="{{ lang }}">
       <input type="hidden" name="_subject" value="New message from aminetestouri.xyz">
       <p class="hp" aria-hidden="true"><label>Leave this empty <input name="_gotcha" tabindex="-1" autocomplete="off"></label></p>

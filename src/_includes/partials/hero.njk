@@ -8,13 +8,13 @@
 <section class="hero{% if hero.home %} hero--home{% endif %}">
   <div class="container hero__inner">
     <div class="hero__text">
-      {% if hero.eyebrow %}<p class="hero__eyebrow label">{{ hero.eyebrow }}</p>{% endif %}
-      <h1 class="hero__heading">{{ hero.heading }}</h1>
-      {% if hero.lead %}<p class="hero__lead body">{{ hero.lead }}</p>{% endif %}
-      {% if heroActions %}<div class="actions">{{ heroActions | safe }}</div>{% endif %}
+      {% if hero.eyebrow %}<p class="hero__eyebrow label" data-iso="slide">{{ hero.eyebrow }}</p>{% endif %}
+      <h1 class="hero__heading" data-iso="slide" data-d="1">{{ hero.heading }}</h1>
+      {% if hero.lead %}<p class="hero__lead body" data-iso="slide" data-d="2">{{ hero.lead }}</p>{% endif %}
+      {% if heroActions %}<div class="actions" data-iso="slide" data-d="3">{{ heroActions | safe }}</div>{% endif %}
     </div>
   </div>
   <div class="hero__pattern" aria-hidden="true">
-    {% iso { cols: 16, rows: 24, side: 48 } %}
+    {% scene { cols: 16, rows: 24, side: 48 } %}
   </div>
 </section>

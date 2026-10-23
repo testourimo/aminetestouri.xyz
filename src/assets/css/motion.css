@@ -1,0 +1,115 @@
+/*
+  Iso Structural style: scroll motion, named iso-*.
+  Switch an animation on with data-iso="<name>" in the markup; main.js adds .is-in when it scrolls into view.
+  Everything is hidden only while the page has the .js class, so without scripts the page shows as it is.
+
+    iso-slide  entrance: fade + 32px slide on one axis        0.7s, ease-out, 0.12s stagger (data-d)
+    iso-lock   snap to grid: tiles drift in offset, then lock  1.2s, ease-in-out, 0.35s stagger
+    iso-rise   cube columns grow from the ground, one by one   1.1s, ease-out, 0.35s stagger
+    iso-draw   hairlines draw from the inline-start edge       1s, ease-out
+    iso-count  numerals count up and land in coral             1.5s, ease-in-out
+    iso-type   a wordmark types in with a flat coral caret     0.06s per character
+    iso-pulse  a coral square travels along a hairline, looping
+
+  Easing: ease-out for entrances, ease-in-out for moves. No springs, blur, scale pops or glow.
+*/
+:root {
+  --iso-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --iso-inout: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* iso-slide */
+.js [data-iso="slide"] {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 700ms var(--iso-out), transform 700ms var(--iso-out);
+  transition-delay: calc(var(--d, 0) * 120ms);
+}
+.js [data-iso="slide"].is-in { opacity: 1; transform: none; }
+
+/* iso-draw: the top rule of every section and the footer */
+.js [data-iso="draw"]::after {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1000ms var(--iso-out);
+}
+[dir="rtl"].js [data-iso="draw"]::after,
+.js [dir="rtl"] [data-iso="draw"]::after { transform-origin: right; }
+.js [data-iso="draw"].is-in::after { transform: scaleX(1); }
+
+/* iso-lock: tiles of the hero scene drift in offset, then lock onto the lattice */
+.js [data-iso="lock"] {
+  opacity: 0;
+  transform: translate(var(--lx, 40px), var(--ly, -30px));
+  transition: opacity 500ms linear, transform 1200ms var(--iso-inout);
+  transition-delay: calc(var(--d, 0) * 350ms);
+}
+.js [data-iso="lock"].is-in { opacity: 1; transform: none; }
+
+/* iso-rise: cube columns */
+.js [data-iso="rise"] {
+  transform: scaleY(0);
+  transform-box: view-box;
+  transition: transform 1100ms var(--iso-out);
+  transition-delay: calc(var(--d, 0) * 350ms);
+}
+.js [data-iso="rise"].is-in { transform: scaleY(1); }
+
+/* Cubes (stage icons). Ink in both themes, coral for the last stage. */
+.at-cube { display: block; overflow: visible; }
+.at-cube__t { fill: var(--cube-top); }
+.at-cube__l { fill: var(--cube-left); }
+.at-cube__r { fill: var(--cube-right); }
+.at-cube__ln { fill: none; stroke: var(--cube-line); stroke-width: 2; stroke-linejoin: round; }
+.at-cube--coral .at-cube__t { fill: #ff8e72; }
+.at-cube--coral .at-cube__l { fill: #e5745a; }
+.at-cube--coral .at-cube__r { fill: #b65a44; }
+.at-cube--coral .at-cube__ln { stroke: rgba(26, 26, 26, 0.55); }
+
+/* Process list: numeral and cube stack side by side on small screens, stacked on desktop */
+.index-list__lead { display: flex; align-items: flex-end; gap: var(--space-4); }
+@media (min-width: 1024px) { .index-list__lead { flex-direction: column; align-items: flex-start; gap: var(--space-4); } }
+.index-list--steps .index-list__num { transition: color var(--dur-base) var(--ease-out); }
+.index-list--steps .index-list__item:last-child .index-list__num.landed { color: var(--accent-text); }
+
+/* iso-pulse: replaces the list's own top rule */
+.iso-pulse { position: relative; height: 1px; background: var(--line); }
+.iso-pulse + .index-list { border-top: 0; }
+.iso-pulse__sq {
+  position: absolute; top: -4px; inset-inline-start: 0;
+  width: 9px; height: 9px; background: var(--accent);
+}
+.js .iso-pulse__sq { opacity: 0; }
+.js .iso-pulse.is-in .iso-pulse__sq { opacity: 1; animation: iso-pulse 5s var(--iso-inout) infinite; }
+@keyframes iso-pulse { from { inset-inline-start: 0; } to { inset-inline-start: calc(100% - 9px); } }
+
+/* iso-type: flat coral caret while typing */
+.iso-typed[data-typing]::after {
+  content: ""; display: inline-block; width: 0.28em; height: 0.8em;
+  margin-inline-start: 4px; background: var(--accent);
+  animation: iso-blink 1s steps(1) infinite;
+}
+@keyframes iso-blink { 50% { opacity: 0; } }
+
+/* Cards in a grid: the cell slides, the card keeps its own hover transitions */
+.card-cell { display: flex; }
+.card-cell > * { flex: 1; }
+
+/* Page progress: a flat 6px coral bar on the bottom edge */
+.iso-progress {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 60;
+  height: 6px; background: var(--accent);
+  transform: scaleX(0); transform-origin: left; pointer-events: none;
+}
+[dir="rtl"] .iso-progress { transform-origin: right; }
+
+/* Safety nets: reduced motion, and a script that never started */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-iso] { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .js [data-iso="draw"]::after { transform: none !important; transition: none !important; }
+  .js .iso-pulse__sq { opacity: 1; animation: none; }
+  .iso-typed[data-typing]::after { animation: none; }
+  .iso-progress { transition: none; }
+}
+.iso-failsafe [data-iso] { opacity: 1 !important; transform: none !important; transition: none !important; }
+.iso-failsafe [data-iso="draw"]::after { transform: none !important; transition: none !important; }

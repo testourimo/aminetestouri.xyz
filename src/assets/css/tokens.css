@@ -51,9 +51,9 @@
 
   /* Type */
   --font-sans: "Satoshi", system-ui, -apple-system, "Segoe UI", sans-serif;
-  /* Satoshi only for now. When Gambarino comes in, point this at
-     "Gambarino", Georgia, serif and the display styles pick it up. */
-  --font-accent: var(--font-sans);
+  /* Headlines: Newsreader stands in for Gambarino. When Gambarino comes in
+     (see fonts.css), put it first in this stack and the display styles pick it up. */
+  --font-accent: "Newsreader", Georgia, "Times New Roman", serif;
   --font-arabic: "Zain", "Noto Naskh Arabic", "Segoe UI", sans-serif;
 
   /* Spacing, 4px base */
@@ -102,15 +102,14 @@
   --card-media-surface-hover: var(--neutral-200);
   --card-media-text: var(--ink);
   --card-underline: var(--accent-line);
-  /* The glow is the system's one gradient: coral-300 fading to clear. */
-  --card-glow-core: #ff8e72;
-  --card-glow-edge: #ff8e728c;
-  --card-glow-clear: #ff8e7200;
-  --card-stagger: 90ms;
-  --card-glow-radius: 280px;
-  --card-glow-radius-pressed: 200px;
   --card-min-height: 344px;
   --card-media-ratio: 16 / 9;
+
+  /* Isometric cubes: top, left face, right face, unit lines. Coral cubes are the same in both themes. */
+  --cube-top: var(--neutral-950);
+  --cube-left: #5a5a5a;
+  --cube-right: #3c3c3c;
+  --cube-line: rgba(241, 241, 241, 0.55);
 
   color-scheme: light;
 }
@@ -133,8 +132,10 @@
   --blue-text: var(--blue-300);
   --focus-ring: var(--neutral-50);
   --card-media-surface-hover: var(--neutral-800);
-  --card-glow-core: #ff8e7261;
-  --card-glow-edge: #ff8e722e;
+  --cube-top: var(--neutral-50);
+  --cube-left: #3a3a3a;
+  --cube-right: #2a2a2a;
+  --cube-line: rgba(26, 26, 26, 0.9);
   color-scheme: dark;
 }
 
@@ -156,8 +157,10 @@
     --blue-text: var(--blue-300);
     --focus-ring: var(--neutral-50);
     --card-media-surface-hover: var(--neutral-800);
-    --card-glow-core: #ff8e7261;
-    --card-glow-edge: #ff8e722e;
+    --cube-top: var(--neutral-50);
+    --cube-left: #3a3a3a;
+    --cube-right: #2a2a2a;
+    --cube-line: rgba(26, 26, 26, 0.9);
     color-scheme: dark;
   }
 }

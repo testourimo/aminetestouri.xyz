@@ -22,17 +22,20 @@
 
   {# Set the saved theme before paint, so there is no flash. #}
   <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  {# Scroll motion hides things until they enter the view. If main.js has not taken over after 3s, show everything. #}
+  <script>document.documentElement.classList.add("js");window.__isoFailsafe=setTimeout(function(){document.documentElement.classList.add("iso-failsafe")},3000)</script>
 
-  {# Satoshi from Fontshare; Zain (Arabic) from Google Fonts. #}
+  {# Satoshi from Fontshare; Zain (Arabic) and Newsreader (headline stand-in for Gambarino) from Google Fonts. #}
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&family=Newsreader:opsz,wght@6..72,400&display=swap">
   <link rel="stylesheet" href="/assets/css/main.css?v={{ assets.cssVersion }}">
   <script src="/assets/js/main.js?v={{ assets.jsVersion }}" defer></script>
 </head>
 <body class="page page--{{ key }}">
+  <div class="iso-progress" aria-hidden="true"></div>
   <a class="skip-link" href="#main">{{ ui.skip | t(lang) }}</a>
 
   {% include "partials/header.njk" %}

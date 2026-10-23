@@ -1,9 +1,10 @@
 /*
-  Satoshi loads from Fontshare (link in base.njk) and is the only Latin face for now.
-  Gambarino is on hold. To bring it in:
+  Satoshi loads from Fontshare (link in base.njk) and sets all running text.
+  Headlines use Newsreader (Google Fonts, link in base.njk) as a stand-in for Gambarino.
+  To bring Gambarino in:
   1. Put Gambarino-Regular.woff2 in /src/assets/fonts/.
   2. Uncomment the block below.
-  3. In tokens.css, set --font-accent to "Gambarino", Georgia, serif.
+  3. In tokens.css, put "Gambarino" first in --font-accent.
 */
 
 /*

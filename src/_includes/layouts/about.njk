@@ -5,14 +5,14 @@ layout: layouts/base.njk
 {% from "partials/section-head.njk" import sectionHead %}
 {% include "partials/hero.njk" %}
 
-<section class="section" aria-labelledby="about-title">
+<section class="section" data-iso="draw" aria-labelledby="about-title">
   <div class="container">
     {% call sectionHead("about", sections.about) %}{% endcall %}
     <div class="grid">
-      <div class="about__portrait">
+      <div class="about__portrait" data-iso="slide">
         {% figure "portrait/portrait.jpg", portraitAlt, "4/5", portraitLabel %}
       </div>
-      <div class="about__text prose body">
+      <div class="about__text prose body" data-iso="slide" data-d="1">
         {{ content | safe }}
       </div>
     </div>
@@ -20,25 +20,25 @@ layout: layouts/base.njk
 </section>
 
 {# /experience/ redirects to #experience. #}
-<section class="section" id="experience" aria-labelledby="experience-title">
+<section class="section" data-iso="draw" id="experience" aria-labelledby="experience-title">
   <div class="container">
     {% call sectionHead("experience", sections.experience) %}
       {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "text", "arrow-right") }}
     {% endcall %}
     <div class="grid">
-      <div class="facts d-span-4 t-span-4">
+      <div class="facts d-span-4 t-span-4" data-iso="slide">
         <h3 class="h4">{{ experience.sectorsHeading }}</h3>
         <ul role="list">
           {%- for item in experience.sectors %}<li class="body">{{ item }}</li>{% endfor %}
         </ul>
       </div>
-      <div class="facts d-span-4 t-span-4">
+      <div class="facts d-span-4 t-span-4" data-iso="slide" data-d="1">
         <h3 class="h4">{{ experience.productsHeading }}</h3>
         <ul role="list">
           {%- for item in experience.products %}<li class="body">{{ item }}</li>{% endfor %}
         </ul>
       </div>
-      <div class="prose body d-span-8">
+      <div class="prose body d-span-8" data-iso="slide" data-d="2">
         {%- for paragraph in experience.notes %}
         <p>{{ paragraph }}</p>
         {%- endfor %}
@@ -47,14 +47,14 @@ layout: layouts/base.njk
   </div>
 </section>
 
-<section class="section" aria-labelledby="education-title">
+<section class="section" data-iso="draw" aria-labelledby="education-title">
   <div class="container">
     {% call sectionHead("education", sections.education) %}
       {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}
     {% endcall %}
     <ul class="index-list" role="list">
       {%- for item in experience.education %}
-      <li class="index-list__item">
+      <li class="index-list__item" data-iso="slide" data-d="{{ loop.index0 }}">
         <span class="index-list__num">{{ loop.index | pad }}</span>
         <h3 class="index-list__title h4 latin">{{ item.name }}</h3>
         <p class="index-list__body body">{{ item.detail }}</p>

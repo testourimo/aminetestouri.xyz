@@ -37,8 +37,17 @@
   pointer-events: none;
   z-index: 1;
 }
-.section,
-.site-footer { border-top: 1px solid var(--line); }
+/* The top rule is a pseudo-element so it can draw in from the start edge on scroll (motion.css). */
+.section::after,
+.site-footer::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
 
 .grid {
   display: grid;

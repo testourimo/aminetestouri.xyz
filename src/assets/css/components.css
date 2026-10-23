@@ -90,6 +90,7 @@ a.at-card:hover { border-color: var(--accent-line); color: var(--ink); }
 .at-iso__t--coral { fill: var(--coral-300); stroke: var(--coral-300); }
 .at-iso__t--blue { fill: var(--blue-200); stroke: var(--blue-200); }
 .at-iso__t--ink { fill: var(--ink); stroke: var(--ink); }
+.at-iso__t--relief { fill: none; stroke: var(--ink); stroke-width: 2.5; }
 
 /* Field */
 .at-field { display: flex; flex-direction: column; gap: var(--space-2); }
@@ -128,28 +129,20 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
 /* Card arrows draw their second stroke a little later. */
 .at-draw:hover .at-icon *:nth-child(2), .at-draw:focus-visible .at-icon *:nth-child(2) { transition-delay: var(--card-stagger), 0s; }
 
-/* CardGlow: text-led link card. A coral glow follows the pointer.
-   The gradient is a deliberate exception, for this card only. */
+/* CardGlow: text-led link card. Flat: hairline border that turns coral, and the numeral lands in coral.
+   (The pointer glow was retired with the Iso Structural style: no gradients.) */
 .at-cglow {
-  position: relative; overflow: hidden;
+  position: relative;
   display: flex; flex-direction: column; gap: var(--space-5);
   min-height: var(--card-min-height); padding: var(--space-5);
   background: var(--card-surface); border: 1px solid var(--card-border); border-radius: var(--radius-none);
   color: var(--card-title); text-decoration: none;
+  transition: border-color var(--dur-fast) var(--ease-out);
 }
-.at-cglow:hover { color: var(--card-title); }
-.at-cglow > * { position: relative; z-index: 1; }
-.at-cglow::before {
-  content: ""; position: absolute; inset: 0; z-index: 0; opacity: 0; pointer-events: none;
-  background: radial-gradient(circle var(--card-glow-radius) at var(--mx, 50%) var(--my, 50%), var(--card-glow-core) 0%, var(--card-glow-edge) 40%, var(--card-glow-clear) 100%);
-  transition: opacity var(--dur-base) var(--ease-out);
-}
-.at-cglow:hover::before, .at-cglow:focus-visible::before { opacity: 1; }
-.at-cglow:active::before {
-  opacity: 1;
-  background: radial-gradient(circle var(--card-glow-radius-pressed) at var(--mx, 50%) var(--my, 50%), var(--card-glow-core) 0%, var(--card-glow-edge) 55%, var(--card-glow-clear) 100%);
-}
+.at-cglow:hover, .at-cglow:focus-visible { color: var(--card-title); border-color: var(--card-border-hover); }
 .at-cglow:focus-visible { outline: 2px solid var(--card-focus-ring); outline-offset: 2px; }
+.at-cglow__num { transition: color var(--dur-fast) var(--ease-out); }
+.at-cglow:hover .at-cglow__num, .at-cglow:focus-visible .at-cglow__num { color: var(--accent-text); }
 .at-cglow__top { display: flex; justify-content: space-between; align-items: flex-start; }
 .at-cglow__num { color: var(--card-index); font: 900 49px/52px var(--font-sans); letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
 .at-cglow__tag, .at-cthumb__tag {
@@ -164,7 +157,6 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
 .at-cglow:hover .at-cglow__text, .at-cglow:focus-visible .at-cglow__text { color: var(--card-text-active); }
 .at-cglow__cta, .at-cthumb__cta { display: flex; align-items: center; gap: var(--space-2); color: var(--card-link); font: 500 16px/24px var(--font-sans); }
 .at-cglow__cta .at-icon, .at-cthumb__cta .at-icon { width: 20px; height: 20px; }
-@media (hover: none) { .at-cglow::before { opacity: 0.6; } }
 
 /* CardThumb: image-led link card. Border, divider and heading line turn coral. */
 .at-cthumb {

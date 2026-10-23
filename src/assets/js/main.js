@@ -59,14 +59,6 @@
     item.addEventListener("focusout", function (e) { if (!item.contains(e.relatedTarget)) undismiss(); });
   });
 
-  /* CardGlow: the glow follows the pointer. */
-  document.querySelectorAll("[data-glow]").forEach(function (card) {
-    card.addEventListener("pointermove", function (e) {
-      var r = card.getBoundingClientRect();
-      card.style.setProperty("--mx", ((e.clientX - r.left) / r.width * 100).toFixed(1) + "%");
-      card.style.setProperty("--my", ((e.clientY - r.top) / r.height * 100).toFixed(1) + "%");
-    });
-  });
 
   /* Scroller: previous / next buttons move one card; disabled at either end. */
   document.querySelectorAll("[data-scroller]").forEach(function (track) {
@@ -165,6 +157,103 @@
     }
     sync();
   });
+
+
+  /*
+    Iso Structural scroll motion. The animations are named iso-* (see motion.css).
+    An element with data-iso="<name>" gets .is-in once it scrolls into view; some names
+    also run a little script here (count, type). data-d sets the stagger step.
+  */
+  clearTimeout(window.__isoFailsafe);
+  (function () {
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var els = Array.prototype.slice.call(document.querySelectorAll("[data-iso]"));
+    function ease(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+    function pad(n) { return (n < 10 ? "0" : "") + n; }
+
+    /* iso-count: 00 → the numeral, landing in coral. */
+    function countUp(el) {
+      var to = parseInt(el.getAttribute("data-to"), 10);
+      if (reduce) { el.textContent = pad(to); el.classList.add("landed"); return; }
+      var t0 = performance.now(), dur = 1500;
+      (function step(t) {
+        var p = Math.min(1, (t - t0) / dur);
+        el.textContent = pad(Math.round(to * ease(p)));
+        if (p < 1) requestAnimationFrame(step); else el.classList.add("landed");
+      })(t0);
+    }
+
+    /* iso-type: types the text at 0.06s per character. Screen readers get the full text at once. */
+    function prepType(el) {
+      var text = el.getAttribute("data-text") || el.textContent;
+      el.textContent = "";
+      var sr = document.createElement("span");
+      sr.className = "visually-hidden"; sr.textContent = text;
+      var vis = document.createElement("span");
+      vis.className = "iso-typed"; vis.setAttribute("aria-hidden", "true");
+      el.appendChild(sr); el.appendChild(vis);
+      el._iso = { text: text, vis: vis };
+      if (reduce) vis.textContent = text;
+    }
+    function typeIn(el) {
+      var o = el._iso, i = 0;
+      if (!o || reduce) return;
+      o.vis.setAttribute("data-typing", "");
+      (function tick() {
+        o.vis.textContent = o.text.slice(0, ++i);
+        if (i < o.text.length) setTimeout(tick, 60);
+        else setTimeout(function () { o.vis.removeAttribute("data-typing"); }, 1200);
+      })();
+    }
+
+    els.forEach(function (el) {
+      var k = el.getAttribute("data-iso");
+      var d = el.getAttribute("data-d");
+      if (d !== null) el.style.setProperty("--d", d);
+      if (k === "count" && !reduce) el.textContent = "00";
+      if (k === "type") prepType(el);
+    });
+
+    function reveal(el) {
+      el.classList.add("is-in");
+      var k = el.getAttribute("data-iso");
+      if (k === "count") countUp(el);
+      if (k === "type") typeIn(el);
+    }
+
+    if (!("IntersectionObserver" in window)) { els.forEach(reveal); }
+    else {
+      /* Tiles and cubes live inside an svg: watch the svg and reveal its pieces together. */
+      var groups = new Map();
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          io.unobserve(e.target);
+          (groups.get(e.target) || [e.target]).forEach(reveal);
+        });
+      }, { threshold: 0, rootMargin: "0px 0px -8% 0px" });
+      els.forEach(function (el) {
+        var k = el.getAttribute("data-iso");
+        var host = (k === "lock" || k === "rise") ? (el.closest("svg") || el) : el;
+        if (!groups.has(host)) { groups.set(host, []); io.observe(host); }
+        groups.get(host).push(el);
+      });
+    }
+
+    /* Page progress bar. */
+    var bar = document.querySelector(".iso-progress");
+    if (bar) {
+      var ticking = false;
+      var update = function () {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.transform = "scaleX(" + (h > 0 ? Math.min(1, window.scrollY / h) : 0).toFixed(4) + ")";
+        ticking = false;
+      };
+      window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    }
+  })();
 
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach(function (el) {

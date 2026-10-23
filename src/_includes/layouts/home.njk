@@ -10,7 +10,7 @@ layout: layouts/base.njk
 {% endset %}
 {% include "partials/hero.njk" %}
 
-<section class="section" aria-labelledby="work-title">
+<section class="section" data-iso="draw" aria-labelledby="work-title">
   <div class="container">
     {% call sectionHead("work", sections.work) %}
       <div class="scroller-nav" data-scroller-nav hidden>
@@ -19,7 +19,7 @@ layout: layouts/base.njk
       </div>
     {% endcall %}
     {#- Scrolls sideways out to the frame lines, the one thing allowed to cross the safe space. #}
-    <ul class="scroller" role="list" tabindex="0" aria-labelledby="work-title" data-scroller data-autoplay="40">
+    <ul class="scroller" data-iso="slide" role="list" tabindex="0" aria-labelledby="work-title" data-scroller data-autoplay="40">
       {%- for project in work %}
       <li class="scroller__item">{% include "partials/card-thumb.njk" %}</li>
       {%- endfor %}
@@ -27,7 +27,7 @@ layout: layouts/base.njk
   </div>
 </section>
 
-<section class="section" aria-labelledby="services-title">
+<section class="section" data-iso="draw" aria-labelledby="services-title">
   <div class="container">
     {% call sectionHead("services", sections.services) %}
       {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "text", "arrow-right") }}
@@ -36,13 +36,13 @@ layout: layouts/base.njk
       {%- for service in services %}{% if loop.index <= 3 %}
       {%- set index = loop.index %}
       {%- set href = ("services" | urlFor(lang)) + "#" + service.slug %}
-      {% include "partials/card-glow.njk" %}
+      <div class="card-cell" data-iso="slide" data-d="{{ index - 1 }}">{% include "partials/card-glow.njk" %}</div>
       {%- endif %}{% endfor %}
     </div>
   </div>
 </section>
 
-<section class="section" aria-labelledby="contact-title">
+<section class="section" data-iso="draw" aria-labelledby="contact-title">
   <div class="container">
     {% call sectionHead("contact", sections.contact) %}
       {{ button(ui.getInTouch | t(lang), "contact" | urlFor(lang), "primary", "arrow-right") }}

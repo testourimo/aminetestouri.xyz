@@ -9,7 +9,7 @@
 #}
 {% macro sectionHead(id, copy) %}
 {%- set controls = caller() if caller else "" %}
-<header class="section-head">
+<header class="section-head" data-iso="slide">
   <div class="section-head__text">
     <h2 class="section-head__title" id="{{ id }}-title">{{ copy.title }}</h2>
     {% if copy.sub %}<p class="section-head__sub">{{ copy.sub }}</p>{% endif %}
