@@ -13,7 +13,10 @@ layout: layouts/base.njk
     <ol class="index-list" role="list">
       {%- for service in services %}
       <li class="index-list__item" id="{{ service.slug }}" data-iso="slide" data-d="{{ loop.index0 }}">
-        <span class="index-list__num">{{ loop.index | pad }}</span>
+        <span class="index-list__lead" aria-hidden="true">
+          <span class="index-list__num">{{ loop.index | pad }}</span>
+          {% isoicon service.icon, 64 %}
+        </span>
         <h3 class="index-list__title h3">{{ service.title | t(lang) }}</h3>
         <p class="index-list__body body">{{ service.body | t(lang) }}</p>
       </li>

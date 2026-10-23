@@ -1,4 +1,4 @@
-const { icon, isoPattern, isoScene, isoStack, figure } = require("./lib/shortcodes");
+const { icon, isoPattern, illustration, isoIcon, isoStack, figure } = require("./lib/shortcodes");
 const nav = require("./src/_data/nav.json");
 
 module.exports = function (eleventyConfig) {
@@ -11,7 +11,8 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addShortcode("icon", icon);
   eleventyConfig.addShortcode("iso", isoPattern);
-  eleventyConfig.addShortcode("scene", isoScene);
+  eleventyConfig.addShortcode("illustration", illustration);
+  eleventyConfig.addShortcode("isoicon", isoIcon);
   eleventyConfig.addShortcode("stack", isoStack);
   eleventyConfig.addShortcode("figure", figure);
 

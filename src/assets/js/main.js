@@ -255,6 +255,96 @@
     }
   })();
 
+
+  /*
+    Hero illustrations: the markup is the finished picture; this plays its build as a loop.
+    Elements carry data-b (lock, rise, draw, fade, path), data-at and data-dur in seconds,
+    and the svg carries data-loop (loop length). It runs only while the picture is on screen,
+    and never with reduced motion, where the finished picture simply stays.
+  */
+  (function () {
+    var art = document.querySelectorAll("svg[data-loop]");
+    if (!art.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    function easeOut(x) { return 1 - Math.pow(1 - x, 3); }
+    function easeIO(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+    function clamp(x) { return Math.max(0, Math.min(1, x)); }
+
+    art.forEach(function (svg) {
+      var T = parseFloat(svg.getAttribute("data-loop")) || 10;
+      var root = svg.querySelector(".iso-art");
+      var items = Array.prototype.slice.call(svg.querySelectorAll("[data-b]")).map(function (el) {
+        var o = {
+          el: el, kind: el.getAttribute("data-b"),
+          at: parseFloat(el.getAttribute("data-at")) || 0,
+          dur: parseFloat(el.getAttribute("data-dur")) || 1,
+          lx: parseFloat(el.getAttribute("data-lx")) || 0,
+          ly: parseFloat(el.getAttribute("data-ly")) || 0,
+          end: el.getAttribute("data-end") || "stay"
+        };
+        if (o.kind === "rise") {
+          el.style.transformBox = "view-box";
+          el.style.transformOrigin = el.getAttribute("data-ox") + "px " + el.getAttribute("data-oy") + "px";
+        }
+        if (o.kind === "path") {
+          var pts = el.getAttribute("data-pts").split(" ").map(function (p) { var c = p.split(","); return [+c[0], +c[1]]; });
+          var lens = [0];
+          for (var i = 1; i < pts.length; i++) lens.push(lens[i - 1] + Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]));
+          o.pts = pts; o.lens = lens;
+        }
+        return o;
+      });
+
+      function render(t) {
+        items.forEach(function (o) {
+          var p = clamp((t - o.at) / o.dur), s = o.el.style;
+          if (o.kind === "lock") {
+            var e = easeIO(p);
+            s.opacity = p <= 0 ? 0 : Math.min(1, p * 3);
+            s.transform = "translate(" + (o.lx * (1 - e)).toFixed(2) + "px," + (o.ly * (1 - e)).toFixed(2) + "px)";
+          } else if (o.kind === "rise") {
+            s.opacity = p <= 0 ? 0 : 1;
+            s.transform = "scaleY(" + Math.max(0.0001, easeOut(p)).toFixed(4) + ")";
+          } else if (o.kind === "draw") {
+            s.opacity = p <= 0 ? 0 : 1;
+            s.strokeDasharray = "1";
+            s.strokeDashoffset = (1 - easeIO(p)).toFixed(4);
+          } else if (o.kind === "fade") {
+            s.opacity = easeOut(p);
+          } else if (o.kind === "path") {
+            var d = easeIO(p) * o.lens[o.lens.length - 1], k = 1;
+            while (k < o.lens.length - 1 && d > o.lens[k]) k++;
+            var span = o.lens[k] - o.lens[k - 1] || 1, u = clamp((d - o.lens[k - 1]) / span);
+            var x = o.pts[k - 1][0] + (o.pts[k][0] - o.pts[k - 1][0]) * u;
+            var y = o.pts[k - 1][1] + (o.pts[k][1] - o.pts[k - 1][1]) * u;
+            s.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px)";
+            s.opacity = p <= 0 ? 0 : (p >= 1 && o.end === "hide" ? 0 : 1);
+          }
+        });
+        // The whole picture fades out over the last 0.7s, then the build starts again.
+        var tail = T - 0.7;
+        root.style.opacity = t > tail ? Math.max(0, 1 - (t - tail) / 0.7).toFixed(3) : 1;
+      }
+
+      var t0 = 0, frame = null, visible = true;
+      function tick(now) {
+        if (!t0) t0 = now;
+        render(((now - t0) / 1000) % T);
+        frame = requestAnimationFrame(tick);
+      }
+      function sync() {
+        var run = visible && !document.hidden;
+        if (run && !frame) { t0 = 0; frame = requestAnimationFrame(tick); }
+        if (!run && frame) { cancelAnimationFrame(frame); frame = null; }
+      }
+      render(0);
+      document.addEventListener("visibilitychange", sync);
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (entries) { visible = entries[0].isIntersecting; sync(); }, { threshold: 0.1 }).observe(svg);
+      }
+      sync();
+    });
+  })();
+
   /* Footer year */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = String(new Date().getFullYear());

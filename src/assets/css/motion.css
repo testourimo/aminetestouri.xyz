@@ -56,7 +56,7 @@
 .js [data-iso="rise"].is-in { transform: scaleY(1); }
 
 /* Cubes (stage icons). Ink in both themes, coral for the last stage. */
-.at-cube { display: block; overflow: visible; }
+svg.at-cube { display: block; overflow: visible; }
 .at-cube__t { fill: var(--cube-top); }
 .at-cube__l { fill: var(--cube-left); }
 .at-cube__r { fill: var(--cube-right); }
@@ -65,6 +65,25 @@
 .at-cube--coral .at-cube__l { fill: #e5745a; }
 .at-cube--coral .at-cube__r { fill: #b65a44; }
 .at-cube--coral .at-cube__ln { stroke: rgba(26, 26, 26, 0.55); }
+
+.at-cube--blue .at-cube__t { fill: #b9ddff; }
+.at-cube--blue .at-cube__l { fill: #8fb5db; }
+.at-cube--blue .at-cube__r { fill: #6e93ba; }
+.at-cube--blue .at-cube__ln { stroke: rgba(26, 26, 26, 0.5); }
+.at-cube--relief .at-cube__t, .at-cube--relief .at-cube__l, .at-cube--relief .at-cube__r { fill: none; }
+.at-cube--relief .at-cube__ln { stroke: var(--ink); }
+
+/* Hero illustrations and icons: drawn on the lattice, flat, no gradients. */
+.at-iso polygon, .at-iso polyline, .at-isoicon polygon, .at-isoicon polyline { stroke-linejoin: round; }
+.at-wire { fill: none; stroke: var(--ink); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.at-node { fill: var(--surface); stroke: var(--ink); stroke-width: 2; }
+.at-isoicon { display: block; overflow: visible; flex: none; }
+.at-isoicon .at-iso__t { stroke-width: 1; }
+.at-isoicon .at-iso__t--relief, .at-isoicon .at-cube--relief .at-cube__ln { stroke-width: 1.5; }
+.at-isoicon .at-cube__ln { stroke-width: 1; }
+.at-cglow__icon { display: flex; align-items: flex-end; height: 64px; margin-bottom: var(--space-2); }
+.index-list__lead .at-isoicon { min-height: 0; }
+[dir="rtl"] .hero__pattern .at-iso { transform: scaleX(-1); }
 
 /* Process list: numeral and cube stack side by side on small screens, stacked on desktop */
 .index-list__lead { display: flex; align-items: flex-end; gap: var(--space-4); }
