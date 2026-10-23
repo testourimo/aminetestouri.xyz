@@ -14,34 +14,27 @@ layout: layouts/base.njk
       </div>
       <div class="about__text prose body">
         {{ content | safe }}
-      </div>
-    </div>
-  </div>
-</section>
-
-{# /experience/ redirects to #experience. #}
-<section class="section" id="experience" aria-labelledby="experience-title">
-  <div class="container">
-    {% call sectionHead("experience", sections.experience) %}
-      {{ button(ui.allServices | t(lang), "services" | urlFor(lang), "text", "arrow-right") }}
-    {% endcall %}
-    <div class="grid">
-      <div class="facts d-span-4 t-span-4">
-        <h3 class="h4">{{ experience.sectorsHeading }}</h3>
-        <ul role="list">
-          {%- for item in experience.sectors %}<li class="body">{{ item }}</li>{% endfor %}
-        </ul>
-      </div>
-      <div class="facts d-span-4 t-span-4">
-        <h3 class="h4">{{ experience.productsHeading }}</h3>
-        <ul role="list">
-          {%- for item in experience.products %}<li class="body">{{ item }}</li>{% endfor %}
-        </ul>
-      </div>
-      <div class="prose body d-span-8">
-        {%- for paragraph in experience.notes %}
-        <p>{{ paragraph }}</p>
-        {%- endfor %}
+        <div class="about__experience" id="experience">
+          <h3 class="h3">{{ sections.experience.title }}</h3>
+          <p class="body muted">{{ sections.experience.sub }}</p>
+          <div class="about__facts">
+            <div class="facts">
+              <h4 class="h4">{{ experience.sectorsHeading }}</h4>
+              <ul role="list">
+                {%- for item in experience.sectors %}<li class="body">{{ item }}</li>{% endfor %}
+              </ul>
+            </div>
+            <div class="facts">
+              <h4 class="h4">{{ experience.productsHeading }}</h4>
+              <ul role="list">
+                {%- for item in experience.products %}<li class="body">{{ item }}</li>{% endfor %}
+              </ul>
+            </div>
+          </div>
+          {%- for paragraph in experience.notes %}
+          <p class="body">{{ paragraph }}</p>
+          {%- endfor %}
+        </div>
       </div>
     </div>
   </div>
@@ -53,13 +46,13 @@ layout: layouts/base.njk
       {{ button(sections.process.cta, "contact" | urlFor(lang), "primary", "arrow-right") }}
     {% endcall %}
     <div class="grid">
-      <div class="process-detail__art" aria-hidden="true">
-        {% iso { cols: 8, rows: 16, side: 40 } %}
-        <div class="process-detail__stairs">{% isoCols { n: 5, current: 5, s: 26, accent: true } %}</div>
+      <div class="process-detail__art" data-process-art aria-hidden="true">
+        {% isoScene 1 %}{% isoScene 2 %}{% isoScene 3 %}{% isoScene 4 %}{% isoScene 5 %}
+        <span class="process-detail__bar"><span data-process-bar></span></span>
       </div>
       <ol class="stage-list process-detail__list" role="list">
         {%- for step in process %}
-        <li class="stage">
+        <li class="stage" data-stage>
           {% isoCols { n: 5, current: loop.index, s: 12 } %}
           <div>
             <span class="stage__num" aria-hidden="true">{{ loop.index | pad }}</span>

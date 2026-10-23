@@ -218,4 +218,48 @@
         .finally(function () { submit.disabled = false; });
     });
   }
+
+  /* Process of work (About): the sticky illustration fills in as the reader scrolls through each stage. */
+  var art = document.querySelector("[data-process-art]");
+  if (art) {
+    var scenes = Array.prototype.slice.call(art.querySelectorAll("[data-scene]"));
+    var rows = Array.prototype.slice.call(document.querySelectorAll("[data-stage]"));
+    var bar = art.querySelector("[data-process-bar]");
+    var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var ease = function (t) { return 1 - Math.pow(1 - t, 3); };
+    var parts = scenes.map(function (sc) {
+      return Array.prototype.slice.call(sc.querySelectorAll(".piece")).map(function (el) {
+        var f = (el.getAttribute("data-from") || "0,24").split(",");
+        return { el: el, x: parseFloat(f[0]), y: parseFloat(f[1]) };
+      });
+    });
+    var paint = function (i, p) {
+      var list = parts[i], n = list.length;
+      list.forEach(function (it, k) {
+        var e = still ? 1 : ease(Math.min(1, Math.max(0, p * n - k)));
+        it.el.style.opacity = e;
+        it.el.style.transform = "translate(" + ((1 - e) * it.x).toFixed(1) + "px," + ((1 - e) * it.y).toFixed(1) + "px)";
+      });
+    };
+    var queued = false;
+    var update = function () {
+      queued = false;
+      var ref = window.innerHeight * 0.6, active = 0;
+      var prog = rows.map(function (r) {
+        var b = r.getBoundingClientRect();
+        return Math.min(1, Math.max(0, (ref - b.top) / b.height));
+      });
+      prog.forEach(function (p, i) { if (p > 0) active = i; });
+      scenes.forEach(function (sc, i) {
+        paint(i, i < active ? 1 : i > active ? 0 : prog[i]);
+        sc.classList.toggle("is-on", i === active);
+      });
+      rows.forEach(function (r, i) { r.classList.toggle("is-active", i === active); });
+      if (bar) bar.style.width = (((active + prog[active]) / rows.length) * 100).toFixed(1) + "%";
+    };
+    var queue = function () { if (!queued) { queued = true; window.requestAnimationFrame(update); } };
+    window.addEventListener("scroll", queue, { passive: true });
+    window.addEventListener("resize", queue);
+    update();
+  }
 })();

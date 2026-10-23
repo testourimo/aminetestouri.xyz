@@ -55,3 +55,11 @@
 @media (min-width: 600px) { .contact-form .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); } }
 .contact-form .hp { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 
+
+/* About: Experience sits in the same block, right after the description. */
+.about__experience { margin-top: var(--space-7); padding-top: var(--space-6); border-top: 1px solid var(--line); scroll-margin-top: calc(var(--header-h) + var(--space-5)); }
+.about__experience > p { margin-top: var(--space-2); max-width: 60ch; }
+.about__experience > p:last-child { margin-top: var(--space-5); color: var(--ink-muted); }
+.about__facts { display: grid; gap: var(--space-5); margin-top: var(--space-5); }
+@media (min-width: 600px) { .about__facts { grid-template-columns: 1fr 1fr; } }
+.about__experience .muted { color: var(--ink-muted); }

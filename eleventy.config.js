@@ -1,4 +1,4 @@
-const { icon, isoPattern, isoCols, figure } = require("./lib/shortcodes");
+const { icon, isoPattern, isoCols, isoScene, figure } = require("./lib/shortcodes");
 const nav = require("./src/_data/nav.json");
 
 module.exports = function (eleventyConfig) {
@@ -13,6 +13,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addShortcode("iso", isoPattern);
   eleventyConfig.addShortcode("figure", figure);
   eleventyConfig.addShortcode("isoCols", isoCols);
+  eleventyConfig.addShortcode("isoScene", isoScene);
 
   // Picks the string for the page language from a { en, ar } object.
   eleventyConfig.addFilter("t", (value, lang) => {
