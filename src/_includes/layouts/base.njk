@@ -23,8 +23,8 @@
   {# Set the saved theme before paint, so there is no flash. #}
   <script>document.documentElement.classList.add("js");</script>
   <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-  {# Easter Egg Mode: a visitor who found the coral cube keeps the cube menu. Anyone else stays in Normal mode. #}
-  <script>try{if(localStorage.getItem("mode")==="egg")document.documentElement.setAttribute("data-mode","egg")}catch(e){}</script>
+  {# Easter Egg Mode: a visitor who found the coral cube keeps the cube menu for this tab only. A new visit starts in Normal mode. #}
+  <script>try{if(sessionStorage.getItem("mode")==="egg")document.documentElement.setAttribute("data-mode","egg")}catch(e){}</script>
 
   {# Satoshi from Fontshare; Zain (Arabic) from Google Fonts. #}
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>

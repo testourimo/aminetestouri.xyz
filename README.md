@@ -65,10 +65,10 @@ Every screen is designed and checked in **16 variants**: four independent axes, 
 | Viewport | desktop (≥ 1024 px) · mobile (< 1024 px) | CSS breakpoints |
 | Theme | light · dark | `data-theme` on `<html>`, saved as `theme`; follows the system until a choice is made |
 | Language | EN · AR (RTL) | `lang` and `dir` on `<html>`, set by the page path |
-| **Mode** | **Normal · Egg** | `data-mode` on `<html>`, saved as `mode` (only `egg` is stored) |
+| **Mode** | **Normal · Egg** | `data-mode` on `<html>`, kept in `sessionStorage` as `mode` (only `egg` is stored), so closing the tab ends it |
 
 **Normal mode** is the classic site: header links (a menu button on mobile), and on Home a field of floating black cubes with blue touches behind centred copy, with one coral cube to find.
-**Egg mode** starts when a visitor taps the coral cube: the cubes assemble, fuse into one cube with a coral aura, and dock into the header. From then on that cube is the menu on every page (a full-screen list; the language and theme tools stay in the header). "Back to the classic menu" returns to Normal. Egg mode is remembered on the device. There is no other way into it, and nothing in Normal mode depends on it.
+**Egg mode** starts when a visitor taps the coral cube: the cubes assemble, fuse into one cube with a coral aura, and dock into the header. From then on that cube is the menu on every page (a full-screen list; the language and theme tools stay in the header). "Back to the classic menu" returns to Normal. Egg mode lasts for the tab session: it carries across pages, and closing the tab or opening the site in a new one starts in Normal mode. There is no other way into it, and nothing in Normal mode depends on it.
 
 What changes between the two modes:
 

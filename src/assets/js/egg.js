@@ -3,7 +3,7 @@
 
   Normal   Home shows floating cubes behind centred copy. One is coral. Tap it and they assemble into one
            cube, which then docks into the header and becomes the menu (Egg mode).
-  Egg      <html data-mode="egg">, saved in localStorage ("mode"). The cube in the header opens a full-screen
+  Egg      <html data-mode="egg">, kept for the tab session (sessionStorage "mode"). The cube in the header opens a full-screen
            menu. "Back to the classic menu" returns to Normal (and, on Home, the cubes scatter again).
 
   Drag pushes cubes, the pointer repels them, the coral cube leans toward the pointer.
@@ -17,7 +17,7 @@
   /* ---- Mode ---- */
   function setMode(m) {
     root.setAttribute("data-mode", m);
-    try { if (m === "egg") localStorage.setItem("mode", "egg"); else localStorage.removeItem("mode"); } catch (e) {}
+    try { if (m === "egg") sessionStorage.setItem("mode", "egg"); else sessionStorage.removeItem("mode"); } catch (e) {}
   }
   function inEgg() { return root.getAttribute("data-mode") === "egg"; }
 
