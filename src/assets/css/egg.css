@@ -1,0 +1,248 @@
+/*
+  Easter Egg Mode.
+
+  The site has two modes, set on <html data-mode="normal | egg">:
+    normal  The classic header and menu. Home shows the cube field with one coral cube.
+    egg     The visitor found the coral cube. The merged cube in the header is the menu
+            (a full-screen list), and the classic links are hidden. Saved in localStorage ("mode").
+  It works with every other axis: viewport (CSS breakpoints), theme (data-theme), language and
+  direction (lang, dir). Colours come from the --egg-* tokens, so light and dark need no extra rules here.
+*/
+
+/* ---- Home hero: centred copy over the cube field ---- */
+.hero--field {
+  display: grid;
+  align-items: center;
+  min-height: max(520px, calc(100svh - var(--header-h)));
+  padding-block: var(--space-8);
+  touch-action: pan-y;
+}
+/* Phone: room above the copy for the coral cube. */
+@media (max-width: 699px) { .hero--field { padding-top: calc(var(--space-8) + 56px); } }
+.hero--field .hero__inner { position: relative; z-index: 2; pointer-events: none; }
+.hero--field .hero__text { max-width: min(720px, 100%); margin-inline: auto; text-align: center; }
+.hero--field .hero__heading,
+.hero--field .hero__lead { margin-inline: auto; }
+.hero--field .actions { justify-content: center; }
+.hero--field .actions > * { pointer-events: auto; }
+.hero--field .hero__text { transition: opacity 0.7s var(--ease-out); }
+.hero--field[data-egg="assembled"] .hero__text { opacity: 0; }
+.hero--field[data-egg="assembled"] .actions > * { pointer-events: none; }
+.hero--field[data-egg="scatter"] { cursor: grab; }
+.hero--field.is-dragging { cursor: grabbing; }
+
+.egg-field {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  perspective: 1500px;
+  perspective-origin: 50% 48%;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: opacity 0.6s var(--ease-out);
+}
+.egg-field.is-hidden { opacity: 0; }
+.egg-scene {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+
+/* ---- Cubes: six faces, each a flat colour set from JS (so light and dark can differ) ---- */
+.egg-cube {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--s);
+  height: var(--s);
+  margin: calc(var(--s) / -2) 0 0 calc(var(--s) / -2);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.egg-cube .f,
+.egg-shell .f,
+.egg-mini .f { position: absolute; inset: 0; backface-visibility: hidden; display: block; }
+.egg-cube .f { border: 1px solid var(--egg-edge); }
+.egg-cube.is-blue .f { border-color: var(--egg-edge-blue); }
+.egg-cube .t { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+.egg-cube .b { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+.egg-cube .fr { transform: translateZ(calc(var(--s) / 2)); }
+.egg-cube .bk { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.egg-cube .r { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.egg-cube .l { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+
+/* The one coral cube: the way in. */
+.egg-cube.is-coral { cursor: pointer; outline: none; }
+.egg-cube.is-coral .f { pointer-events: auto; box-shadow: 0 0 26px var(--egg-glow); }
+.egg-cube.is-coral:focus-visible .f { outline: 3px solid var(--focus-ring); outline-offset: 1px; }
+
+/* The merged cube. Its edges carry the coral gradient and a breathing aura. */
+.egg-shell {
+  --e: calc(var(--s) * 4);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--e);
+  height: var(--e);
+  margin: calc(var(--e) / -2) 0 0 calc(var(--e) / -2);
+  transform-style: preserve-3d;
+  pointer-events: none;
+}
+.egg-shell .f {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--egg-shell), var(--egg-shell)) padding-box,
+    linear-gradient(135deg, var(--egg-aura-from), var(--egg-aura-mid) 45%, var(--egg-aura-to)) border-box;
+  box-shadow: 0 0 38px 4px var(--egg-glow), inset 0 0 46px var(--egg-glow);
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-out);
+}
+.egg-shell .t {
+  background:
+    linear-gradient(var(--egg-shell-top), var(--egg-shell-top)) padding-box,
+    linear-gradient(135deg, var(--egg-aura-from), var(--egg-aura-mid) 45%, var(--egg-aura-to)) border-box;
+  transform: rotateX(90deg) translateZ(calc(var(--e) / 2 + 1px));
+}
+.egg-shell .b { transform: rotateX(-90deg) translateZ(calc(var(--e) / 2 + 1px)); }
+.egg-shell .fr { transform: translateZ(calc(var(--e) / 2 + 1px)); }
+.egg-shell .bk { transform: rotateY(180deg) translateZ(calc(var(--e) / 2 + 1px)); }
+.egg-shell .r { transform: rotateY(90deg) translateZ(calc(var(--e) / 2 + 1px)); }
+.egg-shell .l { transform: rotateY(-90deg) translateZ(calc(var(--e) / 2 + 1px)); }
+.egg-scene.is-merged .egg-shell .f { opacity: 1; animation: egg-aura 4.5s ease-in-out 0.7s infinite; }
+.egg-scene.is-merged-hold .egg-cube { visibility: hidden; }
+@keyframes egg-aura { 50% { opacity: 0.8; } }
+
+/* ---- Header: the cube button (Egg mode only) ---- */
+.egg-nav { display: none; }
+[data-mode="egg"] .site-nav,
+[data-mode="egg"] .site-header .site-header__menu-btn { display: none; }
+[data-mode="egg"] .egg-nav {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-target);
+  min-width: var(--touch-target);
+  padding: 0 var(--space-1);
+  margin-inline-start: auto;
+  background: none;
+  border: 0;
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 0.4s var(--ease-out);
+}
+/* On small screens the tools sit before the menu button, so the cube takes the button's place. */
+[data-mode="egg"] .site-tools { margin-inline-start: auto; }
+[data-mode="egg"] .site-tools ~ .egg-nav { margin-inline-start: 0; }
+@media (min-width: 1024px) {
+  /* Desktop: the tools are in the margins, so the cube alone pushes to the end. */
+  [data-mode="egg"] .site-tools ~ .egg-nav { margin-inline-start: auto; }
+}
+.egg-nav.is-pending { opacity: 0; }
+.egg-nav:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.egg-nav__label { font: 500 13px/1 var(--font-sans); letter-spacing: 0.1em; text-transform: uppercase; }
+:lang(ar) .egg-nav__label { font: 700 18px/1 var(--font-arabic); letter-spacing: 0; text-transform: none; }
+@media (max-width: 599px) { .egg-nav__label { display: none; } }
+
+/* The mini cube: a real 3D cube, in the same merged look. */
+.egg-mini { --m: 20px; position: relative; display: block; width: 36px; height: 36px; perspective: 400px; }
+.egg-mini__tilt,
+.egg-mini__spin,
+.egg-mini__box {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  display: block;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+}
+.egg-mini__tilt { transform: rotateX(-35.264deg); }
+.egg-mini__spin { animation: egg-spin 16s linear infinite; }
+.egg-mini__box { transform: rotateY(calc(45deg + var(--kick, 0deg))); transition: transform 0.7s var(--ease-out); }
+.egg-nav[aria-expanded="true"] .egg-mini__spin { animation-play-state: paused; }
+.egg-mini .f {
+  inset: auto;
+  left: calc(var(--m) / -2);
+  top: calc(var(--m) / -2);
+  width: var(--m);
+  height: var(--m);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--egg-shell), var(--egg-shell)) padding-box,
+    linear-gradient(135deg, var(--egg-aura-from), var(--egg-aura-mid) 45%, var(--egg-aura-to)) border-box;
+  box-shadow: 0 0 8px var(--egg-glow);
+}
+.egg-mini .t { background:
+    linear-gradient(var(--egg-shell-top), var(--egg-shell-top)) padding-box,
+    linear-gradient(135deg, var(--egg-aura-from), var(--egg-aura-mid) 45%, var(--egg-aura-to)) border-box;
+  transform: rotateX(90deg) translateZ(calc(var(--m) / 2)); }
+.egg-mini .b { transform: rotateX(-90deg) translateZ(calc(var(--m) / 2)); }
+.egg-mini .fr { transform: translateZ(calc(var(--m) / 2)); }
+.egg-mini .bk { transform: rotateY(180deg) translateZ(calc(var(--m) / 2)); }
+.egg-mini .r { transform: rotateY(90deg) translateZ(calc(var(--m) / 2)); }
+.egg-mini .l { transform: rotateY(-90deg) translateZ(calc(var(--m) / 2)); }
+@keyframes egg-spin { to { transform: rotateY(360deg); } }
+
+/* ---- The cube menu: a full-screen list under the header ---- */
+.egg-menu {
+  position: fixed;
+  inset: var(--header-h) 0 0 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-7);
+  padding: var(--space-7) calc(var(--margin) + var(--safe));
+  background: var(--surface);
+  overflow-y: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s var(--ease-out), visibility 0s 0.45s;
+}
+.egg-menu.is-open { opacity: 1; visibility: visible; transition-delay: 0s; }
+.egg-menu__list { display: grid; gap: var(--space-1); margin: 0; padding: 0; list-style: none; }
+.egg-menu__list li {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out);
+}
+.egg-menu.is-open .egg-menu__list li { opacity: 1; transform: none; transition-delay: calc(var(--i) * 60ms + 140ms); }
+.egg-menu__list a {
+  display: inline-block;
+  font: 700 clamp(44px, 9vw, 96px) / 1.06 var(--font-sans);
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  text-decoration: none;
+  transition: transform 0.4s var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+[dir="rtl"] .egg-menu__list a { font: 800 clamp(40px, 8vw, 80px) / 1.3 var(--font-arabic); letter-spacing: 0; }
+.egg-menu__list a:hover,
+.egg-menu__list a:focus-visible { color: var(--accent-text); transform: translateX(calc(14px * var(--egg-dir, 1))); }
+.egg-menu__list a[aria-current="page"] { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 8px; }
+[dir="rtl"] .egg-menu { --egg-dir: -1; }
+.egg-menu__exit {
+  align-self: flex-start;
+  padding: var(--space-1) 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+  font: 500 14px/20px var(--font-sans);
+  cursor: pointer;
+}
+[dir="rtl"] .egg-menu__exit { font: 500 18px/28px var(--font-arabic); }
+.egg-menu__exit:hover { color: var(--accent-text); border-color: var(--accent-text); }
+html:not([data-mode="egg"]) .egg-menu { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .egg-mini__spin,
+  .egg-scene.is-merged .egg-shell .f { animation: none; }
+  .egg-menu,
+  .egg-menu__list li,
+  .egg-menu__list a { transition-duration: 0.01ms; }
+}

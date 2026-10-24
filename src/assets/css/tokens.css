@@ -125,6 +125,23 @@
   --iso-blue-left: #8fb5db;
   --iso-blue-right: #6e93ba;
 
+
+  /*
+    Easter Egg Mode (the cube field, the merged cube, the cube menu).
+    Black first, blue touches; coral only on the one cube to find and as the aura of the merged cube.
+    This is the system's second sanctioned gradient and its only glow, kept to the merged cube.
+  */
+  --egg-k0: #2e2e34; --egg-k1: #18181b; --egg-k2: #0c0c0e;      /* black cube: top, left, right */
+  --egg-b0: #b9ddff; --egg-b1: #2f5176; --egg-b2: #1c3249;      /* blue touch */
+  --egg-edge: #b9ddff47;
+  --egg-edge-blue: #6ea0d7e6;
+  --egg-shell: #0c0c0e;
+  --egg-shell-top: #17171a;
+  --egg-aura-from: var(--coral-200);
+  --egg-aura-mid: var(--coral-300);
+  --egg-aura-to: var(--coral-500);
+  --egg-glow: #ff8e72b3;
+
   color-scheme: light;
 }
 
@@ -152,6 +169,10 @@
   --iso-left: #3a3a3a;
   --iso-right: #2a2a2a;
   --iso-line: #1a1a1ae6;
+  --egg-k0: #34343b; --egg-k1: #1b1b1f; --egg-k2: #111113;
+  --egg-edge: #b9ddff33;
+  --egg-edge-blue: #b9ddffbf;
+  --egg-glow: #ff8e728c;
   color-scheme: dark;
 }
 
@@ -179,6 +200,10 @@
     --iso-left: #3a3a3a;
     --iso-right: #2a2a2a;
     --iso-line: #1a1a1ae6;
+    --egg-k0: #34343b; --egg-k1: #1b1b1f; --egg-k2: #111113;
+    --egg-edge: #b9ddff33;
+    --egg-edge-blue: #b9ddffbf;
+    --egg-glow: #ff8e728c;
     color-scheme: dark;
   }
 }
