@@ -1,0 +1,33 @@
+/* Consent banner. Tokens only; follows theme, direction and both modes. Bottom of the viewport, never over the skip link. */
+.consent {
+  position: fixed;
+  inset-inline: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 90;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
+  max-width: 720px;
+  margin-inline: auto;
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+}
+.consent[hidden] { display: none; }
+.consent__text { flex: 1 1 280px; margin: 0; color: var(--ink); }
+.consent__actions { display: flex; gap: var(--space-3); margin-inline-start: auto; }
+
+/* Footer link that reopens the banner: reads as a quiet text link. */
+.site-footer__consent {
+  display: inline; padding: 0; margin-inline-start: var(--space-3);
+  background: none; border: 0; border-radius: 0;
+  font: inherit; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; cursor: pointer;
+}
+.site-footer__consent:hover { color: var(--accent-text); }
+@media (pointer: coarse) { .site-footer__consent { min-height: var(--touch-target); } }
+
+@media (max-width: 599px) {
+  .consent { padding: var(--space-4); }
+  .consent__actions { width: 100%; }
+  .consent__actions .at-btn { flex: 1 1 0; }
+}

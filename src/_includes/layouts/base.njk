@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="/assets/css/main.css?v={{ assets.cssVersion }}">
   <script src="/assets/js/main.js?v={{ assets.jsVersion }}" defer></script>
   <script src="/assets/js/egg.js?v={{ assets.jsVersion }}" defer></script>
+  <script src="/assets/js/consent.js?v={{ assets.jsVersion }}" defer></script>
 </head>
 <body class="page page--{{ key }}">
   <a class="skip-link" href="#main">{{ ui.skip | t(lang) }}</a>
@@ -46,5 +47,6 @@
   </main>
 
   {% include "partials/footer.njk" %}
+  {% include "partials/consent.njk" %}
 </body>
 </html>
