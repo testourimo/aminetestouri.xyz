@@ -11,7 +11,17 @@
   <link rel="canonical" href="{{ site.url }}{{ page.url }}">
   <link rel="alternate" hreflang="en" href="{{ site.url }}{{ key | urlFor('en') }}">
   <link rel="alternate" hreflang="ar" href="{{ site.url }}{{ key | urlFor('ar') }}">
+  <link rel="alternate" hreflang="x-default" href="{{ site.url }}{{ key | urlFor('en') }}">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+{%- if key == "not-found" %}
+  <meta name="robots" content="noindex">
+{%- endif %}
+{%- if site.verification.google %}
+  <meta name="google-site-verification" content="{{ site.verification.google }}">
+{%- endif %}
+{%- if site.verification.bing %}
+  <meta name="msvalidate.01" content="{{ site.verification.bing }}">
+{%- endif %}
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ pageTitle }}">
@@ -19,6 +29,18 @@
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
   <meta property="og:image" content="{{ site.url }}/assets/images/{{ site.ogImage }}">
   <meta name="twitter:card" content="summary_large_image">
+
+{%- if key == "home" or key == "about" %}
+  {# Structured data for search and AI answers: who this site is about. A data block, not run as script. #}
+  {%- set graph = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "WebSite", "@id": site.url + "/#website", "url": site.url + "/", "name": site.name, "inLanguage": lang },
+      { "@type": "Person", "@id": site.url + "/#person", "name": site.name, "alternateName": site.wordmark, "url": site.url + "/", "email": site.contact.email, "telephone": site.contact.telephone, "jobTitle": site.role | t(lang), "description": site.description | t(lang), "address": { "@type": "PostalAddress", "addressCountry": "TN" }, "knowsAbout": ["Product design", "B2B dashboards", "SaaS platforms", "Admin systems", "Design systems", "UX research", "Brand identity"], "mainEntityOfPage": site.url + "/" }
+    ]
+  } %}
+  <script type="application/ld+json">{{ graph | dump | safe }}</script>
+{%- endif %}
 
   {# Set the saved theme before paint, so there is no flash. #}
   <script>document.documentElement.classList.add("js");</script>

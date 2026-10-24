@@ -2,6 +2,7 @@
 layout: layouts/home.njk
 key: home
 title: الرئيسية
+description: "Mo.Amine Testouri، مصمّم منتجات رقمية مقيم في تونس. أصمّم لوحات المعلومات للشركات ومنصات SaaS وأنظمة الإدارة وأنظمة التصميم لفرق حول العالم."
 hero:
   home: true
   eyebrow: Mo.Amine Testouri · مصمّم منتجات ومستشار إبداعي استراتيجي

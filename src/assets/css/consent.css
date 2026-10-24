@@ -1,12 +1,12 @@
-/* Consent banner. Tokens only; follows theme, direction and both modes. Bottom of the viewport, never over the skip link. */
+/* Consent banner. Tokens only; follows theme, direction and both modes.
+   A compact card in the bottom-left corner in both directions, because the coral cube on the Home hero sits on the right in English and Arabic alike. */
 .consent {
   position: fixed;
-  inset-inline: var(--space-4);
+  left: var(--space-4);
   bottom: var(--space-4);
-  z-index: 90;
-  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-5);
-  max-width: 720px;
-  margin-inline: auto;
+  z-index: 40;
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-4);
+  width: min(420px, calc(100% - 2 * var(--space-4)));
   padding: var(--space-4) var(--space-5);
   background: var(--surface);
   color: var(--ink);
@@ -14,7 +14,7 @@
   border-radius: var(--radius-sm);
 }
 .consent[hidden] { display: none; }
-.consent__text { flex: 1 1 280px; margin: 0; color: var(--ink); }
+.consent__text { flex: 1 1 100%; margin: 0; color: var(--ink); }
 .consent__actions { display: flex; gap: var(--space-3); margin-inline-start: auto; }
 
 /* Footer link that reopens the banner: reads as a quiet text link. */
@@ -27,7 +27,7 @@
 @media (pointer: coarse) { .site-footer__consent { min-height: var(--touch-target); } }
 
 @media (max-width: 599px) {
-  .consent { padding: var(--space-4); }
+  .consent { padding: var(--space-4); right: var(--space-4); width: auto; }
   .consent__actions { width: 100%; }
   .consent__actions .at-btn { flex: 1 1 0; }
 }
