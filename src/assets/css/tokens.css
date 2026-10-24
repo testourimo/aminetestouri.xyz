@@ -142,6 +142,10 @@
   --egg-aura-to: var(--coral-500);
   --egg-glow: #ff8e72b3;
 
+  /* Marketing slot cube burst. The slot sits on the inverted ground, so light theme = dark ground. */
+  --burst-top: #f1f1f1; --burst-left: #3a3a3a; --burst-right: #2a2a2a; --burst-line: #1a1a1ae6;
+  --burst-blue-top: #b9ddff; --burst-blue-left: #8fb5db; --burst-blue-right: #6e93ba;
+
   color-scheme: light;
 }
 
@@ -173,6 +177,8 @@
   --egg-edge: #b9ddff33;
   --egg-edge-blue: #b9ddffbf;
   --egg-glow: #ff8e728c;
+  --burst-top: #2e2e34; --burst-left: #18181b; --burst-right: #0c0c0e; --burst-line: #6ea0d7a6;
+  --burst-blue-top: #b9ddff; --burst-blue-left: #2f5176; --burst-blue-right: #1c3249;
   color-scheme: dark;
 }
 
@@ -204,6 +210,8 @@
     --egg-edge: #b9ddff33;
     --egg-edge-blue: #b9ddffbf;
     --egg-glow: #ff8e728c;
+    --burst-top: #2e2e34; --burst-left: #18181b; --burst-right: #0c0c0e; --burst-line: #6ea0d7a6;
+    --burst-blue-top: #b9ddff; --burst-blue-left: #2f5176; --burst-blue-right: #1c3249;
     color-scheme: dark;
   }
 }
