@@ -2,6 +2,7 @@
 layout: layouts/services.njk
 key: services
 title: Services
+description: "Product design, design systems, UX research and audits, brand identity and handover to engineering, for B2B and SaaS products."
 hero:
   eyebrow: Services
   heading: Thoughtful product design for growing software.

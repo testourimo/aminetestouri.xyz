@@ -2,6 +2,7 @@
 layout: layouts/contact.njk
 key: contact
 title: تواصل معي
+description: "تواصلوا مع Mo.Amine Testouri بشأن منتج جديد أو إعادة تصميم أو نظام تصميم. أردّ خلال يوم."
 hero:
   eyebrow: تواصل معي
   heading: تواصلوا معي

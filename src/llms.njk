@@ -1,0 +1,34 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+# {{ site.name }}
+
+> {{ site.role.en | safe }}. {{ site.description.en | safe }}
+
+{{ site.signature.en | safe }} I work inside the client's team, from research and design to handover to engineering. Every page exists in English and Arabic (right to left).
+
+## Pages
+
+- [Home]({{ site.url }}/): who I am, selected work and how I work
+- [Services]({{ site.url }}/services/): what I offer
+- [About me]({{ site.url }}/about/): background, experience and process of work
+- [Contact]({{ site.url }}/contact/): send a message about a project
+
+## Services
+{% for s in services %}
+- {{ s.title.en | safe }}: {{ s.body.en | safe }}
+{%- endfor %}
+
+## Contact
+
+- Email: {{ site.contact.email }}
+- Phone: {{ site.contact.telephone }}
+- Or use the form: [Contact]({{ site.url }}/contact/)
+
+## Arabic
+
+- [الرئيسية]({{ site.url }}/ar/)
+- [الخدمات]({{ site.url }}/ar/services/)
+- [نبذة عني]({{ site.url }}/ar/about/)
+- [تواصل معي]({{ site.url }}/ar/contact/)

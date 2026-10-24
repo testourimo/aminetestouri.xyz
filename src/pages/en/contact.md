@@ -2,6 +2,7 @@
 layout: layouts/contact.njk
 key: contact
 title: Contact
+description: "Get in touch with Mo.Amine Testouri about a new product, a redesign or a design system. I reply within a day."
 hero:
   eyebrow: Contact
   heading: Get in touch

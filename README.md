@@ -119,6 +119,17 @@ npm run check     # build + both, run this before every pull request
 2. Every push to `main` deploys automatically.
 3. Add the domain `aminetestouri.xyz` in the project's Domains settings, then set the records Vercel shows in the OVH DNS zone and remove OVH's default A/AAAA records on `@` and `www`.
 
+## SEO and GEO
+
+- **Sitemap and robots:** `src/sitemap.njk` (all pages in English and Arabic, with `hreflang` alternates) and `src/robots.njk` (everything allowed, points to the sitemap). Search and AI crawlers may read the whole site.
+- **Per-page descriptions:** every page has its own `description` in its front matter (`src/pages/en`, `src/pages/ar`). Keep each one unique and under about 160 characters.
+- **Structured data:** `layouts/base.njk` adds a schema.org `WebSite` and `Person` block on Home and About. Its hash is in the CSP in `vercel.json`; if you edit the block, the static test prints the new hash.
+- **AI summary:** `src/llms.njk` publishes `/llms.txt`, a plain-text summary of the site for AI tools. It reads from `site.json` and `services.json`, so it stays current.
+- **Search engine verification:** put the Google and Bing meta codes in `verification` in `src/_data/site.json`. The tags only appear when set.
+- **404:** has `noindex`.
+- **Contact in structured data:** `contact` in `src/_data/site.json` (email and phone) feeds the schema.org `Person` block and `llms.txt`. Both are public in the page source; clear them there to remove.
+- **Still to do:** add `og/og-default.png` (1200 × 630) so shared links show a preview image.
+
 ## Analytics (GA4 and Microsoft Clarity)
 
 Both are optional and off until you set an ID in `src/_data/site.json`:

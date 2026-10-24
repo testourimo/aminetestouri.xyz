@@ -92,7 +92,7 @@ test("every inline script is allowed by its hash in the CSP", () => {
 });
 
 test("only the allowed outside hosts are used", () => {
-  const allowed = ["www.aminetestouri.xyz", "fonts.googleapis.com", "fonts.gstatic.com", "api.fontshare.com", "cdn.fontshare.com", "formspree.io", "www.w3.org", "www.googletagmanager.com", "www.clarity.ms"];
+  const allowed = ["www.aminetestouri.xyz", "fonts.googleapis.com", "fonts.gstatic.com", "api.fontshare.com", "cdn.fontshare.com", "formspree.io", "www.w3.org", "www.googletagmanager.com", "www.clarity.ms", "schema.org"];
   const bad = new Set();
   for (const file of [...walk(SITE, ".html"), ...walk(SITE, ".css"), ...walk(SITE, ".js")]) {
     for (const m of fs.readFileSync(file, "utf8").matchAll(/https?:\/\/([a-zA-Z0-9.-]+)/g)) if (!allowed.includes(m[1])) bad.add(m[1] + " in " + path.relative(SITE, file));
