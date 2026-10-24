@@ -20,6 +20,8 @@ npm run build   # static site in _site/
 | About me | `/about/` | `/ar/about/` | Intro and portrait, Experience (`#experience`), then Process of work in detail (`#process`) |
 | Contact | `/contact/` | `/ar/contact/` | Contact form |
 
+The marketing slot after Process of work (`src/_includes/partials/promo.njk`, copy in `src/_data/marketing.json`, `"enabled": false` removes it) is full width on the inverted ground and shows `{% promoBurst %}`: a 3 × 3 × 3 block of cubes that opens to reveal the coral cube inside, then closes (10 s loop, still when reduced motion is on). It follows the theme and mirrors in Arabic; its colours are the `--burst-*` tokens.
+
 Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in `vercel.json`. Process of work lives in `src/_data/process.json` (five stages, shared by Home and About); Home shows the five process icons from the `{% processIcon n %}` shortcode (isometric tile icons, one per stage, with a hover loop); About keeps the scroll scenes from `{% isoScene %}`.
 
 ## Folder structure
@@ -30,7 +32,7 @@ Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in
 ├── vercel.json               Hosting: build command, output folder, cache headers
 ├── lib/
 │   ├── permalink.js          File path → URL (English at root, /ar/ for Arabic)
-│   └── shortcodes.js         {% icon %}, {% iso %} pattern, {% figure %} image slots, {% processIcon %}, {% promoField %}
+│   └── shortcodes.js         {% icon %}, {% iso %} pattern, {% figure %} image slots, {% processIcon %}, {% promoBurst %}
 └── src/
     ├── _data/                Content shared across pages, in both languages
     │   ├── site.json         Name, role, description, signature

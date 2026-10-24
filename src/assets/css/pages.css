@@ -77,13 +77,26 @@
 .promo .actions { margin-top: var(--space-5); }
 .promo .at-btn--primary { background: var(--surface); color: var(--ink); border-color: var(--surface); }
 .promo .at-btn--primary:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
-.promo__field { position: relative; height: 192px; margin-top: var(--space-7); overflow: hidden; }
+.promo__field { position: relative; height: 320px; margin-top: var(--space-7); overflow: hidden; }
 .promo-field { display: block; width: 100%; height: 100%; }
 .pf-lat { fill: none; stroke: var(--surface); stroke-opacity: 0.14; stroke-width: 1.5; vector-effect: non-scaling-stroke; }
 .pf-coral { fill: var(--coral-300); stroke: var(--coral-300); stroke-width: 0.8; }
 .pf-blue { fill: var(--blue-200); stroke: var(--blue-200); stroke-width: 0.8; }
 .pf-ink { fill: var(--surface); stroke: var(--surface); stroke-width: 0.8; }
 .pf-relief { fill: none; stroke: var(--surface); stroke-width: 2.5; vector-effect: non-scaling-stroke; }
+.pb-m { animation: pb-burst 10s cubic-bezier(0.45, 0, 0.2, 1) var(--d) infinite both; }
+.pb-core { animation: none; }
+.pb-t.pb-ink { fill: var(--burst-top); } .pb-l.pb-ink { fill: var(--burst-left); } .pb-r.pb-ink { fill: var(--burst-right); }
+.pb-t.pb-blue { fill: var(--burst-blue-top); } .pb-l.pb-blue { fill: var(--burst-blue-left); } .pb-r.pb-blue { fill: var(--burst-blue-right); }
+.pb-t.pb-coral { fill: var(--iso-coral-top); } .pb-l.pb-coral { fill: var(--iso-coral-left); } .pb-r.pb-coral { fill: var(--iso-coral-right); }
+.pb-line { fill: none; stroke: var(--burst-line); stroke-width: 1.5; stroke-linejoin: round; }
+.pb-core .pb-line { stroke-opacity: 0.6; }
+@keyframes pb-burst {
+  0%, 12% { transform: translate(0, 0); }
+  42%, 72% { transform: translate(var(--ex), var(--ey)); }
+  96%, 100% { transform: translate(0, 0); }
+}
+@media (prefers-reduced-motion: reduce) { .pb-m { animation: none; transform: translate(var(--ex), var(--ey)); } }
 [dir="rtl"] .promo-field { transform: scaleX(-1); }
 [dir="rtl"] .promo__heading { font: 800 clamp(36px, 5.5vw, 56px) / 1.3 var(--font-arabic); letter-spacing: 0; max-width: 16ch; }
 @media (min-width: 1024px) {
