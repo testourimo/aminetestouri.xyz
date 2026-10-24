@@ -1,0 +1,20 @@
+{#
+  Marketing slot. Full width, inverted ground, no frame lines: with the hero, the only block
+  that breaks the frame. The lattice field runs off the page edge (beside the text on desktop,
+  a strip below it on smaller screens). Copy lives in src/_data/marketing.json; set
+  "enabled": false to remove the slot.
+#}
+{% from "partials/button.njk" import button %}
+{% if marketing.enabled %}
+<section class="promo" aria-labelledby="promo-title">
+  <div class="container promo__inner">
+    <div class="promo__text">
+      <p class="promo__eyebrow label">{{ marketing.eyebrow | t(lang) }}</p>
+      <h2 class="promo__heading" id="promo-title">{{ marketing.heading | t(lang) }}</h2>
+      <p class="promo__body body">{{ marketing.body | t(lang) }}</p>
+      <div class="actions">{{ button(marketing.cta.label | t(lang), marketing.cta.page | urlFor(lang), "primary", "arrow-right") }}</div>
+    </div>
+  </div>
+  <div class="promo__field" aria-hidden="true">{% promoField %}</div>
+</section>
+{% endif %}
