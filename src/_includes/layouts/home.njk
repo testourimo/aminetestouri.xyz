@@ -50,7 +50,7 @@ layout: layouts/base.njk
     <ol class="stage-grid" role="list">
       {%- for step in process %}
       <li class="stage-tile">
-        {% isoCols { n: 5, current: loop.index, s: 12 } %}
+        {% processIcon loop.index %}
         <span class="stage-tile__num" aria-hidden="true">{{ loop.index | pad }}</span>
         <h3 class="stage-tile__title"><span class="visually-hidden">{{ loop.index }}. </span>{{ step.title | t(lang) }}</h3>
         <p class="stage-tile__body">{{ step.body | t(lang) }}</p>

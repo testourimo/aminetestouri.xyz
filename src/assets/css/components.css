@@ -315,7 +315,7 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
   transition: border-color var(--dur-fast) var(--ease-out);
 }
 .stage-tile:hover { border-color: var(--accent-line); }
-.stage-tile .iso-cols { width: 96px; margin-bottom: var(--space-3); }
+.stage-tile .process-icon { margin-bottom: var(--space-3); }
 .stage-tile__num { font: 900 31px/36px var(--font-sans); letter-spacing: -0.04em; color: var(--ink); font-variant-numeric: tabular-nums; }
 .stage-tile__title { font: 500 20px/28px var(--font-sans); letter-spacing: -0.01em; }
 .stage-tile__body { color: var(--ink-muted); font: 400 16px/24px var(--font-sans); }
@@ -330,7 +330,46 @@ textarea.at-field__ctl { resize: vertical; min-height: 144px; }
 .stage__out dd { margin: 0; color: var(--ink); }
 [dir="rtl"] .stage__out { font: 500 16px/24px var(--font-arabic); letter-spacing: 0; }
 [dir="rtl"] .stage__num { font: 500 15px/20px var(--font-arabic); }
-[dir="rtl"] .stage-tile .iso-cols { transform: scaleX(-1); }
+[dir="rtl"] .stage-tile .process-icon { transform: scaleX(-1); }
+
+/* Process icons (isometric tile icons). Hover or focus a stage tile to play its loop. */
+.process-icon { display: block; width: 166px; max-width: 100%; height: auto; overflow: visible; }
+.process-icon polygon { stroke: var(--iso-line); stroke-width: 1; stroke-linejoin: miter; vector-effect: non-scaling-stroke; }
+.pi-l { fill: var(--iso-left); }
+.pi-r { fill: var(--iso-right); }
+.pi-t { fill: var(--iso-top); }
+.pi-acc .pi-l { fill: var(--iso-blue-left); }
+.pi-acc .pi-r { fill: var(--iso-blue-right); }
+.pi-acc .pi-t { fill: var(--iso-blue-top); }
+.pi-tile .pi-t { fill: none; stroke: var(--ink); }
+.pi-wire polygon { fill: none; stroke: var(--ink); }
+.pi-wire.pi-fill polygon { fill-opacity: 0; }
+.pi-wire.pi-fill .pi-l { fill: var(--iso-left); }
+.pi-wire.pi-fill .pi-r { fill: var(--iso-right); }
+.pi-wire.pi-fill .pi-t { fill: var(--iso-top); }
+.pi-l, .pi-r, .pi-t { transition: fill var(--dur-fast) var(--ease-out); }
+.stage-tile:hover .pi-acc .pi-t, .stage-tile:focus-within .pi-acc .pi-t { fill: var(--iso-coral-top); }
+.stage-tile:hover .pi-acc .pi-l, .stage-tile:focus-within .pi-acc .pi-l { fill: var(--iso-coral-left); }
+.stage-tile:hover .pi-acc .pi-r, .stage-tile:focus-within .pi-acc .pi-r { fill: var(--iso-coral-right); }
+@keyframes pi-drop { 0% { transform: translateY(-16px); } 40%, 70% { transform: none; } 100% { transform: translateY(-16px); } }
+@keyframes pi-mid { 0%, 100% { transform: none; } 35%, 70% { transform: translateY(24px); } }
+@keyframes pi-top { 0%, 6%, 100% { transform: none; } 41%, 70% { transform: translateY(48px); } }
+@keyframes pi-fill { 0% { fill-opacity: 0; } 18%, 75% { fill-opacity: 1; } 95%, 100% { fill-opacity: 0; } }
+@keyframes pi-snap-u { 0%, 100% { transform: translate(8px, 4px); } 30%, 70% { transform: none; } }
+@keyframes pi-snap-v { 0%, 100% { transform: translate(-8px, 4px); } 30%, 70% { transform: none; } }
+@keyframes pi-snap-z { 0%, 100% { transform: translateY(-8px); } 30%, 70% { transform: none; } }
+@keyframes pi-leave { 0%, 100% { transform: none; opacity: 1; } 35%, 65% { transform: translateY(-24px); opacity: 0; } }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .stage-tile:hover .pi-drop, .stage-tile:focus-within .pi-drop { animation: pi-drop 2400ms cubic-bezier(.45, 0, .2, 1) infinite; }
+  .stage-tile:hover .pi-mid, .stage-tile:focus-within .pi-mid { animation: pi-mid 2400ms cubic-bezier(.45, 0, .2, 1) infinite; }
+  .stage-tile:hover .pi-top, .stage-tile:focus-within .pi-top { animation: pi-top 2400ms cubic-bezier(.45, 0, .2, 1) infinite; }
+  .stage-tile:hover .pi-wire.pi-fill polygon, .stage-tile:focus-within .pi-wire.pi-fill polygon { animation: pi-fill 2400ms cubic-bezier(.45, 0, .2, 1) infinite both; }
+  .stage-tile:hover .pi-au, .stage-tile:focus-within .pi-au { animation: pi-snap-u 2400ms cubic-bezier(.45, 0, .2, 1) infinite; }
+  .stage-tile:hover .pi-av, .stage-tile:focus-within .pi-av { animation: pi-snap-v 2400ms cubic-bezier(.45, 0, .2, 1) 180ms infinite; }
+  .stage-tile:hover .pi-az, .stage-tile:focus-within .pi-az { animation: pi-snap-z 2400ms cubic-bezier(.45, 0, .2, 1) 360ms infinite; }
+  .stage-tile:hover .pi-me, .stage-tile:focus-within .pi-me { animation: pi-leave 2400ms cubic-bezier(.45, 0, .2, 1) infinite; }
+}
+@media (prefers-reduced-motion: reduce) { .pi-l, .pi-r, .pi-t { transition: none; } }
 
 /* Process scenes: pieces fill in as the reader scrolls (main.js). */
 .scene .piece { will-change: opacity, transform; }

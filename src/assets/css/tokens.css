@@ -121,6 +121,9 @@
   --iso-coral-left: #e5745a;
   --iso-coral-right: #b65a44;
   --iso-coral-line: #1a1a1a8c;
+  --iso-blue-top: #b9ddff;
+  --iso-blue-left: #8fb5db;
+  --iso-blue-right: #6e93ba;
 
   color-scheme: light;
 }
