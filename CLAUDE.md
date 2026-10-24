@@ -11,7 +11,7 @@ Every change is designed, built and checked across four axes:
 - **Language:** EN / AR (RTL)
 - **Mode:** Normal / Easter Egg
 
-Easter Egg Mode (`<html data-mode="egg">`) replaces the header links and mobile menu with the merged cube, which opens a full-screen menu. It starts from the coral cube on the Home hero and is remembered on the device. Details and rules: README, section "Modes and variants". Code: `src/assets/js/egg.js`, `src/assets/css/egg.css`, `--egg-*` tokens in `tokens.css`.
+Easter Egg Mode (`<html data-mode="egg">`) replaces the header links and mobile menu with the merged cube, which opens a full-screen menu. It starts from the coral cube on the Home hero and lasts for the tab session only (`sessionStorage`); a new visit always starts in Normal mode. Details and rules: README, section "Modes and variants". Code: `src/assets/js/egg.js`, `src/assets/css/egg.css`, `--egg-*` tokens in `tokens.css`.
 
 When you add or change navigation, a page header or a hero, update both the Normal and the Egg version, and add Arabic copy with the English. When you design or mock up a screen, show the matrix (or say which variants you checked).
 
