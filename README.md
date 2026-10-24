@@ -20,7 +20,7 @@ npm run build   # static site in _site/
 | About me | `/about/` | `/ar/about/` | Intro and portrait, Experience (`#experience`), then Process of work in detail (`#process`) |
 | Contact | `/contact/` | `/ar/contact/` | Contact form |
 
-Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in `vercel.json`. Process of work lives in `src/_data/process.json` (five stages, shared by Home and About); stage graphics come from the `{% isoCols %}` shortcode.
+Old addresses (`/what-i-do/`, `/what-i-do/process/`, `/experience/`) redirect in `vercel.json`. Process of work lives in `src/_data/process.json` (five stages, shared by Home and About); Home shows the five process icons from the `{% processIcon n %}` shortcode (isometric tile icons, one per stage, with a hover loop); About keeps the scroll scenes from `{% isoScene %}`.
 
 ## Folder structure
 
