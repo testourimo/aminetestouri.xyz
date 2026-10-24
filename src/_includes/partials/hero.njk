@@ -5,7 +5,14 @@
   Uses from the page: hero.eyebrow, hero.heading, hero.lead, and on Home hero.home = true.
   Optional `heroActions` (set in the layout) renders buttons under the lead.
 #}
-<section class="hero{% if hero.home %} hero--home{% endif %}">
+<section class="hero{% if hero.home %} hero--home hero--field{% endif %}"{% if hero.home %} data-egg-hero{% endif %}>
+  {%- if hero.home %}
+  {#- Home: the cube field. Built by egg.js in Normal mode; the coral cube is the way into Egg Mode. #}
+  <div class="egg-field" data-egg-field data-label="{{ ui.eggAssemble | t(lang) }}" data-msg-assembled="{{ ui.eggAssembled | t(lang) }}" data-msg-scattered="{{ ui.eggScattered | t(lang) }}">
+    <div class="egg-scene" data-egg-scene></div>
+  </div>
+  <p class="visually-hidden" aria-live="polite" data-egg-live></p>
+  {%- endif %}
   <div class="container hero__inner">
     <div class="hero__text">
       {% if hero.eyebrow %}<p class="hero__eyebrow label">{{ hero.eyebrow }}</p>{% endif %}
@@ -14,7 +21,9 @@
       {% if heroActions %}<div class="actions">{{ heroActions | safe }}</div>{% endif %}
     </div>
   </div>
+  {%- if not hero.home %}
   <div class="hero__pattern" aria-hidden="true">
     {% iso { cols: 16, rows: 24, side: 48 } %}
   </div>
+  {%- endif %}
 </section>

@@ -82,5 +82,25 @@
   "fullProcess": {
     "en": "Read the full process",
     "ar": "اطّلعوا على الآلية كاملة"
+  },
+  "eggAssemble": {
+    "en": "Assemble the cubes",
+    "ar": "جمّعوا المكعبات"
+  },
+  "eggAssembled": {
+    "en": "The cubes are assembled. Your menu is now the cube in the header.",
+    "ar": "تجمّعت المكعبات. القائمة الآن هي المكعب في الشريط العلوي."
+  },
+  "eggScattered": {
+    "en": "The classic menu is back and the cubes are floating again.",
+    "ar": "عادت القائمة المعتادة وعادت المكعبات للتحليق."
+  },
+  "eggExit": {
+    "en": "Back to the classic menu",
+    "ar": "العودة إلى القائمة المعتادة"
+  },
+  "eggMenu": {
+    "en": "Menu",
+    "ar": "القائمة"
   }
 }

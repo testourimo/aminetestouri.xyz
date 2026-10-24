@@ -6,8 +6,8 @@ eleventyExcludeFromCollections: true
   Amine Testouri · portfolio styles
   Generated from src/_generated/main-css.njk: each import carries the version hash,
   so an update never comes from a stale browser cache.
-  Order matters: tokens, then base, layout, components, pages.
+  Order matters: tokens, then base, layout, components, pages, egg.
 */
-{%- for file in ["tokens", "fonts", "base", "layout", "components", "pages"] %}
+{%- for file in ["tokens", "fonts", "base", "layout", "components", "pages", "egg"] %}
 @import url("{{ file }}.css?v={{ assets.cssVersion }}");
 {%- endfor %}

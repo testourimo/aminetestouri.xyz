@@ -2,7 +2,7 @@
 {%- set pageTitle = (title + " · " + site.name) if key != "home" else (site.name + " · " + (site.role | t(lang))) -%}
 {%- set pageDescription = description or (site.description | t(lang)) -%}
 <!doctype html>
-<html lang="{{ lang }}" dir="{{ dir }}">
+<html lang="{{ lang }}" dir="{{ dir }}" data-mode="normal">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,6 +23,8 @@
   {# Set the saved theme before paint, so there is no flash. #}
   <script>document.documentElement.classList.add("js");</script>
   <script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+  {# Easter Egg Mode: a visitor who found the coral cube keeps the cube menu. Anyone else stays in Normal mode. #}
+  <script>try{if(localStorage.getItem("mode")==="egg")document.documentElement.setAttribute("data-mode","egg")}catch(e){}</script>
 
   {# Satoshi from Fontshare; Zain (Arabic) from Google Fonts. #}
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -32,6 +34,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;800&display=swap">
   <link rel="stylesheet" href="/assets/css/main.css?v={{ assets.cssVersion }}">
   <script src="/assets/js/main.js?v={{ assets.jsVersion }}" defer></script>
+  <script src="/assets/js/egg.js?v={{ assets.jsVersion }}" defer></script>
 </head>
 <body class="page page--{{ key }}">
   <a class="skip-link" href="#main">{{ ui.skip | t(lang) }}</a>

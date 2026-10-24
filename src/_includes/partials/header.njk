@@ -20,6 +20,19 @@
       {% icon "menu", 20 %}
     </button>
 
+    {#
+      Easter Egg Mode. Hidden in Normal mode. In Egg mode this cube replaces the menu button
+      and the desktop links; the language and theme tools stay where they are.
+    #}
+    <button class="egg-nav" type="button" aria-expanded="false" aria-controls="egg-menu" aria-label="{{ ui.eggMenu | t(lang) }}" data-egg-nav>
+      <span class="egg-nav__label" aria-hidden="true">{{ ui.eggMenu | t(lang) }}</span>
+      <span class="egg-mini" aria-hidden="true" data-egg-slot>
+        <span class="egg-mini__tilt"><span class="egg-mini__spin"><span class="egg-mini__box">
+          <i class="f t"></i><i class="f b"></i><i class="f fr"></i><i class="f bk"></i><i class="f r"></i><i class="f l"></i>
+        </span></span></span>
+      </span>
+    </button>
+
     <nav class="site-nav" id="site-nav" aria-label="{{ ui.mainNav | t(lang) }}">
       <ul class="site-nav__list">
         {%- for item in nav %}
@@ -57,4 +70,13 @@
       </ul>
     </nav>
   </div>
+
+  <nav class="egg-menu" id="egg-menu" aria-label="{{ ui.eggMenu | t(lang) }}" data-egg-menu inert>
+    <ul class="egg-menu__list" role="list">
+      {%- for item in nav %}
+      <li style="--i: {{ loop.index0 }}"><a href="{{ item.url | t(lang) }}"{% if key == item.key %} aria-current="page"{% endif %}>{{ item.label | t(lang) }}</a></li>
+      {%- endfor %}
+    </ul>
+    <button class="egg-menu__exit" type="button" data-egg-exit>{{ ui.eggExit | t(lang) }}</button>
+  </nav>
 </header>
