@@ -1,0 +1,14 @@
+{#
+  Consent banner for analytics. Renders only when at least one ID is set in src/_data/site.json.
+  Nothing from Google or Microsoft loads until the visitor accepts (src/assets/js/consent.js).
+  Not a dialog: it never traps focus or blocks the page.
+#}
+{%- if site.analytics.ga4 or site.analytics.clarity %}
+<section class="consent" data-consent data-ga4="{{ site.analytics.ga4 }}" data-clarity="{{ site.analytics.clarity }}" aria-label="{{ ui.consentLabel | t(lang) }}" hidden>
+  <p class="consent__text small">{{ ui.consentText | t(lang) }}</p>
+  <div class="consent__actions">
+    <button class="at-btn at-btn--outlined at-btn--sm" type="button" data-consent-choice="denied">{{ ui.consentDecline | t(lang) }}</button>
+    <button class="at-btn at-btn--primary at-btn--sm" type="button" data-consent-choice="granted">{{ ui.consentAccept | t(lang) }}</button>
+  </div>
+</section>
+{%- endif %}

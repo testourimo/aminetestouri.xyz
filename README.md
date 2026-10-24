@@ -119,6 +119,20 @@ npm run check     # build + both, run this before every pull request
 2. Every push to `main` deploys automatically.
 3. Add the domain `aminetestouri.xyz` in the project's Domains settings, then set the records Vercel shows in the OVH DNS zone and remove OVH's default A/AAAA records on `@` and `www`.
 
+## Analytics (GA4 and Microsoft Clarity)
+
+Both are optional and off until you set an ID in `src/_data/site.json`:
+
+```json
+"analytics": { "ga4": "G-XXXXXXXXXX", "clarity": "your-clarity-project-id" }
+```
+
+- With no IDs there is no banner and nothing loads. With IDs, a consent banner shows on the first visit (EN and AR, light and dark, both modes).
+- Nothing from Google or Microsoft is requested until the visitor presses Accept. The choice is kept in `localStorage` as `consent`; the footer link "Cookie settings" reopens the banner.
+- Code: `src/assets/js/consent.js`, `src/assets/css/consent.css`, `src/_includes/partials/consent.njk`. Strings: `consent*` in `src/_data/ui.json`.
+- Events sent after consent: `contact_click`, `case_study_open`, `contact_form_sent`, `language_switch`, `theme_toggle`, `easter_egg_found`. Mark `contact_form_sent` as a key event in GA4.
+- The CSP in `vercel.json` allows Google Tag Manager, Google Analytics, Clarity and `c.bing.com` (script, connect and image sources). The hosts are also in the allowlist in `tests/static.test.js`.
+
 ## Contact form
 
 The form posts to any service that accepts a normal form POST, for example Formspree.

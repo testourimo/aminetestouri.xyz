@@ -208,6 +208,7 @@
         .then(function (res) {
           if (!res.ok) throw new Error(res.status);
           form.reset();
+          document.dispatchEvent(new CustomEvent("site:contact-sent"));
           ok.hidden = false;
           ok.focus();
         })

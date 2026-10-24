@@ -102,5 +102,25 @@
   "eggMenu": {
     "en": "Menu",
     "ar": "القائمة"
+  },
+  "consentLabel": {
+    "en": "Cookies and analytics",
+    "ar": "ملفات تعريف الارتباط والتحليلات"
+  },
+  "consentText": {
+    "en": "I use Google Analytics and Microsoft Clarity to see which pages are read and how people move through the site. Nothing loads unless you accept, and you can change your mind at any time.",
+    "ar": "أستخدم Google Analytics وMicrosoft Clarity لمعرفة الصفحات التي تُقرأ وكيف يتنقّل الزوّار في الموقع. لا يُحمَّل شيء ما لم توافقوا، ويمكنكم تغيير قراركم في أي وقت."
+  },
+  "consentAccept": {
+    "en": "Accept",
+    "ar": "أوافق"
+  },
+  "consentDecline": {
+    "en": "Decline",
+    "ar": "لا أوافق"
+  },
+  "consentSettings": {
+    "en": "Cookie settings",
+    "ar": "إعدادات ملفات تعريف الارتباط"
   }
 }

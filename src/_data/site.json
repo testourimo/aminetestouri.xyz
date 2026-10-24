@@ -15,5 +15,9 @@
     "ar": "مقيم في تونس ويعمل مع عملاء حول العالم."
   },
   "ogImage": "og/og-default.png",
-  "formEndpoint": "https://formspree.io/f/xljgynlj"
+  "formEndpoint": "https://formspree.io/f/xljgynlj",
+  "analytics": {
+    "ga4": "",
+    "clarity": ""
+  }
 }
