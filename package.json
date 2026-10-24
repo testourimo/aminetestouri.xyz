@@ -6,10 +6,14 @@
   "scripts": {
     "dev": "eleventy --serve",
     "build": "eleventy",
-    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\""
+    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\"",
+    "test": "node --test tests/static.test.js",
+    "test:e2e": "node --test --test-concurrency=1 tests/e2e.test.js",
+    "check": "npm run build && npm test && npm run test:e2e"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.2"
+    "@11ty/eleventy": "^3.1.2",
+    "playwright": "^1.63.0"
   },
   "engines": {
     "node": ">=18"

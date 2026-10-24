@@ -9,6 +9,7 @@ Built with [Eleventy](https://www.11ty.dev/) on the Amine Testouri design system
 npm install
 npm run dev     # local server with live reload at http://localhost:8080
 npm run build   # static site in _site/
+npm run check   # build, then all tests (see "Checks and security")
 ```
 
 ## Sitemap
@@ -89,6 +90,20 @@ Rules for any change:
 4. New global navigation must exist in both places: `site-nav` (Normal) and `egg-menu` (Egg). Both read `src/_data/nav.json`.
 5. Reduced motion: no drift, no tumbling, the assembly and docking snap. Keep it that way.
 6. Egg mode needs JavaScript. Normal mode works without it.
+
+## Checks and security
+
+```bash
+npm test          # static checks on the built site (fast, no browser)
+npm run test:e2e  # browser checks with Playwright (first time: npx playwright install chromium)
+npm run check     # build + both, run this before every pull request
+```
+
+- **Static** (`tests/static.test.js`): every `src/_data` string has EN and AR, every page knows both modes, Egg and burst tokens exist for light and dark, no hard-coded colours in `egg.css` or `egg.js`, security headers and CSP are present, no dangerous script sinks, only allowed outside hosts, no secrets.
+- **Browser** (`tests/e2e.test.js`): the 16 variants (viewport x theme x language x mode) through the whole Egg flow (tap the coral cube, dock, open and close the menu, carry Egg to the next page, new tab starts Normal, back to the classic menu), plus keyboard, reduced motion and the marketing slot. The test server applies the headers from `vercel.json`, so any CSP violation fails the run.
+- **Headers** (`vercel.json`): CSP, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `Cross-Origin-Opener-Policy` and HSTS on every route.
+- **CSP and inline scripts:** scripts are `'self'` plus three `sha256` hashes for the small inline scripts in `layouts/base.njk` (js flag, theme restore, mode restore). If you edit one of them, the static test prints the new hash; put it in the `script-src` of `vercel.json`. Inline styles are allowed (`'unsafe-inline'` for `style-src` only). New outside hosts (fonts, form service) must be added to the CSP and to the allowlist in `tests/static.test.js` on purpose.
+- Run `npm audit` now and then. The site ships no runtime dependencies; Playwright is a dev tool only.
 
 ## Editing
 

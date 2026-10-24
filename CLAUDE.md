@@ -21,3 +21,7 @@ When you add or change navigation, a page header or a hero, update both the Norm
 - Tokens only; no hard-coded colours. Coral is the accent and the hover colour; blue is the second colour.
 - Radius 0 or 2 px. No shadows and no gradients, except the system's CardGlow and the merged Egg cube aura.
 - Work in a branch, open a pull request, merge to `main` to deploy (Vercel).
+
+## Checks
+
+Run `npm run check` (build, static tests, browser tests over the 16 variants) before opening a pull request. If you change an inline script in `base.njk`, update its hash in the CSP in `vercel.json`. Details: README, section "Checks and security".
