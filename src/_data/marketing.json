@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "eyebrow": {
+    "en": "In-house design, on a written scope",
+    "ar": "تصميم داخلي، ضمن نطاق مكتوب"
+  },
+  "heading": {
+    "en": "Your product, designed from the inside.",
+    "ar": "منتجكم، يُصمَّم من الداخل."
+  },
+  "body": {
+    "en": "I join your team for a defined scope, work in your tools and leave you a system that holds without me.",
+    "ar": "أنضم إلى فريقكم ضمن نطاق محدّد، وأعمل بأدواتكم، وأترك لكم منظومة تبقى متماسكة من دوني."
+  },
+  "cta": {
+    "label": { "en": "Arrange a short call", "ar": "رتّبوا مكالمة قصيرة" },
+    "page": "contact"
+  }
+}
