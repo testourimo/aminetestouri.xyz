@@ -200,7 +200,6 @@
         c.faces[f].style.background = "rgb(" + Math.round(mix(A[0], B[0], t)) + "," + Math.round(mix(A[1], B[1], t)) + "," + Math.round(mix(A[2], B[2], t)) + ")";
       }
     }
-    s.setColors = setColors;
     cubes.forEach(setColors);
 
     /* Assemble: every cube flies in from the coral corner outward. */
@@ -307,7 +306,9 @@
       s.io.observe(hero);
     }
     function kickLoop() { if (!s.raf && st === s) { s.last = performance.now(); s.raf = requestAnimationFrame(tick); } }
-    document.addEventListener("visibilitychange", function () { if (!document.hidden) kickLoop(); });
+    function onVisible() { if (!document.hidden) kickLoop(); }
+    document.addEventListener("visibilitychange", onVisible);
+    s.cleanup.push(function () { document.removeEventListener("visibilitychange", onVisible); clearTimeout(s.dockT); clearTimeout(s.hideT); clearTimeout(rz); });
 
     function tick(now) {
       s.raf = 0;
