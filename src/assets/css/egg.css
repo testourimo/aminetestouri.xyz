@@ -4,7 +4,7 @@
   The site has two modes, set on <html data-mode="normal | egg">:
     normal  The classic header and menu. Home shows the cube field with one coral cube.
     egg     The visitor found the coral cube. The merged cube in the header is the menu
-            (a full-screen list), and the classic links are hidden. Saved in localStorage ("mode").
+            (a full-screen list), and the classic links are hidden. Kept in sessionStorage ("mode"), so it lasts for the tab only.
   It works with every other axis: viewport (CSS breakpoints), theme (data-theme), language and
   direction (lang, dir). Colours come from the --egg-* tokens, so light and dark need no extra rules here.
 */
