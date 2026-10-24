@@ -2,7 +2,8 @@
 layout: layouts/about.njk
 key: about
 title: About me
-description: "About Mo.Amine Testouri: a product designer based in Tunisia who works inside the team, from research to handover."
+description: "About Mo.Amine Testouri: a Tunisian product designer who works inside the team, from research to handover, with clients in MENA, the GCC, Africa and beyond."
+seoTitle: "About Mo.Amine Testouri · Tunisian Product Designer"
 hero:
   eyebrow: About me
   heading: Hello, I'm Mo.Amine Testouri.

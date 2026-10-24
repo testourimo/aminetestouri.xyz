@@ -2,7 +2,8 @@
 layout: layouts/about.njk
 key: about
 title: نبذة عني
-description: "نبذة عن Mo.Amine Testouri: مصمّم منتجات مقيم في تونس يعمل داخل الفريق، من البحث حتى التسليم."
+description: "نبذة عن Mo.Amine Testouri: مصمّم منتجات تونسي يعمل داخل الفريق، من البحث حتى التسليم، مع عملاء في المنطقة العربية ودول الخليج وأفريقيا وغيرها."
+seoTitle: "نبذة عن Mo.Amine Testouri · مصمّم منتجات تونسي"
 hero:
   eyebrow: نبذة عني
   heading: أهلًا بكم، أنا Mo.Amine Testouri.

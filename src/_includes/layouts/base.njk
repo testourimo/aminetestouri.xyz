@@ -1,5 +1,5 @@
 {%- set otherLang = "ar" if lang == "en" else "en" -%}
-{%- set pageTitle = (title + " · " + site.name) if key != "home" else (site.name + " · " + (site.role | t(lang))) -%}
+{%- set pageTitle = seoTitle or ((title + " · " + site.name) if key != "home" else (site.name + " · " + (site.role | t(lang)))) -%}
 {%- set pageDescription = description or (site.description | t(lang)) -%}
 <!doctype html>
 <html lang="{{ lang }}" dir="{{ dir }}" data-mode="normal">
@@ -36,7 +36,8 @@
     "@context": "https://schema.org",
     "@graph": [
       { "@type": "WebSite", "@id": site.url + "/#website", "url": site.url + "/", "name": site.name, "inLanguage": lang },
-      { "@type": "Person", "@id": site.url + "/#person", "name": site.name, "alternateName": site.wordmark, "url": site.url + "/", "email": site.contact.email, "telephone": site.contact.telephone, "jobTitle": site.role | t(lang), "description": site.description | t(lang), "address": { "@type": "PostalAddress", "addressCountry": "TN" }, "knowsAbout": ["Product design", "B2B dashboards", "SaaS platforms", "Admin systems", "Design systems", "UX research", "Brand identity"], "mainEntityOfPage": site.url + "/" }
+      { "@type": "Person", "@id": site.url + "/#person", "name": site.name, "alternateName": site.wordmark, "url": site.url + "/", "email": site.contact.email, "telephone": site.contact.telephone, "nationality": { "@type": "Country", "name": "Tunisia" }, "knowsLanguage": ["en", "fr", "ar"], "jobTitle": site.role | t(lang), "description": site.description | t(lang), "address": { "@type": "PostalAddress", "addressCountry": "TN" }, "knowsAbout": ["Product design", "UX/UI design", "B2B dashboards", "SaaS platforms", "Admin systems", "Design systems", "UX research", "Brand identity"], "mainEntityOfPage": site.url + "/" },
+      { "@type": "ProfessionalService", "@id": site.url + "/#service", "name": site.name + " · UX/UI and product design", "url": site.url + "/", "provider": { "@id": site.url + "/#person" }, "serviceType": ["Product design", "UX/UI design", "Design systems", "UX research and audits", "Brand identity", "Design handover"], "areaServed": ["Tunisia", "Middle East and North Africa", "Gulf Cooperation Council countries", "Africa"], "availableLanguage": ["English", "French", "Arabic"] }
     ]
   } %}
   <script type="application/ld+json">{{ graph | dump | safe }}</script>

@@ -2,7 +2,8 @@
 layout: layouts/home.njk
 key: home
 title: Home
-description: "Mo.Amine Testouri is a product designer in Tunisia. I design B2B dashboards, SaaS platforms, admin systems and design systems for teams around the world."
+description: "Mo.Amine Testouri is a Tunisian product and UX/UI designer working with teams across MENA, the GCC, Africa and worldwide. B2B dashboards, SaaS platforms, admin systems and design systems."
+seoTitle: "Mo.Amine Testouri · Tunisian UX/UI & Product Designer"
 hero:
   home: true
   eyebrow: Mo.Amine Testouri · Product Designer & Creative Strategist
