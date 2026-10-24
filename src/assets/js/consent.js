@@ -35,9 +35,10 @@
       window.dataLayer = window.dataLayer || [];
       window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
       window.gtag("consent", "default", { analytics_storage: "denied", ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied" });
+      // Consent is already given here, so update it before config: the first page_view then counts in full.
+      window.gtag("consent", "update", { analytics_storage: "granted" });
       window.gtag("js", new Date());
       window.gtag("config", GA4, { allow_google_signals: false, allow_ad_personalization_signals: false });
-      window.gtag("consent", "update", { analytics_storage: "granted" });
       addScript("https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA4));
     }
 
